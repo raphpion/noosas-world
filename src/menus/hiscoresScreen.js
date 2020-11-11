@@ -1,4 +1,5 @@
 import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
+import { clouds } from '../backgrounds/clouds.js'
 import { returnButton } from '../buttons/returnButton.js'
 import { isMouseOverButton } from '../methods.js'
 
@@ -10,13 +11,7 @@ const hiscoresScreen = {
       y: 35,
     },
   },
-  background: {
-    img: new Image(),
-    pos: {
-      x: 0,
-      y: 0,
-    },
-  },
+  background: '#ff9257',
   goldMedal: {
     img: new Image(),
     pos: {
@@ -38,11 +33,13 @@ const hiscoresScreen = {
       y: 260,
     },
   },
+  clear: () => {
+    document.removeEventListener('click', hiscoresScreen.mouseClick)
+    document.removeEventListener('mousemove', hiscoresScreen.mouseMove)
+  },
   draw: () => {
     clearScreen()
-    ctx.drawImage(hiscoresScreen.background.img, hiscoresScreen.background.pos.x, hiscoresScreen.background.pos.y)
-    hiscoresScreen.background.pos.x--
-    if (hiscoresScreen.background.pos.x < -800) hiscoresScreen.background.pos.x = 0
+    clouds.draw()
     ctx.drawImage(hiscoresScreen.title.img, hiscoresScreen.title.pos.x, hiscoresScreen.title.pos.y)
     hiscoresScreen.drawHiscores()
     returnButton.draw()
@@ -77,9 +74,10 @@ const hiscoresScreen = {
     } else ctx.fillText('----------', GAME_WIDTH / 2, 145 + i * 60)
   },
   init: () => {
+    gameScreen.style.backgroundColor = hiscoresScreen.background
     document.addEventListener('click', hiscoresScreen.mouseClick)
     document.addEventListener('mousemove', hiscoresScreen.mouseMove)
-    setInterval(hiscoresScreen.draw, 1000 / 60)
+    return setInterval(hiscoresScreen.draw, 1000 / 60)
   },
   mouseClick: e => {
     if (isMouseOverButton(returnButton, e)) returnButton.click()
@@ -96,7 +94,6 @@ const hiscoresScreen = {
 }
 
 hiscoresScreen.title.img.src = '../assets/menu/records.png'
-hiscoresScreen.background.img.src = '../assets/menu/bg-sky.png'
 hiscoresScreen.goldMedal.img.src = '../assets/menu/medal_gold.png'
 hiscoresScreen.silverMedal.img.src = '../assets/menu/medal_silver.png'
 hiscoresScreen.bronzeMedal.img.src = '../assets/menu/medal_bronze.png'

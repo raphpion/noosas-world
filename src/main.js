@@ -1,2 +1,4 @@
-import { settingsScreen } from './menus/settingsScreen.js'
-settingsScreen.init()
+import { getScene } from './gameScreen.js'
+import { titleScreen } from './menus/titleScreen.js'
+
+getScene(titleScreen)

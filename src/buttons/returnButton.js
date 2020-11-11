@@ -1,4 +1,5 @@
-import { ctx } from '../gameScreen.js'
+import { ctx, getScene } from '../gameScreen.js'
+import { titleScreen } from '../menus/titleScreen.js'
 
 const returnButton = {
   img: new Image(),
@@ -21,7 +22,9 @@ const returnButton = {
     ctx.fillText(returnButton.content, returnButton.pos.x + 200, returnButton.pos.y)
   },
   click: () => {
-    alert('Vous avez cliqué sur Retour.\nCette fonction sera implémentée sous peu...')
+    returnButton.hover = false
+    document.body.style.cursor = 'default'
+    getScene(titleScreen)
   },
 }
 

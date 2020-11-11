@@ -1,4 +1,5 @@
 import { ctx, clearScreen, drawCredits } from '../gameScreen.js'
+import { clouds } from '../backgrounds/clouds.js'
 import { musicIcon, soundIcon } from '../buttons/soundIcons.js'
 import { musicMinus, musicPlus, soundMinus, soundPlus } from '../buttons/soundControls.js'
 import { musicBar, soundBar } from '../buttons/soundBars.js'
@@ -14,18 +15,10 @@ const settingsScreen = {
       y: 35,
     },
   },
-  background: {
-    img: new Image(),
-    pos: {
-      x: 0,
-      y: 0,
-    },
-  },
+  background: '#ff9257',
   draw: () => {
     clearScreen()
-    ctx.drawImage(settingsScreen.background.img, settingsScreen.background.pos.x, settingsScreen.background.pos.y)
-    settingsScreen.background.pos.x--
-    if (settingsScreen.background.pos.x < -800) settingsScreen.background.pos.x = 0
+    clouds.draw()
     ctx.drawImage(settingsScreen.title.img, settingsScreen.title.pos.x, settingsScreen.title.pos.y)
     musicIcon.draw()
     musicMinus.draw()
@@ -39,10 +32,15 @@ const settingsScreen = {
     returnButton.draw()
     drawCredits()
   },
+  clear: () => {
+    document.removeEventListener('click', settingsScreen.mouseClick)
+    document.removeEventListener('mousemove', settingsScreen.mouseMove)
+  },
   init: () => {
+    gameScreen.style.backgroundColor = settingsScreen.background
     document.addEventListener('click', settingsScreen.mouseClick)
     document.addEventListener('mousemove', settingsScreen.mouseMove)
-    setInterval(settingsScreen.draw, 1000 / 60)
+    return setInterval(settingsScreen.draw, 1000 / 60)
   },
   mouseClick: e => {
     if (isMouseOverButton(musicIcon, e)) musicIcon.click()
@@ -100,6 +98,5 @@ const settingsScreen = {
 }
 
 settingsScreen.title.img.src = '../assets/menu/options.png'
-settingsScreen.background.img.src = '../assets/menu/bg-sky.png'
 
 export { settingsScreen }
