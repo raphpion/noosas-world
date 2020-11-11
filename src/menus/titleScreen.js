@@ -1,4 +1,4 @@
-import { GAME_WIDTH, GAME_HEIGHT, ctx } from '../gameScreen.js'
+import { ctx, clearScreen, drawCredits } from '../gameScreen.js'
 import { startButton } from '../buttons/startButton.js'
 import { hiscoresButton } from '../buttons/hiscoresButton.js'
 import { settingsButton } from '../buttons/settingsButton.js'
@@ -20,7 +20,7 @@ const titleScreen = {
     },
   },
   draw: () => {
-    ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT)
+    clearScreen()
     ctx.drawImage(titleScreen.background.img, titleScreen.background.pos.x, titleScreen.background.pos.y)
     titleScreen.background.pos.x--
     if (titleScreen.background.pos.x < -800) titleScreen.background.pos.x = 0
@@ -28,19 +28,14 @@ const titleScreen = {
     startButton.draw()
     hiscoresButton.draw()
     settingsButton.draw()
-    ctx.font = '16pt VT323'
-    ctx.fillStyle = 'black'
-    ctx.textBaseline = 'bottom'
-    ctx.fillText('© Raphaël Pion 2020 - tous droits réservés', GAME_WIDTH / 2, GAME_HEIGHT - 10)
+    drawCredits()
   },
   init: () => {
-    // event listeners pour mouse move et pour mouse click
     document.addEventListener('click', titleScreen.mouseClick)
     document.addEventListener('mousemove', titleScreen.mouseMove)
     setInterval(titleScreen.draw, 1000 / 60)
   },
   mouseClick: e => {
-    // si on clique dans la zone d'un bouton, on active la méthode du bouton.click
     if (isMouseOverButton(startButton, e)) startButton.click()
     if (isMouseOverButton(hiscoresButton, e)) hiscoresButton.click()
     if (isMouseOverButton(settingsButton, e)) settingsButton.click()
