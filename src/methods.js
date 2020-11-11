@@ -18,4 +18,11 @@ function isMouseOverButton(btn, e) {
   else return false
 }
 
-export { getMousePos, isMouseOverButton }
+function isMouseOverBar(bar, i, e) {
+  let pos = getMousePos(e)
+  if (pos.x >= bar[5].x + i * 25 && pos.x <= bar[5].x + i * 41 && pos.y >= bar[5].y && pos.y <= bar[5].y + 52)
+    return true
+  else return false
+}
+
+export { getMousePos, isMouseOverButton, isMouseOverBar }

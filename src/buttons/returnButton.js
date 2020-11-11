@@ -2,7 +2,7 @@ import { ctx } from '../gameScreen.js'
 
 const returnButton = {
   img: new Image(),
-  color: 'red',
+  color: 'blue',
   content: 'Retour',
   hover: false,
   pos: {
