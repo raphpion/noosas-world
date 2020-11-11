@@ -1,4 +1,5 @@
-import { ctx } from '../gameScreen.js'
+import { ctx, getScene } from '../gameScreen.js'
+import { hiscoresScreen } from '../menus/hiscoresScreen.js'
 
 const hiscoresButton = {
   img: new Image(),
@@ -21,7 +22,9 @@ const hiscoresButton = {
     ctx.fillText(hiscoresButton.content, hiscoresButton.pos.x + 200, hiscoresButton.pos.y)
   },
   click: () => {
-    alert('Vous avez cliqué sur Records.\nCette fonction sera implémentée sous peu...')
+    hiscoresButton.hover = false
+    document.body.style.cursor = 'default'
+    getScene(hiscoresScreen)
   },
 }
 

@@ -1,4 +1,5 @@
-import { ctx } from '../gameScreen.js'
+import { ctx, getScene } from '../gameScreen.js'
+import { settingsScreen } from '../menus/settingsScreen.js'
 
 const settingsButton = {
   img: new Image(),
@@ -21,7 +22,9 @@ const settingsButton = {
     ctx.fillText(settingsButton.content, settingsButton.pos.x + 200, settingsButton.pos.y)
   },
   click: () => {
-    alert('Vous avez cliqué sur Options.\nCette fonction sera implémentée sous peu...')
+    settingsButton.hover = false
+    document.body.style.cursor = 'default'
+    getScene(settingsScreen)
   },
 }
 

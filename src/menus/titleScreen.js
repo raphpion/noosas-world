@@ -1,4 +1,5 @@
-import { ctx, clearScreen, drawCredits } from '../gameScreen.js'
+import { gameScreen, ctx, clearScreen, drawCredits } from '../gameScreen.js'
+import { clouds } from '../backgrounds/clouds.js'
 import { startButton } from '../buttons/startButton.js'
 import { hiscoresButton } from '../buttons/hiscoresButton.js'
 import { settingsButton } from '../buttons/settingsButton.js'
@@ -12,18 +13,14 @@ const titleScreen = {
       y: 35,
     },
   },
-  background: {
-    img: new Image(),
-    pos: {
-      x: 0,
-      y: 0,
-    },
+  background: '#b1e7f8',
+  clear: () => {
+    document.removeEventListener('click', titleScreen.mouseClick)
+    document.removeEventListener('mousemove', titleScreen.mouseMove)
   },
   draw: () => {
     clearScreen()
-    ctx.drawImage(titleScreen.background.img, titleScreen.background.pos.x, titleScreen.background.pos.y)
-    titleScreen.background.pos.x--
-    if (titleScreen.background.pos.x < -800) titleScreen.background.pos.x = 0
+    clouds.draw()
     ctx.drawImage(titleScreen.title.img, titleScreen.title.pos.x, titleScreen.title.pos.y)
     startButton.draw()
     hiscoresButton.draw()
@@ -31,9 +28,10 @@ const titleScreen = {
     drawCredits()
   },
   init: () => {
+    gameScreen.style.backgroundColor = titleScreen.background
     document.addEventListener('click', titleScreen.mouseClick)
     document.addEventListener('mousemove', titleScreen.mouseMove)
-    setInterval(titleScreen.draw, 1000 / 60)
+    return setInterval(titleScreen.draw, 1000 / 60)
   },
   mouseClick: e => {
     if (isMouseOverButton(startButton, e)) startButton.click()
@@ -60,6 +58,5 @@ const titleScreen = {
 }
 
 titleScreen.title.img.src = '../assets/menu/titleAlt.png'
-titleScreen.background.img.src = '../assets/menu/bg-sky.png'
 
 export { titleScreen }
