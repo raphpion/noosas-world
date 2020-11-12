@@ -1,6 +1,7 @@
 import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
 import { clouds } from '../backgrounds/clouds.js'
 import { returnButton } from '../buttons/returnButton.js'
+import { playMusic } from '../gameAudio.js'
 import { isMouseOverButton } from '../methods.js'
 
 const hiscoresScreen = {
@@ -74,7 +75,12 @@ const hiscoresScreen = {
     } else ctx.fillText('----------', GAME_WIDTH / 2, 145 + i * 60)
   },
   init: () => {
+    hiscoresScreen.title.img.src = '../assets/menu/records.png'
+    hiscoresScreen.goldMedal.img.src = '../assets/menu/medal_gold.png'
+    hiscoresScreen.silverMedal.img.src = '../assets/menu/medal_silver.png'
+    hiscoresScreen.bronzeMedal.img.src = '../assets/menu/medal_bronze.png'
     gameScreen.style.backgroundColor = hiscoresScreen.background
+    playMusic('titlescreen')
     document.addEventListener('click', hiscoresScreen.mouseClick)
     document.addEventListener('mousemove', hiscoresScreen.mouseMove)
     return setInterval(hiscoresScreen.draw, 1000 / 60)
@@ -92,10 +98,5 @@ const hiscoresScreen = {
     }
   },
 }
-
-hiscoresScreen.title.img.src = '../assets/menu/records.png'
-hiscoresScreen.goldMedal.img.src = '../assets/menu/medal_gold.png'
-hiscoresScreen.silverMedal.img.src = '../assets/menu/medal_silver.png'
-hiscoresScreen.bronzeMedal.img.src = '../assets/menu/medal_bronze.png'
 
 export { hiscoresScreen }

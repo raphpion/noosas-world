@@ -3,6 +3,7 @@ import { clouds } from '../backgrounds/clouds.js'
 import { startButton } from '../buttons/startButton.js'
 import { hiscoresButton } from '../buttons/hiscoresButton.js'
 import { settingsButton } from '../buttons/settingsButton.js'
+import { playMusic } from '../gameAudio.js'
 import { isMouseOverButton } from '../methods.js'
 
 const titleScreen = {
@@ -28,7 +29,9 @@ const titleScreen = {
     drawCredits()
   },
   init: () => {
+    titleScreen.title.img.src = '../assets/menu/titleAlt.png'
     gameScreen.style.backgroundColor = titleScreen.background
+    playMusic('titlescreen')
     document.addEventListener('click', titleScreen.mouseClick)
     document.addEventListener('mousemove', titleScreen.mouseMove)
     return setInterval(titleScreen.draw, 1000 / 60)
@@ -56,7 +59,5 @@ const titleScreen = {
     }
   },
 }
-
-titleScreen.title.img.src = '../assets/menu/titleAlt.png'
 
 export { titleScreen }

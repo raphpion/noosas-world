@@ -5,6 +5,7 @@ import { musicMinus, musicPlus, soundMinus, soundPlus } from '../buttons/soundCo
 import { musicBar, soundBar } from '../buttons/soundBars.js'
 import { clearStorageButton } from '../buttons/clearStorageButton.js'
 import { returnButton } from '../buttons/returnButton.js'
+import { playMusic } from '../gameAudio.js'
 import { isMouseOverButton } from '../methods.js'
 
 const settingsScreen = {
@@ -37,7 +38,9 @@ const settingsScreen = {
     document.removeEventListener('mousemove', settingsScreen.mouseMove)
   },
   init: () => {
+    settingsScreen.title.img.src = '../assets/menu/options.png'
     gameScreen.style.backgroundColor = settingsScreen.background
+    playMusic('titlescreen', true)
     document.addEventListener('click', settingsScreen.mouseClick)
     document.addEventListener('mousemove', settingsScreen.mouseMove)
     return setInterval(settingsScreen.draw, 1000 / 60)
@@ -96,7 +99,5 @@ const settingsScreen = {
     }
   },
 }
-
-settingsScreen.title.img.src = '../assets/menu/options.png'
 
 export { settingsScreen }

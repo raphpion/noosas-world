@@ -1,3 +1,4 @@
+import { playSound } from '../gameAudio.js'
 import { ctx, getScene } from '../gameScreen.js'
 import { titleScreen } from '../menus/titleScreen.js'
 
@@ -22,6 +23,7 @@ const returnButton = {
     ctx.fillText(returnButton.content, returnButton.pos.x + 200, returnButton.pos.y)
   },
   click: () => {
+    playSound('button')
     returnButton.hover = false
     document.body.style.cursor = 'default'
     getScene(titleScreen)

@@ -1,3 +1,4 @@
+import { playSound } from '../gameAudio.js'
 import { ctx } from '../gameScreen.js'
 
 const startButton = {
@@ -21,6 +22,7 @@ const startButton = {
     ctx.fillText(startButton.content, startButton.pos.x + 200, startButton.pos.y)
   },
   click: () => {
+    playSound('button')
     alert('Vous avez cliqué sur Jouer.\nCette fonction sera implémentée sous peu...')
   },
 }

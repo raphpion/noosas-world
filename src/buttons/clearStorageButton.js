@@ -1,3 +1,4 @@
+import { playSound } from '../gameAudio.js'
 import { ctx } from '../gameScreen.js'
 
 const clearStorageButton = {
@@ -21,6 +22,7 @@ const clearStorageButton = {
     ctx.fillText(clearStorageButton.content, clearStorageButton.pos.x + 200, clearStorageButton.pos.y)
   },
   click: () => {
+    playSound('button')
     alert('Vous avez cliqué sur Réinitialiser.\nCette fonction sera implémentée sous peu...')
   },
 }

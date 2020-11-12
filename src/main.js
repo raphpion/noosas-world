@@ -1,4 +1,4 @@
 import { getScene } from './gameScreen.js'
-import { titleScreen } from './menus/titleScreen.js'
+import { splashScreen } from './menus/splashScreen.js'
 
-getScene(titleScreen)
+getScene(splashScreen)

@@ -1,3 +1,4 @@
+import { playSound } from '../gameAudio.js'
 import { ctx } from '../gameScreen.js'
 
 const musicMinus = {
@@ -13,6 +14,7 @@ const musicMinus = {
     ctx.drawImage(musicMinus.img, musicMinus.pos.x, musicMinus.pos.y)
   },
   click: () => {
+    playSound('button')
     alert('Vous avez cliqué sur Diminuer la Musique .\nCette fonctionnalité sera implémentée sous peu.')
   },
 }
@@ -30,6 +32,7 @@ const musicPlus = {
     ctx.drawImage(musicPlus.img, musicPlus.pos.x, musicPlus.pos.y)
   },
   click: () => {
+    playSound('button')
     alert('Vous avez cliqué sur Augmenter la Musique.\nCette fonctionnalité sera implémentée sous peu.')
   },
 }
@@ -47,6 +50,7 @@ const soundMinus = {
     ctx.drawImage(soundMinus.img, soundMinus.pos.x, soundMinus.pos.y)
   },
   click: () => {
+    playSound('button')
     alert('Vous avez cliqué sur Diminuer le Son.\nCette fonctionnalité sera implémentée sous peu.')
   },
 }
@@ -64,6 +68,7 @@ const soundPlus = {
     ctx.drawImage(soundPlus.img, soundPlus.pos.x, soundPlus.pos.y)
   },
   click: () => {
+    playSound('button')
     alert('Vous avez cliqué sur Augmenter le Son.\nCette fonctionnalité sera implémentée sous peu.')
   },
 }
