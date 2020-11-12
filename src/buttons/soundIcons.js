@@ -1,3 +1,4 @@
+import { playSound } from '../gameAudio.js'
 import { ctx } from '../gameScreen.js'
 
 const musicIcon = {
@@ -13,6 +14,7 @@ const musicIcon = {
     ctx.drawImage(musicIcon.img, musicIcon.pos.x, musicIcon.pos.y)
   },
   click: () => {
+    playSound('button')
     alert('Vous avez cliqué sur Musique.\nCette fonction sera implémentée sous peu...')
   },
 }
@@ -30,6 +32,7 @@ const soundIcon = {
     ctx.drawImage(soundIcon.img, soundIcon.pos.x, soundIcon.pos.y)
   },
   click: () => {
+    playSound('button')
     alert('Vous avez cliqué sur Son.\nCette fonction sera implémentée sous peu...')
   },
 }

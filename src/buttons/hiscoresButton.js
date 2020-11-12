@@ -1,3 +1,4 @@
+import { playSound } from '../gameAudio.js'
 import { ctx, getScene } from '../gameScreen.js'
 import { hiscoresScreen } from '../menus/hiscoresScreen.js'
 
@@ -22,6 +23,7 @@ const hiscoresButton = {
     ctx.fillText(hiscoresButton.content, hiscoresButton.pos.x + 200, hiscoresButton.pos.y)
   },
   click: () => {
+    playSound('button')
     hiscoresButton.hover = false
     document.body.style.cursor = 'default'
     getScene(hiscoresScreen)
