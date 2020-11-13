@@ -1,4 +1,4 @@
-import { playSound } from '../gameAudio.js'
+import { appendAudioSettings, playSound } from '../gameAudio.js'
 import { ctx } from '../gameScreen.js'
 
 const musicMinus = {
@@ -15,7 +15,11 @@ const musicMinus = {
   },
   click: () => {
     playSound('button')
-    alert('Vous avez cliqué sur Diminuer la Musique .\nCette fonctionnalité sera implémentée sous peu.')
+    let value = Number(localStorage.getItem('musicVolume')) - 0.2
+    if (value < 0) value = 0
+    value = Math.round(value * 10) / 10
+    localStorage.setItem('musicVolume', value)
+    appendAudioSettings()
   },
 }
 
@@ -33,7 +37,11 @@ const musicPlus = {
   },
   click: () => {
     playSound('button')
-    alert('Vous avez cliqué sur Augmenter la Musique.\nCette fonctionnalité sera implémentée sous peu.')
+    let value = Number(localStorage.getItem('musicVolume')) + 0.2
+    if (value > 1) value = 1
+    value = Math.round(value * 10) / 10
+    localStorage.setItem('musicVolume', value)
+    appendAudioSettings()
   },
 }
 
@@ -51,7 +59,11 @@ const soundMinus = {
   },
   click: () => {
     playSound('button')
-    alert('Vous avez cliqué sur Diminuer le Son.\nCette fonctionnalité sera implémentée sous peu.')
+    let value = Number(localStorage.getItem('soundVolume')) - 0.2
+    if (value < 0) value = 0
+    value = Math.round(value * 10) / 10
+    localStorage.setItem('soundVolume', value)
+    appendAudioSettings()
   },
 }
 
@@ -69,7 +81,11 @@ const soundPlus = {
   },
   click: () => {
     playSound('button')
-    alert('Vous avez cliqué sur Augmenter le Son.\nCette fonctionnalité sera implémentée sous peu.')
+    let value = Number(localStorage.getItem('soundVolume')) + 0.2
+    if (value > 1) value = 1
+    value = Math.round(value * 10) / 10
+    localStorage.setItem('soundVolume', value)
+    appendAudioSettings()
   },
 }
 

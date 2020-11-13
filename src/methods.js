@@ -6,6 +6,14 @@ function getMousePos(e) {
   }
 }
 
+function isLocalItemValid(i) {
+  let value = localStorage.getItem(i)
+  if (i == 'musicVolume' || i == 'soundVolume') {
+    if (value == 0 || value == 0.2 || value == 0.4 || value == 0.6 || value == 0.8 || value == 1) return true
+    else return false
+  }
+}
+
 function isMouseOverButton(btn, e) {
   let pos = getMousePos(e)
   if (
@@ -25,4 +33,4 @@ function isMouseOverBar(bar, i, e) {
   else return false
 }
 
-export { getMousePos, isMouseOverButton, isMouseOverBar }
+export { getMousePos, isLocalItemValid, isMouseOverButton, isMouseOverBar }

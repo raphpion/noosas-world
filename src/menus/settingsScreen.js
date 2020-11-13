@@ -1,12 +1,12 @@
-import { ctx, clearScreen, drawCredits } from '../gameScreen.js'
+import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
 import { clouds } from '../backgrounds/clouds.js'
-import { musicIcon, soundIcon } from '../buttons/soundIcons.js'
 import { musicMinus, musicPlus, soundMinus, soundPlus } from '../buttons/soundControls.js'
 import { musicBar, soundBar } from '../buttons/soundBars.js'
 import { clearStorageButton } from '../buttons/clearStorageButton.js'
 import { returnButton } from '../buttons/returnButton.js'
-import { playMusic } from '../gameAudio.js'
+import { playMusic, playSound } from '../gameAudio.js'
 import { isMouseOverButton } from '../methods.js'
+import { initialSettings } from '../settings.js'
 
 const settingsScreen = {
   title: {
@@ -16,22 +16,37 @@ const settingsScreen = {
       y: 35,
     },
   },
+  musicIcon: {
+    img: new Image(),
+    pos: {
+      x: 220,
+      y: 182,
+    },
+  },
+  soundIcon: {
+    img: new Image(),
+    pos: {
+      x: 222,
+      y: 262,
+    },
+  },
   background: '#ff9257',
   draw: () => {
     clearScreen()
     clouds.draw()
     ctx.drawImage(settingsScreen.title.img, settingsScreen.title.pos.x, settingsScreen.title.pos.y)
-    musicIcon.draw()
+    ctx.drawImage(settingsScreen.musicIcon.img, settingsScreen.musicIcon.pos.x, settingsScreen.musicIcon.pos.y)
+    ctx.drawImage(settingsScreen.soundIcon.img, settingsScreen.soundIcon.pos.x, settingsScreen.soundIcon.pos.y)
     musicMinus.draw()
     musicPlus.draw()
     musicBar.draw()
-    soundIcon.draw()
     soundMinus.draw()
     soundPlus.draw()
     soundBar.draw()
     clearStorageButton.draw()
     returnButton.draw()
     drawCredits()
+    if (warningPrompt.visible) warningPrompt.draw()
   },
   clear: () => {
     document.removeEventListener('click', settingsScreen.mouseClick)
@@ -39,6 +54,8 @@ const settingsScreen = {
   },
   init: () => {
     settingsScreen.title.img.src = '../assets/menu/options.png'
+    settingsScreen.musicIcon.img.src = '../assets/menu/music.png'
+    settingsScreen.soundIcon.img.src = '../assets/menu/sound.png'
     gameScreen.style.backgroundColor = settingsScreen.background
     playMusic('titlescreen', true)
     document.addEventListener('click', settingsScreen.mouseClick)
@@ -46,39 +63,27 @@ const settingsScreen = {
     return setInterval(settingsScreen.draw, 1000 / 60)
   },
   mouseClick: e => {
-    if (isMouseOverButton(musicIcon, e)) musicIcon.click()
     if (isMouseOverButton(musicMinus, e)) musicMinus.click()
     if (isMouseOverButton(musicPlus, e)) musicPlus.click()
-    if (isMouseOverButton(soundIcon, e)) soundIcon.click()
     if (isMouseOverButton(soundMinus, e)) soundMinus.click()
     if (isMouseOverButton(soundPlus, e)) soundPlus.click()
     if (isMouseOverButton(clearStorageButton, e)) clearStorageButton.click()
     if (isMouseOverButton(returnButton, e)) returnButton.click()
   },
   mouseMove: e => {
-    musicIcon.hover = false
     musicMinus.hover = false
     musicPlus.hover = false
-    soundIcon.hover = false
     soundMinus.hover = false
     soundPlus.hover = false
     clearStorageButton.hover = false
     returnButton.hover = false
     document.body.style.cursor = 'default'
-    if (isMouseOverButton(musicIcon, e)) {
-      musicIcon.hover = true
-      document.body.style.cursor = 'pointer'
-    }
     if (isMouseOverButton(musicMinus, e)) {
       musicMinus.hover = true
       document.body.style.cursor = 'pointer'
     }
     if (isMouseOverButton(musicPlus, e)) {
       musicPlus.hover = true
-      document.body.style.cursor = 'pointer'
-    }
-    if (isMouseOverButton(soundIcon, e)) {
-      soundIcon.hover = true
       document.body.style.cursor = 'pointer'
     }
     if (isMouseOverButton(soundMinus, e)) {
@@ -100,4 +105,90 @@ const settingsScreen = {
   },
 }
 
-export { settingsScreen }
+const warningPrompt = {
+  visible: false,
+  background: new Image(),
+  pos: {
+    x: 80,
+    y: 136,
+  },
+  width: 640,
+  height: 480,
+  clear: () => {
+    warningPrompt.visible = false
+    document.removeEventListener('click', warningPrompt.mouseClick)
+    document.removeEventListener('mousemove', warningPrompt.mouseMove)
+    document.addEventListener('click', settingsScreen.mouseClick)
+    document.addEventListener('mousemove', settingsScreen.mouseMove)
+  },
+  draw: () => {
+    ctx.drawImage(warningPrompt.background, warningPrompt.pos.x, warningPrompt.pos.y)
+    ctx.font = '40pt VT323'
+    ctx.fillStyle = 'black'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'bottom'
+    ctx.fillText('Cette action va effacer', GAME_WIDTH / 2, 210)
+    ctx.fillText('toutes vos données de jeu. ', GAME_WIDTH / 2, 260)
+    ctx.fillText('Continuer ? ', GAME_WIDTH / 2, 310)
+    if (confirmButton.hover) confirmButton.img.src = '../assets/menu/button_confirm_hover.png'
+    else confirmButton.img.src = '../assets/menu/button_confirm.png'
+    ctx.drawImage(confirmButton.img, confirmButton.pos.x, confirmButton.pos.y)
+    if (cancelButton.hover) cancelButton.img.src = '../assets/menu/button_cancel_hover.png'
+    else cancelButton.img.src = '../assets/menu/button_cancel.png'
+    ctx.drawImage(cancelButton.img, cancelButton.pos.x, cancelButton.pos.y)
+  },
+  init: () => {
+    warningPrompt.background.src = '../assets/menu/warning_prompt.png'
+    settingsScreen.clear()
+    warningPrompt.visible = true
+    document.addEventListener('click', warningPrompt.mouseClick)
+    document.addEventListener('mousemove', warningPrompt.mouseMove)
+  },
+  mouseClick: e => {
+    if (isMouseOverButton(confirmButton, e)) confirmButton.click()
+    if (isMouseOverButton(cancelButton, e)) cancelButton.click()
+  },
+  mouseMove: e => {
+    confirmButton.hover = false
+    cancelButton.hover = false
+    document.body.style.cursor = 'default'
+    if (isMouseOverButton(confirmButton, e)) {
+      confirmButton.hover = true
+      document.body.style.cursor = 'pointer'
+    }
+    if (isMouseOverButton(cancelButton, e)) {
+      cancelButton.hover = true
+      document.body.style.cursor = 'pointer'
+    }
+  },
+}
+
+const confirmButton = {
+  img: new Image(),
+  hover: false,
+  pos: {
+    x: 330,
+    y: 370,
+  },
+  click: () => {
+    playSound('button')
+    localStorage.clear()
+    initialSettings()
+    warningPrompt.clear()
+  },
+}
+
+const cancelButton = {
+  img: new Image(),
+  hover: false,
+  pos: {
+    x: 410,
+    y: 370,
+  },
+  click: () => {
+    playSound('button')
+    warningPrompt.clear()
+  },
+}
+
+export { settingsScreen, warningPrompt }
