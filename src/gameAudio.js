@@ -1,13 +1,11 @@
-// TODO: Contrôle de la musique
-// Lorsqu'on affiche une nouvelle scène, on appelle la fonction playMusic()
-// Cette fonction vérifie que la chanson demandée ne soit pas déjà en train de jouer
-// Si elle ne l'est pas, on la fait jouer
-
-// La fonction stopMusic() permet d'arrêter la musique
-
 let currentSong
 let gameMusic = new Audio()
 let sfx = new Audio()
+
+function appendAudioSettings() {
+  gameMusic.volume = Number(localStorage.getItem('musicVolume'))
+  sfx.volume = Number(localStorage.getItem('soundVolume'))
+}
 
 function playMusic(song, loop = true) {
   if (currentSong != song) {
@@ -19,14 +17,14 @@ function playMusic(song, loop = true) {
   }
 }
 
-function stopMusic() {
-  gameMusic.src = ''
-  currentSong = null
-}
-
 function playSound(sound) {
   sfx.src = `../assets/sfx/${sound}.wav`
   sfx.play()
 }
 
-export { playMusic, stopMusic, playSound }
+function stopMusic() {
+  gameMusic.src = ''
+  currentSong = null
+}
+
+export { appendAudioSettings, playMusic, playSound, stopMusic }

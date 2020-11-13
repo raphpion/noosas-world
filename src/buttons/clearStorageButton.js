@@ -1,5 +1,6 @@
 import { playSound } from '../gameAudio.js'
 import { ctx } from '../gameScreen.js'
+import { warningPrompt } from '../menus/settingsScreen.js'
 
 const clearStorageButton = {
   img: new Image(),
@@ -23,7 +24,7 @@ const clearStorageButton = {
   },
   click: () => {
     playSound('button')
-    alert('Vous avez cliqué sur Réinitialiser.\nCette fonction sera implémentée sous peu...')
+    warningPrompt.init()
   },
 }
 
