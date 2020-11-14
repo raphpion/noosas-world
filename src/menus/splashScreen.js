@@ -12,9 +12,7 @@ const splashScreen = {
   },
   background: '#b1e7f8',
   clear: () => {
-    document.removeEventListener('keydown', () => {
-      getScene(titleScreen)
-    })
+    document.removeEventListener('keydown', splashScreen.keyDown)
   },
   draw: () => {
     clearScreen()
@@ -30,10 +28,11 @@ const splashScreen = {
   init: () => {
     splashScreen.title.img.src = '../assets/menu/titleAlt.png'
     gameScreen.style.backgroundColor = splashScreen.background
-    document.addEventListener('keydown', () => {
-      getScene(titleScreen)
-    })
+    document.addEventListener('keydown', splashScreen.keyDown)
     return setInterval(splashScreen.draw, 1000 / 60)
+  },
+  keyDown: () => {
+    getScene(titleScreen)
   },
 }
 

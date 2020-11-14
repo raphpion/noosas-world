@@ -1,5 +1,7 @@
 import { playSound } from '../gameAudio.js'
-import { ctx } from '../gameScreen.js'
+import { ctx, getScene } from '../gameScreen.js'
+import { tutorial } from '../tutorial.js'
+import { game } from '../game.js'
 
 const startButton = {
   img: new Image(),
@@ -23,7 +25,9 @@ const startButton = {
   },
   click: () => {
     playSound('button')
-    alert('Vous avez cliqué sur Jouer.\nCette fonction sera implémentée sous peu...')
+    if (localStorage.getItem('showTutorial') == 'true') getScene(tutorial)
+    else getScene(game)
+    document.body.style.cursor = 'default'
   },
 }
 

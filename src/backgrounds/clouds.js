@@ -15,6 +15,6 @@ const clouds = {
   },
 }
 
-clouds.img.src = '../assets/menu/bg-sky.png'
+clouds.img.src = '../assets/backgrounds/clouds.png'
 
 export { clouds }

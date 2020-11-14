@@ -26,4 +26,15 @@ function getScene(scene) {
   currentScene = scene
 }
 
-export { gameScreen, ctx, GAME_WIDTH, GAME_HEIGHT, clearScreen, drawCredits, getScene }
+function pauseScene() {
+  if (currentScene != null) {
+    currentScene.clear()
+    clearInterval(gameInterval)
+  }
+}
+
+function unpauseScene() {
+  gameInterval = scene.init()
+}
+
+export { gameScreen, ctx, GAME_WIDTH, GAME_HEIGHT, clearScreen, drawCredits, getScene, pauseScene, unpauseScene }
