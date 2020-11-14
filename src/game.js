@@ -29,6 +29,7 @@ const game = {
   init: () => {
     gameScreen.style.backgroundColor = game.background
     game.ground.img.src = '../assets/tiles/ground_grass.png'
+    player.sprite.img.src = '../assets/sprites/noosa.png'
     pixelClouds.move(0.6)
     playMusic('arcade')
     player.animation = setInterval(player.animate, 1000 / 8)

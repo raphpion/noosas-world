@@ -4,18 +4,30 @@ import { titleScreen } from '../menus/titleScreen.js'
 
 const returnButton = {
   img: new Image(),
-  color: 'blue',
   content: 'Retour',
   hover: false,
   pos: {
     x: 200,
     y: 490,
   },
+  width: 400,
+  height: 60,
+  sourceX: 0,
   draw: () => {
-    if (returnButton.hover) {
-      returnButton.img.src = `../assets/menu/button_${returnButton.color}_hover.png`
-    } else returnButton.img.src = `../assets/menu/button_${returnButton.color}.png`
-    ctx.drawImage(returnButton.img, returnButton.pos.x, returnButton.pos.y)
+    returnButton.img.src = '../assets/menu/button_blue.png'
+    if (returnButton.hover) returnButton.sourceX = 400
+    else returnButton.sourceX = 0
+    ctx.drawImage(
+      returnButton.img,
+      returnButton.sourceX,
+      0,
+      returnButton.width,
+      returnButton.height,
+      returnButton.pos.x,
+      returnButton.pos.y,
+      returnButton.width,
+      returnButton.height
+    )
     ctx.font = '40pt VT323'
     ctx.textBaseline = 'top'
     ctx.fillStyle = 'white'

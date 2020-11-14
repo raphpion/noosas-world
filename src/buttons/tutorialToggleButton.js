@@ -8,6 +8,10 @@ const tutorialToggleButton = {
     x: 0,
     y: 0,
   },
+  width: 30,
+  height: 30,
+  sourceX: 0,
+  sourceY: 0,
   click: () => {
     playSound('button')
     let value = localStorage.getItem('showTutorial')
@@ -15,14 +19,23 @@ const tutorialToggleButton = {
     else localStorage.setItem('showTutorial', true)
   },
   draw: () => {
+    tutorialToggleButton.img.src = '../assets/menu/button_tutorial.png'
     let value = localStorage.getItem('showTutorial')
-    if (value == 'true') {
-      if (tutorialToggleButton.hover) tutorialToggleButton.img.src = '../assets/menu/button_tutorial_true_hover.png'
-      else tutorialToggleButton.img.src = '../assets/menu/button_tutorial_true.png'
-    } else if (tutorialToggleButton.hover)
-      tutorialToggleButton.img.src = '../assets/menu/button_tutorial_false_hover.png'
-    else tutorialToggleButton.img.src = '../assets/menu/button_tutorial_false.png'
-    ctx.drawImage(tutorialToggleButton.img, tutorialToggleButton.pos.x, tutorialToggleButton.pos.y)
+    if (value == 'true') tutorialToggleButton.sourceY = 0
+    else tutorialToggleButton.sourceY = 30
+    if (tutorialToggleButton.hover) tutorialToggleButton.sourceX = 30
+    else tutorialToggleButton.sourceX = 0
+    ctx.drawImage(
+      tutorialToggleButton.img,
+      tutorialToggleButton.sourceX,
+      tutorialToggleButton.sourceY,
+      tutorialToggleButton.width,
+      tutorialToggleButton.height,
+      tutorialToggleButton.pos.x,
+      tutorialToggleButton.pos.y,
+      tutorialToggleButton.width,
+      tutorialToggleButton.height
+    )
     ctx.fillStyle = 'black'
     ctx.font = '20pt VT323'
     ctx.textAlign = 'center'

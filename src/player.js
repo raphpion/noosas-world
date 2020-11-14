@@ -9,6 +9,7 @@ const player = {
     direction: 'right',
     index: 0,
     sourceX: 0,
+    sourceY: 0,
     width: 100,
     height: 84,
   },
@@ -28,28 +29,32 @@ const player = {
       player.sprite.height = 84
       player.sprite.index++
       if (player.sprite.index > 2) player.sprite.index = 2
-    }
-    if (player.sprite.action == 'idle') {
+      if (player.sprite.direction == 'right') player.sprite.sourceX = player.sprite.index * player.sprite.width
+      if (player.sprite.direction == 'left') player.sprite.sourceX = 300 + player.sprite.index * player.sprite.width
+      player.sprite.sourceY = 84
+    } else if (player.sprite.action == 'idle') {
       player.sprite.width = 100
       player.sprite.height = 84
       player.sprite.index = 0
-    }
-    if (player.sprite.action == 'walk') {
+      if (player.sprite.direction == 'right') player.sprite.sourceX = 0
+      if (player.sprite.direction == 'left') player.sprite.sourceX = 300
+      player.sprite.sourceY = 0
+    } else if (player.sprite.action == 'walk') {
       player.sprite.width = 100
       player.sprite.height = 84
       player.sprite.index++
       if (player.sprite.index > 2) player.sprite.index = 0
+      if (player.sprite.direction == 'right') player.sprite.sourceX = player.sprite.index * player.sprite.width
+      if (player.sprite.direction == 'left') player.sprite.sourceX = 300 + player.sprite.index * player.sprite.width
+      player.sprite.sourceY = 0
     }
-    player.sprite.sourceX = player.sprite.index * player.sprite.width
   },
   draw: () => {
     player.move()
-    if (player.jumping) player.sprite.img.src = `../assets/sprites/noosa/noosa_running_${player.sprite.direction}.png`
-    else player.sprite.img.src = `../assets/sprites/noosa/noosa_${player.sprite.action}_${player.sprite.direction}.png`
     ctx.drawImage(
       player.sprite.img,
       player.sprite.sourceX,
-      0,
+      player.sprite.sourceY,
       player.sprite.width,
       player.sprite.height,
       player.pos.x,

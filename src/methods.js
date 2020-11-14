@@ -20,12 +20,7 @@ function isLocalItemValid(i) {
 
 function isMouseOverButton(btn, e) {
   let pos = getMousePos(e)
-  if (
-    pos.x >= btn.pos.x &&
-    pos.x <= btn.pos.x + btn.img.width &&
-    pos.y >= btn.pos.y &&
-    pos.y <= btn.pos.y + btn.img.height
-  )
+  if (pos.x >= btn.pos.x && pos.x <= btn.pos.x + btn.width && pos.y >= btn.pos.y && pos.y <= btn.pos.y + btn.height)
     return true
   else return false
 }

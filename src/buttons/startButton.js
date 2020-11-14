@@ -5,18 +5,30 @@ import { game } from '../game.js'
 
 const startButton = {
   img: new Image(),
-  color: 'green',
   content: 'Jouer',
   hover: false,
   pos: {
     x: 200,
     y: 260,
   },
+  width: 400,
+  height: 60,
+  sourceX: 0,
   draw: () => {
-    if (startButton.hover) {
-      startButton.img.src = `../assets/menu/button_${startButton.color}_hover.png`
-    } else startButton.img.src = `../assets/menu/button_${startButton.color}.png`
-    ctx.drawImage(startButton.img, startButton.pos.x, startButton.pos.y)
+    startButton.img.src = '../assets/menu/button_green.png'
+    if (startButton.hover) startButton.sourceX = 400
+    else startButton.sourceX = 0
+    ctx.drawImage(
+      startButton.img,
+      startButton.sourceX,
+      0,
+      startButton.width,
+      startButton.height,
+      startButton.pos.x,
+      startButton.pos.y,
+      startButton.width,
+      startButton.height
+    )
     ctx.font = '40pt VT323'
     ctx.textBaseline = 'top'
     ctx.fillStyle = 'white'

@@ -140,12 +140,8 @@ const warningPrompt = {
     ctx.fillText('Cette action va effacer', GAME_WIDTH / 2, 210)
     ctx.fillText('toutes vos données de jeu. ', GAME_WIDTH / 2, 260)
     ctx.fillText('Continuer ? ', GAME_WIDTH / 2, 310)
-    if (confirmButton.hover) confirmButton.img.src = '../assets/menu/button_confirm_hover.png'
-    else confirmButton.img.src = '../assets/menu/button_confirm.png'
-    ctx.drawImage(confirmButton.img, confirmButton.pos.x, confirmButton.pos.y)
-    if (cancelButton.hover) cancelButton.img.src = '../assets/menu/button_cancel_hover.png'
-    else cancelButton.img.src = '../assets/menu/button_cancel.png'
-    ctx.drawImage(cancelButton.img, cancelButton.pos.x, cancelButton.pos.y)
+    confirmButton.draw()
+    cancelButton.draw()
   },
   init: () => {
     warningPrompt.background.src = '../assets/menu/warning_prompt.png'
@@ -180,11 +176,30 @@ const confirmButton = {
     x: 330,
     y: 370,
   },
+  width: 60,
+  height: 60,
+  sourceX: 0,
   click: () => {
     playSound('button')
     localStorage.clear()
     initialSettings()
     warningPrompt.clear()
+  },
+  draw: () => {
+    confirmButton.img.src = '../assets/menu/button_confirm.png'
+    if (confirmButton.hover) confirmButton.sourceX = 60
+    else confirmButton.sourceX = 0
+    ctx.drawImage(
+      confirmButton.img,
+      confirmButton.sourceX,
+      0,
+      confirmButton.width,
+      confirmButton.height,
+      confirmButton.pos.x,
+      confirmButton.pos.y,
+      confirmButton.width,
+      confirmButton.height
+    )
   },
 }
 
@@ -195,9 +210,28 @@ const cancelButton = {
     x: 410,
     y: 370,
   },
+  width: 60,
+  height: 60,
+  sourceX: 0,
   click: () => {
     playSound('button')
     warningPrompt.clear()
+  },
+  draw: () => {
+    cancelButton.img.src = '../assets/menu/button_cancel.png'
+    if (cancelButton.hover) cancelButton.sourceX = 60
+    else cancelButton.sourceX = 0
+    ctx.drawImage(
+      cancelButton.img,
+      cancelButton.sourceX,
+      0,
+      cancelButton.width,
+      cancelButton.height,
+      cancelButton.pos.x,
+      cancelButton.pos.y,
+      cancelButton.width,
+      cancelButton.height
+    )
   },
 }
 
