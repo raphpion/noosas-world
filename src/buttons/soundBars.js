@@ -30,4 +30,7 @@ const soundBar = {
   },
 }
 
+musicBar.img.src = '../assets/menu/soundbar_on.png'
+soundBar.img.src = '../assets/menu/soundbar_on.png'
+
 export { musicBar, soundBar }

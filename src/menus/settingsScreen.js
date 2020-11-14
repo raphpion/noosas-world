@@ -4,6 +4,7 @@ import { musicMinus, musicPlus, soundMinus, soundPlus } from '../buttons/soundCo
 import { musicBar, soundBar } from '../buttons/soundBars.js'
 import { clearStorageButton } from '../buttons/clearStorageButton.js'
 import { returnButton } from '../buttons/returnButton.js'
+import { tutorialToggleButton } from '../buttons/tutorialToggleButton.js'
 import { playMusic, playSound } from '../gameAudio.js'
 import { isMouseOverButton } from '../methods.js'
 import { initialSettings } from '../settings.js'
@@ -13,7 +14,7 @@ const settingsScreen = {
     img: new Image(),
     pos: {
       x: 175,
-      y: 35,
+      y: 43,
     },
   },
   musicIcon: {
@@ -43,6 +44,7 @@ const settingsScreen = {
     soundMinus.draw()
     soundPlus.draw()
     soundBar.draw()
+    tutorialToggleButton.draw()
     clearStorageButton.draw()
     returnButton.draw()
     drawCredits()
@@ -57,6 +59,8 @@ const settingsScreen = {
     settingsScreen.musicIcon.img.src = '../assets/menu/music.png'
     settingsScreen.soundIcon.img.src = '../assets/menu/sound.png'
     gameScreen.style.backgroundColor = settingsScreen.background
+    tutorialToggleButton.pos.x = 275
+    tutorialToggleButton.pos.y = 341
     playMusic('titlescreen', true)
     document.addEventListener('click', settingsScreen.mouseClick)
     document.addEventListener('mousemove', settingsScreen.mouseMove)
@@ -69,6 +73,7 @@ const settingsScreen = {
     if (isMouseOverButton(soundPlus, e)) soundPlus.click()
     if (isMouseOverButton(clearStorageButton, e)) clearStorageButton.click()
     if (isMouseOverButton(returnButton, e)) returnButton.click()
+    if (isMouseOverButton(tutorialToggleButton, e)) tutorialToggleButton.click()
   },
   mouseMove: e => {
     musicMinus.hover = false
@@ -77,6 +82,7 @@ const settingsScreen = {
     soundPlus.hover = false
     clearStorageButton.hover = false
     returnButton.hover = false
+    tutorialToggleButton.hover = false
     document.body.style.cursor = 'default'
     if (isMouseOverButton(musicMinus, e)) {
       musicMinus.hover = true
@@ -100,6 +106,10 @@ const settingsScreen = {
     }
     if (isMouseOverButton(returnButton, e)) {
       returnButton.hover = true
+      document.body.style.cursor = 'pointer'
+    }
+    if (isMouseOverButton(tutorialToggleButton, e)) {
+      tutorialToggleButton.hover = true
       document.body.style.cursor = 'pointer'
     }
   },

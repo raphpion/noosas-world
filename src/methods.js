@@ -12,6 +12,10 @@ function isLocalItemValid(i) {
     if (value == 0 || value == 0.2 || value == 0.4 || value == 0.6 || value == 0.8 || value == 1) return true
     else return false
   }
+  if (i == 'showTutorial') {
+    if (value == 'true' || value == 'false') return true
+    else return false
+  }
 }
 
 function isMouseOverButton(btn, e) {
