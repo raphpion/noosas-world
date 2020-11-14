@@ -4,18 +4,30 @@ import { hiscoresScreen } from '../menus/hiscoresScreen.js'
 
 const hiscoresButton = {
   img: new Image(),
-  color: 'blue',
   content: 'Records',
   hover: false,
   pos: {
     x: 200,
     y: 360,
   },
+  width: 400,
+  height: 60,
+  sourceX: 0,
   draw: () => {
-    if (hiscoresButton.hover) {
-      hiscoresButton.img.src = `../assets/menu/button_${hiscoresButton.color}_hover.png`
-    } else hiscoresButton.img.src = `../assets/menu/button_${hiscoresButton.color}.png`
-    ctx.drawImage(hiscoresButton.img, hiscoresButton.pos.x, hiscoresButton.pos.y)
+    hiscoresButton.img.src = '../assets/menu/button_blue.png'
+    if (hiscoresButton.hover) hiscoresButton.sourceX = 400
+    else hiscoresButton.sourceX = 0
+    ctx.drawImage(
+      hiscoresButton.img,
+      hiscoresButton.sourceX,
+      0,
+      hiscoresButton.width,
+      hiscoresButton.height,
+      hiscoresButton.pos.x,
+      hiscoresButton.pos.y,
+      hiscoresButton.width,
+      hiscoresButton.height
+    )
     ctx.font = '40pt VT323'
     ctx.textBaseline = 'top'
     ctx.fillStyle = 'white'

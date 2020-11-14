@@ -8,10 +8,24 @@ const musicMinus = {
     x: 300,
     y: 185,
   },
+  width: 48,
+  height: 48,
+  sourceX: 0,
   draw: () => {
-    if (musicMinus.hover) musicMinus.img.src = '../assets/menu/minus_hover.png'
-    else musicMinus.img.src = '../assets/menu/minus.png'
-    ctx.drawImage(musicMinus.img, musicMinus.pos.x, musicMinus.pos.y)
+    musicMinus.img.src = '../assets/menu/Minus.png'
+    if (musicMinus.hover) musicMinus.sourceX = 48
+    else musicMinus.sourceX = 0
+    ctx.drawImage(
+      musicMinus.img,
+      musicMinus.sourceX,
+      0,
+      musicMinus.width,
+      musicMinus.height,
+      musicMinus.pos.x,
+      musicMinus.pos.y,
+      musicMinus.width,
+      musicMinus.height
+    )
   },
   click: () => {
     playSound('button')
@@ -30,10 +44,24 @@ const musicPlus = {
     x: 510,
     y: 185,
   },
+  width: 48,
+  height: 48,
+  sourceX: 0,
   draw: () => {
-    if (musicPlus.hover) musicPlus.img.src = '../assets/menu/plus_hover.png'
-    else musicPlus.img.src = '../assets/menu/plus.png'
-    ctx.drawImage(musicPlus.img, musicPlus.pos.x, musicPlus.pos.y)
+    musicPlus.img.src = '../assets/menu/plus.png'
+    if (musicPlus.hover) musicPlus.sourceX = 48
+    else musicPlus.sourceX = 0
+    ctx.drawImage(
+      musicPlus.img,
+      musicPlus.sourceX,
+      0,
+      musicPlus.width,
+      musicPlus.height,
+      musicPlus.pos.x,
+      musicPlus.pos.y,
+      musicPlus.width,
+      musicPlus.height
+    )
   },
   click: () => {
     playSound('button')
@@ -52,10 +80,24 @@ const soundMinus = {
     x: 300,
     y: 270,
   },
+  width: 48,
+  height: 48,
+  sourceX: 0,
   draw: () => {
-    if (soundMinus.hover) soundMinus.img.src = '../assets/menu/minus_hover.png'
-    else soundMinus.img.src = '../assets/menu/minus.png'
-    ctx.drawImage(soundMinus.img, soundMinus.pos.x, soundMinus.pos.y)
+    soundMinus.img.src = '../assets/menu/Minus.png'
+    if (soundMinus.hover) soundMinus.sourceX = 48
+    else soundMinus.sourceX = 0
+    ctx.drawImage(
+      soundMinus.img,
+      soundMinus.sourceX,
+      0,
+      soundMinus.width,
+      soundMinus.height,
+      soundMinus.pos.x,
+      soundMinus.pos.y,
+      soundMinus.width,
+      soundMinus.height
+    )
   },
   click: () => {
     playSound('button')
@@ -74,10 +116,24 @@ const soundPlus = {
     x: 510,
     y: 270,
   },
+  width: 48,
+  height: 48,
+  sourceX: 0,
   draw: () => {
-    if (soundPlus.hover) soundPlus.img.src = '../assets/menu/plus_hover.png'
-    else soundPlus.img.src = '../assets/menu/plus.png'
-    ctx.drawImage(soundPlus.img, soundPlus.pos.x, soundPlus.pos.y)
+    soundPlus.img.src = '../assets/menu/plus.png'
+    if (soundPlus.hover) soundPlus.sourceX = 48
+    else soundPlus.sourceX = 0
+    ctx.drawImage(
+      soundPlus.img,
+      soundPlus.sourceX,
+      0,
+      soundPlus.width,
+      soundPlus.height,
+      soundPlus.pos.x,
+      soundPlus.pos.y,
+      soundPlus.width,
+      soundPlus.height
+    )
   },
   click: () => {
     playSound('button')

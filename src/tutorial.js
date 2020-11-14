@@ -88,6 +88,7 @@ const tutorial = {
   init: () => {
     gameScreen.style.backgroundColor = game.background
     game.ground.img.src = '../assets/tiles/ground_grass.png'
+    player.sprite.img.src = '../assets/sprites/noosa.png'
     tutorial.background.src = '../assets/menu/tutorial_prompt.png'
     tutorial.aKey.img.src = '../assets/menu/a_key.png'
     tutorial.enterKey.img.src = '../assets/menu/enter_key.png'
