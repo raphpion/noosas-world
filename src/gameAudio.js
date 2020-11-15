@@ -17,6 +17,10 @@ function playMusic(song, loop = true) {
   }
 }
 
+function pauseScreenMusic() {
+  gameMusic.volume = Number(localStorage.getItem('musicVolume')) * 0.3
+}
+
 function playSound(sound) {
   sfx.src = `../assets/sfx/${sound}.wav`
   sfx.play()
@@ -27,4 +31,4 @@ function stopMusic() {
   currentSong = null
 }
 
-export { appendAudioSettings, playMusic, playSound, stopMusic }
+export { appendAudioSettings, playMusic, pauseScreenMusic, playSound, stopMusic }
