@@ -66,7 +66,7 @@ const player = {
   move: () => {
     if (keys.space && !player.jumping) {
       playSound('jump')
-      player.velocity.y -= 30
+      player.velocity.y -= 35
       player.jumping = true
       player.sprite.index++
     }
