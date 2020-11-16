@@ -4,18 +4,16 @@ import { titleScreen } from '../menus/titleScreen.js'
 
 // bouton de retour dans les écrans 'Options' et 'Records'
 const returnButton = {
-  img: new Image(), // image
-  content: 'Retour', // texte à l'intérieur
-  hover: false, // si la souris est sur le bouton
-  // position
+  img: new Image(),
+  content: 'Retour',
+  hover: false,
   pos: {
     x: 200,
     y: 490,
   },
-  // dimensions
   width: 400,
   height: 60,
-  sourceX: 0, // source X de la vignette
+  sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
     returnButton.img.src = '../assets/menu/button_blue.png'

@@ -8,7 +8,6 @@ import { isMouseOverButton } from '../methods.js'
 
 // écran-titre
 const titleScreen = {
-  // image de titre
   title: {
     img: new Image(),
     pos: {
@@ -16,7 +15,6 @@ const titleScreen = {
       y: 35,
     },
   },
-  // couleur d'arrière-plan
   background: '#b1e7f8',
   clear: () => {
     // fonction d'arrêt de l'écran-titre, on enlève les listeners de souris

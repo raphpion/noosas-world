@@ -7,7 +7,6 @@ import { warningPrompt } from './warningPrompt.js'
 
 // Écran de pause
 const pauseScreen = {
-  // image de titre
   title: {
     img: new Image(),
     pos: {

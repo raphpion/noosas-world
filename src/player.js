@@ -5,25 +5,22 @@ import { game } from './game.js'
 
 // Personnage joueur
 const player = {
-  // Sprite du personnage
   sprite: {
-    img: new Image(), // son image
-    action: 'idle', // action à afficher
-    direction: 'right', // direction du sprite
-    index: 0, // # de vignette à afficher
-    sourceX: 0, // source X de la vignette
-    sourceY: 0, // source Y de la vignette
-    width: 100, // largeur de la vignette
-    height: 84, // hauteur de la vignette
+    img: new Image(),
+    action: 'idle',
+    direction: 'right',
+    index: 0,
+    sourceX: 0,
+    sourceY: 0,
+    width: 100,
+    height: 84,
   },
   animation: null, // intervalle d'animation du joueur
-  jumping: true, // si le joueur est en train de sauter
-  // vélocité (vitesse) du personnage
+  jumping: true,
   velocity: {
     x: 0,
     y: 0,
   },
-  // position du personnage
   pos: {
     x: 0,
     y: 0,

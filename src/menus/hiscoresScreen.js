@@ -9,7 +9,6 @@ let hiscores
 
 // Écran des records
 const hiscoresScreen = {
-  // Titre
   title: {
     img: new Image(),
     pos: {
@@ -17,9 +16,7 @@ const hiscoresScreen = {
       y: 35,
     },
   },
-  // Couleur d'arrière-plan
   background: '#ff9257',
-  // Médaille d'or
   goldMedal: {
     img: new Image(),
     pos: {
@@ -27,7 +24,6 @@ const hiscoresScreen = {
       y: 140,
     },
   },
-  // Médaille d'argent
   silverMedal: {
     img: new Image(),
     pos: {
@@ -35,7 +31,6 @@ const hiscoresScreen = {
       y: 200,
     },
   },
-  // Médaille de bronze
   bronzeMedal: {
     img: new Image(),
     pos: {

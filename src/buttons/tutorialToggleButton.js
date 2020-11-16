@@ -3,18 +3,16 @@ import { ctx, GAME_WIDTH } from '../gameScreen.js'
 
 // bouton 'toggle' d'affichage du tutoriel
 const tutorialToggleButton = {
-  img: new Image(), // image
-  hover: false, // si la souris est sur le bouton
-  // position
+  img: new Image(),
+  hover: false,
   pos: {
     x: 0,
     y: 0,
   },
-  // dimensions
   width: 30,
   height: 30,
-  sourceX: 0, // source en X de la vignette
-  sourceY: 0, // source en Y de la vignette
+  sourceX: 0,
+  sourceY: 0,
   draw: () => {
     // fonction d'affichage du bouton 'toggle' à l'écran
     tutorialToggleButton.img.src = '../assets/menu/button_tutorial.png'

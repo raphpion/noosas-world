@@ -4,7 +4,6 @@ import { clouds } from '../backgrounds/clouds.js'
 
 // Écran d'accueil
 const splashScreen = {
-  // image de titre
   title: {
     img: new Image(),
     pos: {
@@ -12,7 +11,6 @@ const splashScreen = {
       y: 185,
     },
   },
-  // couleur d'arrière-plan
   background: '#b1e7f8',
   clear: () => {
     // fonction d'arrêt de l'écran d'accueil

@@ -4,18 +4,16 @@ import { pauseScreen } from '../menus/pauseScreen.js'
 
 // bouton 'Reprendre' dans l'écran de pause
 const resumeButton = {
-  img: new Image(), // image
-  content: 'Reprendre', // texte à l'intérieur
-  hover: false, // si la souris est sur le bouton
-  // position
+  img: new Image(),
+  content: 'Reprendre',
+  hover: false,
   pos: {
     x: 200,
     y: 260,
   },
-  // dimensions
   width: 400,
   height: 60,
-  sourceX: 0, // sourceX de la vignette
+  sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
     resumeButton.img.src = '../assets/menu/button_blue.png'
