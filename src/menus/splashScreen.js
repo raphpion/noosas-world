@@ -2,7 +2,9 @@ import { gameScreen, ctx, GAME_WIDTH, clearScreen, drawCredits, getScene } from 
 import { titleScreen } from '../menus/titleScreen.js'
 import { clouds } from '../backgrounds/clouds.js'
 
+// Écran d'accueil
 const splashScreen = {
+  // image de titre
   title: {
     img: new Image(),
     pos: {
@@ -10,11 +12,14 @@ const splashScreen = {
       y: 185,
     },
   },
+  // couleur d'arrière-plan
   background: '#b1e7f8',
   clear: () => {
+    // fonction d'arrêt de l'écran d'accueil
     document.removeEventListener('keydown', splashScreen.keyDown)
   },
   draw: () => {
+    // fonction d'affichage de l'écran d'accueil
     clearScreen()
     clouds.draw()
     ctx.drawImage(splashScreen.title.img, splashScreen.title.pos.x, splashScreen.title.pos.y)
@@ -26,8 +31,11 @@ const splashScreen = {
     drawCredits()
   },
   init: () => {
+    // fonction d'initialisation de l'écran d'accueil
     splashScreen.title.img.src = '../assets/menu/titleAlt.png'
     gameScreen.style.backgroundColor = splashScreen.background
+
+    // on ajoute le listener de clavier et on retourne l'intervalle d'affichage
     document.addEventListener('keydown', splashScreen.keyDown)
     return setInterval(splashScreen.draw, 1000 / 60)
   },
