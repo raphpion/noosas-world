@@ -1,39 +1,31 @@
 import { playSound } from '../gameAudio.js'
 import { ctx } from '../gameScreen.js'
 
+// icône du volume de la musique
 const musicIcon = {
-  img: new Image(),
-  hover: false,
+  img: new Image(), // image
+  // position
   pos: {
     x: 220,
     y: 182,
   },
   draw: () => {
-    if (musicIcon.hover) musicIcon.img.src = '../assets/menu/music_hover.png'
-    else musicIcon.img.src = '../assets/menu/music.png'
+    // fonction d'affichage de l'icône à l'écran
     ctx.drawImage(musicIcon.img, musicIcon.pos.x, musicIcon.pos.y)
-  },
-  click: () => {
-    playSound('button')
-    alert('Vous avez cliqué sur Musique.\nCette fonction sera implémentée sous peu...')
   },
 }
 
+// icône du volume du son
 const soundIcon = {
-  img: new Image(),
-  hover: false,
+  img: new Image(), // image
+  // position
   pos: {
     x: 222,
     y: 262,
   },
   draw: () => {
-    if (soundIcon.hover) soundIcon.img.src = '../assets/menu/sound_hover.png'
-    else soundIcon.img.src = '../assets/menu/sound.png'
+    // fonction d'affichage de l'icône à l'écran
     ctx.drawImage(soundIcon.img, soundIcon.pos.x, soundIcon.pos.y)
-  },
-  click: () => {
-    playSound('button')
-    alert('Vous avez cliqué sur Son.\nCette fonction sera implémentée sous peu...')
   },
 }
 

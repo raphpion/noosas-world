@@ -1,6 +1,6 @@
 import { playSound } from '../gameAudio.js'
 import { ctx, getScene } from '../gameScreen.js'
-import { tutorial } from '../tutorial.js'
+import { tutorialScreen } from '../menus/tutorialScreen.js'
 import { game } from '../game.js'
 import { player } from '../player.js'
 
@@ -40,7 +40,7 @@ const startButton = {
     playSound('button')
     player.pos.x = 60
     player.pos.y = 492
-    if (localStorage.getItem('showTutorial') == 'true') getScene(tutorial)
+    if (localStorage.getItem('showTutorial') == 'true') getScene(tutorialScreen)
     else getScene(game)
     document.body.style.cursor = 'default'
   },

@@ -2,21 +2,29 @@ import { playSound } from '../gameAudio.js'
 import { ctx, getScene } from '../gameScreen.js'
 import { hiscoresScreen } from '../menus/hiscoresScreen.js'
 
+// bouton d'accès à l'écran des records
 const hiscoresButton = {
-  img: new Image(),
-  content: 'Records',
-  hover: false,
+  img: new Image(), // image
+  content: 'Records', // texte à l'intérieur
+  hover: false, // si la souris est sur le bouton
+  // position
   pos: {
     x: 200,
     y: 360,
   },
+  // dimensions
   width: 400,
   height: 60,
-  sourceX: 0,
+  sourceX: 0, // source X de la vignette
   draw: () => {
+    // fonction d'affichage du bouton
     hiscoresButton.img.src = '../assets/menu/button_blue.png'
+
+    // selon si le bouton est 'hover' ou non, on change la source en X
     if (hiscoresButton.hover) hiscoresButton.sourceX = 400
     else hiscoresButton.sourceX = 0
+
+    // affichage du bouton et de son texte
     ctx.drawImage(
       hiscoresButton.img,
       hiscoresButton.sourceX,
@@ -35,6 +43,7 @@ const hiscoresButton = {
     ctx.fillText(hiscoresButton.content, hiscoresButton.pos.x + 200, hiscoresButton.pos.y)
   },
   click: () => {
+    // si le joueur clique sur le bouton, on passe à l'écran des records
     playSound('button')
     hiscoresButton.hover = false
     document.body.style.cursor = 'default'
