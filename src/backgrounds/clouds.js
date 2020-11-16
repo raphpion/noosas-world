@@ -2,9 +2,7 @@ import { ctx } from '../gameScreen.js'
 
 // arrière-plan de nuages du menu principal
 const clouds = {
-  // image à afficher
   img: new Image(),
-  // position
   pos: {
     x: 0,
     y: 0,

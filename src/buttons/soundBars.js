@@ -2,16 +2,14 @@ import { ctx } from '../gameScreen.js'
 
 // barre de son du volume de la musique
 const musicBar = {
-  img: new Image(), // image
-  // position
+  img: new Image(),
   pos: {
     x: 370,
     y: 185,
   },
-  // dimensions
   width: 16,
   height: 52,
-  sourceX: 0, // source X de la vignette
+  sourceX: 0,
   draw: () => {
     // fonction d'affichage de la barre de son
     musicBar.img.src = '../assets/menu/soundbar.png'
@@ -39,16 +37,14 @@ const musicBar = {
 
 // barre de son du volume des effets sonores
 const soundBar = {
-  img: new Image(), // image
-  // position
+  img: new Image(),
   pos: {
     x: 370,
     y: 270,
   },
-  // dimensions
   width: 16,
   height: 52,
-  sourceX: 0, // source X de la vignette
+  sourceX: 0,
   draw: () => {
     // fonction d'affichage de la barre de son à l'écran
     soundBar.img.src = '../assets/menu/soundbar.png'

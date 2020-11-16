@@ -11,7 +11,6 @@ import { warningPrompt } from './warningPrompt.js'
 
 // Écran des options
 const settingsScreen = {
-  // image de titre
   title: {
     img: new Image(),
     pos: {
@@ -19,7 +18,6 @@ const settingsScreen = {
       y: 43,
     },
   },
-  // icône du contrôleur de volume de musique
   musicIcon: {
     img: new Image(),
     pos: {
@@ -27,7 +25,6 @@ const settingsScreen = {
       y: 182,
     },
   },
-  // icône du contrôleur de volume du son
   soundIcon: {
     img: new Image(),
     pos: {
@@ -35,7 +32,6 @@ const settingsScreen = {
       y: 262,
     },
   },
-  // couleur d'arrière plan
   background: '#ff9257',
   draw: () => {
     // fonction d'affichage du menu à l'écran

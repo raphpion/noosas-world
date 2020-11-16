@@ -3,8 +3,7 @@ import { ctx } from '../gameScreen.js'
 
 // icône du volume de la musique
 const musicIcon = {
-  img: new Image(), // image
-  // position
+  img: new Image(),
   pos: {
     x: 220,
     y: 182,
@@ -17,8 +16,7 @@ const musicIcon = {
 
 // icône du volume du son
 const soundIcon = {
-  img: new Image(), // image
-  // position
+  img: new Image(),
   pos: {
     x: 222,
     y: 262,

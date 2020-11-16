@@ -8,17 +8,14 @@ import { warningPrompt } from './menus/warningPrompt.js'
 
 // Objet qui représente une partie
 const game = {
-  background: '#b1e7f8', // couleur d'arrière-plan
-  // tuile de sol
+  background: '#b1e7f8',
   ground: {
-    img: new Image(), // image
-    // position sur l'écran
+    img: new Image(),
     pos: {
       x: 0,
       y: 0,
     },
   },
-  // si le jeu est en pause
   paused: false,
   clear: () => {
     // Enlever le listener des touches du clavier

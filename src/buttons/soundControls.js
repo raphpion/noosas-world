@@ -3,17 +3,15 @@ import { ctx } from '../gameScreen.js'
 
 // bouton pour diminuer la musique
 const musicMinus = {
-  img: new Image(), // image
-  hover: false, // si la souris est sur le bouton
-  // position
+  img: new Image(),
+  hover: false,
   pos: {
     x: 300,
     y: 185,
   },
-  // dimensions
   width: 48,
   height: 48,
-  sourceX: 0, // source X de la vignette
+  sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton
     musicMinus.img.src = '../assets/menu/Minus.png'
@@ -54,17 +52,15 @@ const musicMinus = {
 
 // bouton pour augmenter le volume de la musique
 const musicPlus = {
-  img: new Image(), // image
-  hover: false, // si la souris est sur le bouton
-  // position
+  img: new Image(),
+  hover: false,
   pos: {
     x: 510,
     y: 185,
   },
-  // dimensions
   width: 48,
   height: 48,
-  sourceX: 0, // source X de la vignette
+  sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
     musicPlus.img.src = '../assets/menu/plus.png'
@@ -105,17 +101,15 @@ const musicPlus = {
 
 // bouton pour diminuer le volume du son
 const soundMinus = {
-  img: new Image(), // image
-  hover: false, // si la souris est sur le bouton
-  // position
+  img: new Image(),
+  hover: false,
   pos: {
     x: 300,
     y: 270,
   },
-  // dimensions
   width: 48,
   height: 48,
-  sourceX: 0, // source X de la vignette
+  sourceX: 0,
   draw: () => {
     soundMinus.img.src = '../assets/menu/Minus.png'
 
@@ -155,14 +149,12 @@ const soundMinus = {
 
 // bouton pour augmenter le volume du son
 const soundPlus = {
-  img: new Image(), // image
-  hover: false, // si la souris est sur le bouton
-  // position
+  img: new Image(),
+  hover: false,
   pos: {
     x: 510,
     y: 270,
   },
-  // dimensions
   width: 48,
   height: 48,
   sourceX: 0,

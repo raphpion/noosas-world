@@ -5,9 +5,7 @@ let cloudMoveInterval
 
 // arrière-plan de nuages en jeu
 const pixelClouds = {
-  // image à afficher
   img: new Image(),
-  // position
   pos: {
     x: 0,
     y: 0,

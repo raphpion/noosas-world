@@ -4,18 +4,16 @@ import { hiscoresScreen } from '../menus/hiscoresScreen.js'
 
 // bouton d'accès à l'écran des records
 const hiscoresButton = {
-  img: new Image(), // image
-  content: 'Records', // texte à l'intérieur
-  hover: false, // si la souris est sur le bouton
-  // position
+  img: new Image(),
+  content: 'Records',
+  hover: false,
   pos: {
     x: 200,
     y: 360,
   },
-  // dimensions
   width: 400,
   height: 60,
-  sourceX: 0, // source X de la vignette
+  sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton
     hiscoresButton.img.src = '../assets/menu/button_blue.png'
