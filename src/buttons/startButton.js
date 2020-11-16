@@ -2,6 +2,7 @@ import { playSound } from '../gameAudio.js'
 import { ctx, getScene } from '../gameScreen.js'
 import { tutorial } from '../tutorial.js'
 import { game } from '../game.js'
+import { player } from '../player.js'
 
 const startButton = {
   img: new Image(),
@@ -37,6 +38,8 @@ const startButton = {
   },
   click: () => {
     playSound('button')
+    player.pos.x = 60
+    player.pos.y = 492
     if (localStorage.getItem('showTutorial') == 'true') getScene(tutorial)
     else getScene(game)
     document.body.style.cursor = 'default'

@@ -1,6 +1,7 @@
 import { keys } from './controller.js'
 import { playSound } from './gameAudio.js'
 import { ctx, GAME_WIDTH } from './gameScreen.js'
+import { game } from './game.js'
 
 const player = {
   sprite: {
@@ -20,8 +21,8 @@ const player = {
     y: 0,
   },
   pos: {
-    x: 60,
-    y: 84,
+    x: 0,
+    y: 0,
   },
   animate: () => {
     if (player.jumping) {
@@ -50,7 +51,7 @@ const player = {
     }
   },
   draw: () => {
-    player.move()
+    if (!game.paused) player.move()
     ctx.drawImage(
       player.sprite.img,
       player.sprite.sourceX,
@@ -66,7 +67,7 @@ const player = {
   move: () => {
     if (keys.space && !player.jumping) {
       playSound('jump')
-      player.velocity.y -= 30
+      player.velocity.y -= 35
       player.jumping = true
       player.sprite.index++
     }

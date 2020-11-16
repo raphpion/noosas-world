@@ -4,6 +4,8 @@ import { returnButton } from '../buttons/returnButton.js'
 import { playMusic } from '../gameAudio.js'
 import { isMouseOverButton } from '../methods.js'
 
+let hiscores
+
 const hiscoresScreen = {
   title: {
     img: new Image(),
@@ -47,7 +49,6 @@ const hiscoresScreen = {
     drawCredits()
   },
   drawHiscores: () => {
-    let hiscores = localStorage.getItem('hiscores')
     if (hiscores) {
       hiscoresScreen.drawMedals()
       for (let i = 0; i < 5; i++) hiscoresScreen.drawScore(hiscores, i)
@@ -61,9 +62,12 @@ const hiscoresScreen = {
     }
   },
   drawMedals: () => {
-    ctx.drawImage(hiscoresScreen.goldMedal.img, hiscoresScreen.goldMedal.pos.x, hiscoresScreen.goldMedal.pos.y)
-    ctx.drawImage(hiscoresScreen.silverMedal.img, hiscoresScreen.silverMedal.pos.x, hiscoresScreen.silverMedal.pos.y)
-    ctx.drawImage(hiscoresScreen.bronzeMedal.img, hiscoresScreen.bronzeMedal.pos.x, hiscoresScreen.bronzeMedal.pos.y)
+    if (hiscores[0])
+      ctx.drawImage(hiscoresScreen.goldMedal.img, hiscoresScreen.goldMedal.pos.x, hiscoresScreen.goldMedal.pos.y)
+    if (hiscores[1])
+      ctx.drawImage(hiscoresScreen.silverMedal.img, hiscoresScreen.silverMedal.pos.x, hiscoresScreen.silverMedal.pos.y)
+    if (hiscores[2])
+      ctx.drawImage(hiscoresScreen.bronzeMedal.img, hiscoresScreen.bronzeMedal.pos.x, hiscoresScreen.bronzeMedal.pos.y)
   },
   drawScore: (score, i) => {
     ctx.font = '40pt VT323'
@@ -71,10 +75,11 @@ const hiscoresScreen = {
     ctx.fillStyle = 'black'
     ctx.textAlign = 'center'
     if (score[i]) {
-      ctx.fillText(`${hiscores[i].score} - ${hiscores[i].name}`, GAME_WIDTH / 2, 145 + i * 60)
+      ctx.fillText(`${score[i].score} - ${score[i].name}`, GAME_WIDTH / 2, 145 + i * 60)
     } else ctx.fillText('----------', GAME_WIDTH / 2, 145 + i * 60)
   },
   init: () => {
+    hiscores = JSON.parse(localStorage.getItem('hiscores'))
     hiscoresScreen.title.img.src = '../assets/menu/records.png'
     hiscoresScreen.goldMedal.img.src = '../assets/menu/medal_gold.png'
     hiscoresScreen.silverMedal.img.src = '../assets/menu/medal_silver.png'

@@ -1,13 +1,13 @@
-import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
+import { ctx, clearScreen, drawCredits } from '../gameScreen.js'
 import { clouds } from '../backgrounds/clouds.js'
 import { musicMinus, musicPlus, soundMinus, soundPlus } from '../buttons/soundControls.js'
 import { musicBar, soundBar } from '../buttons/soundBars.js'
 import { clearStorageButton } from '../buttons/clearStorageButton.js'
 import { returnButton } from '../buttons/returnButton.js'
 import { tutorialToggleButton } from '../buttons/tutorialToggleButton.js'
-import { playMusic, playSound } from '../gameAudio.js'
+import { playMusic } from '../gameAudio.js'
 import { isMouseOverButton } from '../methods.js'
-import { initialSettings } from '../settings.js'
+import { warningPrompt } from './warningPrompt.js'
 
 const settingsScreen = {
   title: {
@@ -115,124 +115,4 @@ const settingsScreen = {
   },
 }
 
-const warningPrompt = {
-  visible: false,
-  background: new Image(),
-  pos: {
-    x: 80,
-    y: 136,
-  },
-  width: 640,
-  height: 480,
-  clear: () => {
-    warningPrompt.visible = false
-    document.removeEventListener('click', warningPrompt.mouseClick)
-    document.removeEventListener('mousemove', warningPrompt.mouseMove)
-    document.addEventListener('click', settingsScreen.mouseClick)
-    document.addEventListener('mousemove', settingsScreen.mouseMove)
-  },
-  draw: () => {
-    ctx.drawImage(warningPrompt.background, warningPrompt.pos.x, warningPrompt.pos.y)
-    ctx.font = '40pt VT323'
-    ctx.fillStyle = 'black'
-    ctx.textAlign = 'center'
-    ctx.textBaseline = 'bottom'
-    ctx.fillText('Cette action va effacer', GAME_WIDTH / 2, 210)
-    ctx.fillText('toutes vos données de jeu. ', GAME_WIDTH / 2, 260)
-    ctx.fillText('Continuer ? ', GAME_WIDTH / 2, 310)
-    confirmButton.draw()
-    cancelButton.draw()
-  },
-  init: () => {
-    warningPrompt.background.src = '../assets/menu/warning_prompt.png'
-    settingsScreen.clear()
-    warningPrompt.visible = true
-    document.addEventListener('click', warningPrompt.mouseClick)
-    document.addEventListener('mousemove', warningPrompt.mouseMove)
-  },
-  mouseClick: e => {
-    if (isMouseOverButton(confirmButton, e)) confirmButton.click()
-    if (isMouseOverButton(cancelButton, e)) cancelButton.click()
-  },
-  mouseMove: e => {
-    confirmButton.hover = false
-    cancelButton.hover = false
-    document.body.style.cursor = 'default'
-    if (isMouseOverButton(confirmButton, e)) {
-      confirmButton.hover = true
-      document.body.style.cursor = 'pointer'
-    }
-    if (isMouseOverButton(cancelButton, e)) {
-      cancelButton.hover = true
-      document.body.style.cursor = 'pointer'
-    }
-  },
-}
-
-const confirmButton = {
-  img: new Image(),
-  hover: false,
-  pos: {
-    x: 330,
-    y: 370,
-  },
-  width: 60,
-  height: 60,
-  sourceX: 0,
-  click: () => {
-    playSound('button')
-    localStorage.clear()
-    initialSettings()
-    warningPrompt.clear()
-  },
-  draw: () => {
-    confirmButton.img.src = '../assets/menu/button_confirm.png'
-    if (confirmButton.hover) confirmButton.sourceX = 60
-    else confirmButton.sourceX = 0
-    ctx.drawImage(
-      confirmButton.img,
-      confirmButton.sourceX,
-      0,
-      confirmButton.width,
-      confirmButton.height,
-      confirmButton.pos.x,
-      confirmButton.pos.y,
-      confirmButton.width,
-      confirmButton.height
-    )
-  },
-}
-
-const cancelButton = {
-  img: new Image(),
-  hover: false,
-  pos: {
-    x: 410,
-    y: 370,
-  },
-  width: 60,
-  height: 60,
-  sourceX: 0,
-  click: () => {
-    playSound('button')
-    warningPrompt.clear()
-  },
-  draw: () => {
-    cancelButton.img.src = '../assets/menu/button_cancel.png'
-    if (cancelButton.hover) cancelButton.sourceX = 60
-    else cancelButton.sourceX = 0
-    ctx.drawImage(
-      cancelButton.img,
-      cancelButton.sourceX,
-      0,
-      cancelButton.width,
-      cancelButton.height,
-      cancelButton.pos.x,
-      cancelButton.pos.y,
-      cancelButton.width,
-      cancelButton.height
-    )
-  },
-}
-
-export { settingsScreen, warningPrompt }
+export { settingsScreen }

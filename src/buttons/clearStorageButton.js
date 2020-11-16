@@ -1,7 +1,6 @@
 import { playSound } from '../gameAudio.js'
 import { ctx } from '../gameScreen.js'
-import { warningPrompt } from '../menus/settingsScreen.js'
-import { musicBar } from './soundBars.js'
+import { warningPrompt } from '../menus/warningPrompt.js'
 
 const clearStorageButton = {
   img: new Image(),
@@ -37,7 +36,7 @@ const clearStorageButton = {
   },
   click: () => {
     playSound('button')
-    warningPrompt.init()
+    warningPrompt.init('clearStorage')
   },
 }
 
