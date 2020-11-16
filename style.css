@@ -13,15 +13,3 @@ body {
   background-color: #b1e7f8;
   transition: 0.5s ease-in;
 }
-
-/* Uncomment to implement upscaling
-/* TODO: toutes les variables de détection de position du curseur * scale /*
-/* canvas,
-img {
-  image-rendering: optimizeSpeed;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: optimize-contrast;
-  image-rendering: pixelated;
-  -ms-interpolation-mode: nearest-neighbor;
-} */
