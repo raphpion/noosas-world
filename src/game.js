@@ -73,6 +73,16 @@ const game = {
       player.sprite.direction = 'right'
       if ((player.sprite.action = 'idle')) player.sprite.action = 'walk'
     }
+
+    // Touches d'action
+    // Si le joueur appuie sur s, on le couche et s'il marchait, on l'arrête
+    if (e.keyCode == 83) {
+      keys.s = true
+      player.crouching = true
+      if (player.sprite.action == 'walking') player.sprite.action = 'idle'
+      //? on anime le personnage pour enlever le délai d'animation crouch
+      player.animate()
+    }
     if (e.keyCode == 32) keys.space = true
 
     // Touche échap, on met le jeu en pause
@@ -92,6 +102,15 @@ const game = {
       keys.d = false
       if (keys.a) player.sprite.direction = 'left'
       else player.sprite.action = 'idle'
+    }
+
+    // touches d'action
+    // si le joueur relâche la touche s, on le relève
+    if (e.keyCode == 83) {
+      keys.s = false
+      player.crouching = false
+      //? on anime le personnage pour enlever le délai d'animation crouch
+      player.animate()
     }
     if (e.keyCode == 32) keys.space = false
   },
