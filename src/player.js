@@ -16,6 +16,7 @@ const player = {
     height: 84,
   },
   animation: null, // intervalle d'animation du joueur
+  crouching: false,
   jumping: true,
   velocity: {
     x: 0,
@@ -25,11 +26,32 @@ const player = {
     x: 0,
     y: 0,
   },
+  hitbox: {
+    pos: {
+      x: 0,
+      y: 0,
+    },
+    width: 0,
+    height: 0,
+  },
   animate: () => {
     // Fonction d'animation du personnage
 
-    // Si le personnage est en train de sauter
-    if (player.jumping) {
+    // Si le personnage est penché
+    if (player.crouching) {
+      // On applique les dimensions et bloque l'index à 0
+      player.sprite.width = 100
+      player.sprite.height = 84
+      player.sprite.index = 0
+
+      // Selon la direction du personnage, on lui assigne la bonne source X, puis sa source Y
+      if (player.sprite.direction == 'right') player.sprite.sourceX = 0
+      if (player.sprite.direction == 'left') player.sprite.sourceX = 100
+      player.sprite.sourceY = 168
+    }
+
+    // Sinon, si le personnage est en train de sauter
+    else if (player.jumping) {
       // On applique les dimensions et on incrémente l'index
       player.sprite.width = 100
       player.sprite.height = 84
@@ -44,8 +66,8 @@ const player = {
       player.sprite.sourceY = 84
     }
 
-    // Sinon, si le personnage n'est pas en action
-    else if (player.sprite.action == 'idle') {
+    // Sinon, si le personnage n'est pas en action ou s'il est en train de marcher dans les deux directions
+    else if (player.sprite.action == 'idle' || (keys.a && keys.d)) {
       // On applique les dimensions et on fixe l'index à zéro
       player.sprite.width = 100
       player.sprite.height = 84
@@ -90,6 +112,10 @@ const player = {
       player.sprite.width,
       player.sprite.height
     )
+
+    //* DEBUG: AFFICHAGE DE LA HITBOX
+    // ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
+    // ctx.fillRect(player.hitbox.pos.x, player.hitbox.pos.y, player.hitbox.width, player.hitbox.height)
   },
   move: () => {
     // Fonction de déplacement du personnage
@@ -100,9 +126,9 @@ const player = {
       player.jumping = true
     }
 
-    // Si le joueur appuie sur une touche de déplacement, on incrémente sa vélocité
-    if (keys.a) player.velocity.x -= 0.5
-    if (keys.d) player.velocity.x += 0.5
+    // Si le joueur appuie sur une touche de déplacement et qu'il n'est pas penché, on incrémente sa vélocité
+    if (keys.a && !player.crouching) player.velocity.x -= 0.5
+    if (keys.d && !player.crouching) player.velocity.x += 0.5
 
     // On applique la gravité sur la vélocité Y du personnage
     player.velocity.y += 1.5
@@ -125,6 +151,34 @@ const player = {
     // Si le personnage dépasse une des limites horizontales, on le replace sur la limite
     if (player.pos.x < 10) player.pos.x = 10
     if (player.pos.x > GAME_WIDTH - 110) player.pos.x = GAME_WIDTH - 110
+
+    // Mise à jour de la hitbox du personnage
+    player.updateHitbox()
+  },
+  updateHitbox: () => {
+    // Fonction pour mettre à jour la taille et la position du hitbox du joueur selon son animation
+
+    // Si le joueur est penché, on lui affecte un hitbox plus petit
+    if (player.crouching) {
+      // Selon la direction du personnage, on change la position X de la
+      if (player.sprite.direction == 'right') player.hitbox.pos.x = player.pos.x + 4
+      if (player.sprite.direction == 'left') player.hitbox.pos.x = player.pos.x
+
+      player.hitbox.pos.y = player.pos.y + 54
+      player.hitbox.width = 96
+      player.hitbox.height = 30
+    }
+
+    // Sinon, les paramètres de hitbox sont partagés parmi les autres actions
+    else {
+      // Selon la direction du personnage, on change la position X de la hitbox
+      if (player.sprite.direction == 'right') player.hitbox.pos.x = player.pos.x + 8
+      if (player.sprite.direction == 'left') player.hitbox.pos.x = player.pos.x
+
+      player.hitbox.pos.y = player.pos.y + 30
+      player.hitbox.width = 92
+      player.hitbox.height = 54
+    }
   },
 }
 
