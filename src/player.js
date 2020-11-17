@@ -26,14 +26,7 @@ const player = {
     x: 0,
     y: 0,
   },
-  hitbox: {
-    pos: {
-      x: 0,
-      y: 0,
-    },
-    width: 0,
-    height: 0,
-  },
+  hitbox: [],
   animate: () => {
     // Fonction d'animation du personnage
 
@@ -115,7 +108,26 @@ const player = {
 
     //* DEBUG: AFFICHAGE DE LA HITBOX
     // ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
-    // ctx.fillRect(player.hitbox.pos.x, player.hitbox.pos.y, player.hitbox.width, player.hitbox.height)
+    // for (let i = 0; i < player.hitbox.length; i++) {
+    //   if (player.hitbox[i].type == 'rectangle')
+    //     ctx.fillRect(
+    //       player.hitbox[i].pos.x + player.pos.x,
+    //       player.hitbox[i].pos.y + player.pos.y,
+    //       player.hitbox[i].width,
+    //       player.hitbox[i].height
+    //     )
+    //   if (player.hitbox[i].type == 'circle') {
+    //     ctx.beginPath()
+    //     ctx.arc(
+    //       player.hitbox[i].pos.x + player.pos.x,
+    //       player.hitbox[i].pos.y + player.pos.y,
+    //       player.hitbox[i].radius,
+    //       0,
+    //       2 * Math.PI
+    //     )
+    //     ctx.fill()
+    //   }
+    // }
   },
   move: () => {
     // Fonction de déplacement du personnage
@@ -157,27 +169,204 @@ const player = {
   },
   updateHitbox: () => {
     // Fonction pour mettre à jour la taille et la position du hitbox du joueur selon son animation
+    // On vide le array des hitbox
+    player.hitbox = []
 
-    // Si le joueur est penché, on lui affecte un hitbox plus petit
+    // Si le joueur est penché
     if (player.crouching) {
-      // Selon la direction du personnage, on change la position X de la
-      if (player.sprite.direction == 'right') player.hitbox.pos.x = player.pos.x + 4
-      if (player.sprite.direction == 'left') player.hitbox.pos.x = player.pos.x
+      // Direction droite
+      if (player.sprite.direction == 'right') {
+        player.hitbox.push(
+          { type: 'circle', pos: { x: 88, y: 64 }, radius: 11 }, // tête
+          { type: 'rectangle', pos: { x: 4, y: 54 }, width: 80, height: 22 }, // corps
+          { type: 'rectangle', pos: { x: 10, y: 76 }, width: 72, height: 8 } // pattes
+        )
+      }
 
-      player.hitbox.pos.y = player.pos.y + 54
-      player.hitbox.width = 96
-      player.hitbox.height = 30
+      // Direction gauche
+      if (player.sprite.direction == 'left') {
+        player.hitbox.push(
+          { type: 'circle', pos: { x: 11, y: 64 }, radius: 11 }, // tête
+          { type: 'rectangle', pos: { x: 16, y: 54 }, width: 80, height: 22 }, // corps
+          { type: 'rectangle', pos: { x: 18, y: 76 }, width: 72, height: 8 } // pattes
+        )
+      }
     }
 
-    // Sinon, les paramètres de hitbox sont partagés parmi les autres actions
-    else {
-      // Selon la direction du personnage, on change la position X de la hitbox
-      if (player.sprite.direction == 'right') player.hitbox.pos.x = player.pos.x + 8
-      if (player.sprite.direction == 'left') player.hitbox.pos.x = player.pos.x
+    // Sinon, si le joueur saute
+    else if (player.jumping) {
+      // Direction droite
+      if (player.sprite.direction == 'right') {
+        // Index 0
+        if (player.sprite.index == 0) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 88, y: 42 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 2, y: 0 }, width: 12, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 16, y: 36 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 14, y: 68 }, width: 22, height: 16 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 64, y: 68 }, width: 18, height: 16 } // pattes avant
+          )
+        }
 
-      player.hitbox.pos.y = player.pos.y + 30
-      player.hitbox.width = 92
-      player.hitbox.height = 54
+        // Index 1
+        if (player.sprite.index == 1) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 88, y: 44 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 4, y: 2 }, width: 10, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 4, y: 38 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 8, y: 70 }, width: 18, height: 12 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 64, y: 70 }, width: 18, height: 8 } // pattes avant
+          )
+        }
+
+        // Index 2
+        if (player.sprite.index == 2) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 88, y: 42 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 2, y: 0 }, width: 10, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 4, y: 36 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 0, y: 68 }, width: 16, height: 14 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 68, y: 68 }, width: 18, height: 14 } // pattes avant
+          )
+        }
+      }
+
+      // Direction gauche
+      if (player.sprite.direction == 'left') {
+        // Index 0
+        if (player.sprite.index == 0) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 11, y: 42 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 86, y: 0 }, width: 12, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 6, y: 36 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 18, y: 68 }, width: 22, height: 16 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 64, y: 68 }, width: 18, height: 16 } // pattes avant
+          )
+        }
+
+        // Index 1
+        if (player.sprite.index == 1) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 11, y: 44 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 86, y: 2 }, width: 10, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 18, y: 38 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 74, y: 70 }, width: 18, height: 12 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 18, y: 70 }, width: 18, height: 8 } // pattes avant
+          )
+        }
+
+        // Index 2
+        if (player.sprite.index == 2) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 11, y: 42 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 88, y: 0 }, width: 10, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 18, y: 36 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 84, y: 68 }, width: 16, height: 14 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 14, y: 68 }, width: 18, height: 14 } // pattes avant
+          )
+        }
+      }
+    }
+
+    // Sinon, si le joueur est 'idle'
+    else if (player.sprite.action == 'idle') {
+      // Direction droite
+      if (player.sprite.direction == 'right') {
+        player.hitbox.push(
+          { type: 'circle', pos: { x: 88, y: 42 }, radius: 11 }, // tête
+          { type: 'rectangle', pos: { x: 2, y: 0 }, width: 12, height: 36 }, // queue
+          { type: 'rectangle', pos: { x: 6, y: 36 }, width: 78, height: 32 }, // corps
+          { type: 'rectangle', pos: { x: 14, y: 68 }, width: 22, height: 16 }, // pattes arrière
+          { type: 'rectangle', pos: { x: 64, y: 68 }, width: 18, height: 16 } // pattes avant
+        )
+      }
+
+      // Direction gauche
+      if (player.sprite.direction == 'left') {
+        player.hitbox.push(
+          { type: 'circle', pos: { x: 11, y: 42 }, radius: 11 }, // tête
+          { type: 'rectangle', pos: { x: 86, y: 0 }, width: 12, height: 36 }, // queue
+          { type: 'rectangle', pos: { x: 16, y: 36 }, width: 78, height: 32 }, // corps
+          { type: 'rectangle', pos: { x: 64, y: 68 }, width: 22, height: 16 }, // pattes arrière
+          { type: 'rectangle', pos: { x: 18, y: 68 }, width: 18, height: 16 } // pattes avant
+        )
+      }
+    }
+
+    // Sinon, si le joueur marche
+    else if (player.sprite.action == 'walk') {
+      // Direction droite
+      if (player.sprite.direction == 'right') {
+        // Index 0
+        if (player.sprite.index == 0) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 88, y: 42 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 2, y: 0 }, width: 12, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 6, y: 36 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 16, y: 68 }, width: 22, height: 16 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 64, y: 68 }, width: 18, height: 16 } // pattes avant
+          )
+        }
+
+        // Index 1
+        if (player.sprite.index == 1) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 88, y: 46 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 4, y: 4 }, width: 10, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 4, y: 40 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 16, y: 72 }, width: 28, height: 12 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 60, y: 72 }, width: 22, height: 12 } // pattes avant
+          )
+        }
+
+        // Index 2
+        if (player.sprite.index == 2) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 88, y: 44 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 4, y: 4 }, width: 10, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 4, y: 38 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 0, y: 70 }, width: 40, height: 14 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 58, y: 70 }, width: 28, height: 14 } // pattes avant
+          )
+        }
+      }
+
+      // Direction gauche
+
+      if (player.sprite.direction == 'left') {
+        // Index 0
+        if (player.sprite.index == 0) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 11, y: 42 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 86, y: 0 }, width: 12, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 18, y: 36 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 64, y: 68 }, width: 22, height: 16 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 18, y: 68 }, width: 18, height: 16 } // pattes avant
+          )
+        }
+
+        // Index 1
+        if (player.sprite.index == 1) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 11, y: 46 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 86, y: 4 }, width: 10, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 18, y: 40 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 64, y: 72 }, width: 28, height: 12 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 18, y: 72 }, width: 22, height: 12 } // pattes avant
+          )
+        }
+
+        // Index 2
+        if (player.sprite.index == 2) {
+          player.hitbox.push(
+            { type: 'circle', pos: { x: 11, y: 44 }, radius: 11 }, // tête
+            { type: 'rectangle', pos: { x: 88, y: 2 }, width: 10, height: 36 }, // queue
+            { type: 'rectangle', pos: { x: 18, y: 38 }, width: 78, height: 32 }, // corps
+            { type: 'rectangle', pos: { x: 60, y: 70 }, width: 40, height: 14 }, // pattes arrière
+            { type: 'rectangle', pos: { x: 14, y: 70 }, width: 28, height: 14 } // pattes avant
+          )
+        }
+      }
     }
   },
 }
