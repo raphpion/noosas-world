@@ -5,6 +5,11 @@ import { playMusic, pauseScreenMusic, appendAudioSettings } from './gameAudio.js
 import { player } from './player.js'
 import { pauseScreen } from './menus/pauseScreen.js'
 import { warningPrompt } from './menus/warningPrompt.js'
+import { Kibble } from './prefabs/Kibble.js'
+import { Bumblebee } from './prefabs/Bumblebee.js'
+
+let testKibble
+let testBumblebee
 
 // Objet qui représente une partie
 const game = {
@@ -33,6 +38,8 @@ const game = {
     clearScreen()
     pixelClouds.draw()
     ctx.drawImage(game.ground.img, game.ground.pos.x, game.ground.pos.y)
+    testKibble.draw()
+    testBumblebee.draw()
     player.draw()
 
     // Si le jeu est sur Pause, on affiche l'écran pause
@@ -49,13 +56,27 @@ const game = {
     player.sprite.img.src = '../assets/sprites/noosa.png'
     playMusic('arcade')
 
+    // Ajout des listeners pour les touches du clavier
+    document.addEventListener('keydown', game.keyDown)
+    document.addEventListener('keyup', game.keyUp)
+
     // Animation du personnage et des nuages
     pixelClouds.move(0.6)
     player.animation = setInterval(player.animate, 1000 / 8)
 
-    // Ajout des listeners pour les touches du clavier
-    document.addEventListener('keydown', game.keyDown)
-    document.addEventListener('keyup', game.keyUp)
+    // Création d'une croquette et intervalle d'animation
+    testKibble = new Kibble(350, 350)
+    testKibble.sprite.img.src = '../assets/sprites/items.png'
+    testKibble.animation = setInterval(function () {
+      testKibble.animate()
+    }, 1000 / 8)
+
+    // Création d'un bourdon et intervalle d'animation
+    testBumblebee = new Bumblebee(250, 250)
+    testBumblebee.sprite.img.src = '../assets/sprites/bumblebee.png'
+    testBumblebee.animation = setInterval(function () {
+      testBumblebee.animate()
+    }, 1000 / 8)
 
     // On retourne l'intervalle d'affichage du jeu
     return setInterval(game.draw, 1000 / 60)
