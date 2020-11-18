@@ -87,6 +87,9 @@ const player = {
       if (player.sprite.direction == 'left') player.sprite.sourceX = 300 + player.sprite.index * player.sprite.width
       player.sprite.sourceY = 0
     }
+
+    // Mise à jour de la hitbox du personnage
+    player.updateHitbox()
   },
   draw: () => {
     // Fonction d'affichage du personnage dans le canvas
@@ -107,27 +110,27 @@ const player = {
     )
 
     //* DEBUG: AFFICHAGE DE LA HITBOX
-    // ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
-    // for (let i = 0; i < player.hitbox.length; i++) {
-    //   if (player.hitbox[i].type == 'rectangle')
-    //     ctx.fillRect(
-    //       player.hitbox[i].pos.x + player.pos.x,
-    //       player.hitbox[i].pos.y + player.pos.y,
-    //       player.hitbox[i].width,
-    //       player.hitbox[i].height
-    //     )
-    //   if (player.hitbox[i].type == 'circle') {
-    //     ctx.beginPath()
-    //     ctx.arc(
-    //       player.hitbox[i].pos.x + player.pos.x,
-    //       player.hitbox[i].pos.y + player.pos.y,
-    //       player.hitbox[i].radius,
-    //       0,
-    //       2 * Math.PI
-    //     )
-    //     ctx.fill()
-    //   }
-    // }
+    ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
+    for (let i = 0; i < player.hitbox.length; i++) {
+      if (player.hitbox[i].type == 'rectangle')
+        ctx.fillRect(
+          player.hitbox[i].pos.x + player.pos.x,
+          player.hitbox[i].pos.y + player.pos.y,
+          player.hitbox[i].width,
+          player.hitbox[i].height
+        )
+      if (player.hitbox[i].type == 'circle') {
+        ctx.beginPath()
+        ctx.arc(
+          player.hitbox[i].pos.x + player.pos.x,
+          player.hitbox[i].pos.y + player.pos.y,
+          player.hitbox[i].radius,
+          0,
+          2 * Math.PI
+        )
+        ctx.fill()
+      }
+    }
   },
   move: () => {
     // Fonction de déplacement du personnage
@@ -163,9 +166,6 @@ const player = {
     // Si le personnage dépasse une des limites horizontales, on le replace sur la limite
     if (player.pos.x < 10) player.pos.x = 10
     if (player.pos.x > GAME_WIDTH - 110) player.pos.x = GAME_WIDTH - 110
-
-    // Mise à jour de la hitbox du personnage
-    player.updateHitbox()
   },
   updateHitbox: () => {
     // Fonction pour mettre à jour la taille et la position du hitbox du joueur selon son animation
