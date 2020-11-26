@@ -9,7 +9,7 @@ const gameOverScreen = {
   title: {
     img: new Image(),
     pos: {
-      x: 248,
+      x: GAME_WIDTH / 2 - 152,
       y: 43,
     },
   },
@@ -63,9 +63,9 @@ const gameOverScreen = {
     document.addEventListener('mousemove', gameOverScreen.mouseMove)
 
     // Placement des éléments
-    hiscoresButton.pos.x = 200
+    hiscoresButton.pos.x = (GAME_WIDTH - hiscoresButton.width) / 2
     hiscoresButton.pos.y = 363
-    returnButton.pos.x = 200
+    returnButton.pos.x = (GAME_WIDTH - returnButton.width) / 2
     returnButton.pos.y = 463
   },
   mouseClick: e => {

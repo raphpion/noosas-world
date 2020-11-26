@@ -7,7 +7,7 @@ const splashScreen = {
   title: {
     img: new Image(),
     pos: {
-      x: 175,
+      x: GAME_WIDTH / 2 - 225,
       y: 185,
     },
   },

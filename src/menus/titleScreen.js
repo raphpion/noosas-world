@@ -1,4 +1,4 @@
-import { gameScreen, ctx, clearScreen, drawCredits } from '../gameScreen.js'
+import { gameScreen, ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
 import { clouds } from '../backgrounds/clouds.js'
 import { startButton } from '../buttons/startButton.js'
 import { hiscoresButton } from '../buttons/hiscoresButton.js'
@@ -11,8 +11,8 @@ const titleScreen = {
   title: {
     img: new Image(),
     pos: {
-      x: 175,
-      y: 35,
+      x: GAME_WIDTH / 2 - 225,
+      y: 55,
     },
   },
   background: '#b1e7f8',
@@ -38,12 +38,12 @@ const titleScreen = {
     playMusic('titlescreen')
 
     // positionnement des boutons
-    startButton.pos.x = 200
-    startButton.pos.y = 260
-    hiscoresButton.pos.x = 200
-    hiscoresButton.pos.y = 360
-    settingsButton.pos.x = 200
-    settingsButton.pos.y = 460
+    startButton.pos.x = (GAME_WIDTH - startButton.width) / 2
+    startButton.pos.y = 280
+    hiscoresButton.pos.x = (GAME_WIDTH - hiscoresButton.width) / 2
+    hiscoresButton.pos.y = 380
+    settingsButton.pos.x = (GAME_WIDTH - settingsButton.width) / 2
+    settingsButton.pos.y = 480
 
     // on ajoute les listeners de souris et on retourne l'intervalle d'affichage
     document.addEventListener('click', titleScreen.mouseClick)

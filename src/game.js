@@ -9,6 +9,8 @@ import { warningPrompt } from './menus/warningPrompt.js'
 import { Kibble } from './prefabs/Kibble.js'
 import { Bumblebee } from './prefabs/Bumblebee.js'
 import { areObjectsColliding, pushHiscore } from './methods.js'
+import { tutorialScreen } from './menus/tutorialScreen.js'
+import { clouds } from './backgrounds/clouds.js'
 
 // objets de test
 let testKibble
@@ -67,6 +69,8 @@ const game = {
       if (warningPrompt.visible) warningPrompt.draw()
     }
 
+    // Sinon, si on doit afficher le tutoriel
+    else if (tutorialScreen.show) tutorialScreen.draw()
     // Sinon, on affiche le HUD
     else game.drawHUD()
   },
@@ -98,10 +102,6 @@ const game = {
     player.sprite.img.src = '../assets/sprites/noosa.png'
     playMusic('arcade')
 
-    // Ajout des listeners pour les touches du clavier
-    document.addEventListener('keydown', game.keyDown)
-    document.addEventListener('keyup', game.keyUp)
-
     // On remet le score à zéro
     game.kibbles = 0
     game.goldenKibbles = 0
@@ -110,21 +110,21 @@ const game = {
     game.paused = false
     game.isOver = false
 
-    // Animation du personnage et des nuages
-    pixelClouds.move(0.6)
-    player.animation = setInterval(player.animate, 1000 / 8)
-
-    // Création d'une croquette et intervalle d'animation
-    testKibble = new Kibble(250, 500)
+    // Création d'objets de test
+    testKibble = new Kibble(250, 540)
+    testBumblebee = new Bumblebee(450, 316)
     testKibble.animation = setInterval(function () {
       testKibble.animate()
     }, 1000 / 8)
-
-    // Création d'un bourdon et intervalle d'animation
-    testBumblebee = new Bumblebee(450, 276)
     testBumblebee.animation = setInterval(function () {
       testBumblebee.animate()
     }, 1000 / 8)
+
+    // si on doit afficher le tutoriel, on l'initialise. Sinon, on démarre la partie
+    if (tutorialScreen.show) {
+      tutorialScreen.init()
+      game.stop()
+    } else game.start()
 
     // On retourne l'intervalle d'affichage du jeu
     return setInterval(game.draw, 1000 / 60)
@@ -189,6 +189,51 @@ const game = {
     pushHiscore(game.kibbles)
     game.isOver = true
 
+    // on arrête le jeu
+    game.stop()
+
+    // On initialise l'écran de GameOver
+    gameOverScreen.init()
+  },
+  pause: () => {
+    // Fonction de gestion de pause
+    if (game.paused) {
+      // Si la partie est déjà arrêtée, on la repart
+      game.paused = false
+      game.start()
+    } else {
+      // Si la partie n'était pas déjà arrêtée, on l'arrête
+      game.paused = true
+      game.stop()
+
+      // On initialise l'écran de pause et on réduit le volume de la musique
+      pauseScreen.init()
+      pauseScreenMusic()
+    }
+  },
+  start: () => {
+    // fonction qui démarre les événements et les animations du jeu
+
+    // event listeners
+    document.addEventListener('keydown', game.keyDown)
+    document.addEventListener('keyup', game.keyUp)
+
+    // animations
+    pixelClouds.move(0.6)
+    player.animation = setInterval(player.animate, 1000 / 8)
+    testKibble.animation = setInterval(function () {
+      testKibble.animate()
+    }, 1000 / 8)
+    testBumblebee.animation = setInterval(function () {
+      testBumblebee.animate()
+    }, 1000 / 8)
+
+    // valeur initiale pour paramètres audio
+    appendAudioSettings()
+  },
+  stop: () => {
+    // fonction qui arrête les événements et les animations du jeu
+
     // On désactive toutes les touches du clavier pour éviter les surprises
     keys.clear()
 
@@ -200,57 +245,10 @@ const game = {
     document.removeEventListener('keyup', game.keyUp)
 
     // On arrête l'animation des éléments du jeu
+    pixelClouds.stop()
     clearInterval(player.animation)
     clearInterval(testKibble.animation)
     clearInterval(testBumblebee.animation)
-
-    // On initialise l'écran de GameOver
-    gameOverScreen.init()
-  },
-  pause: () => {
-    // Fonction de gestion de pause
-    if (game.paused) {
-      // Si la partie est déjà arrêtée, on la repart
-      game.paused = false
-
-      // On remet les event listeners
-      document.addEventListener('keydown', game.keyDown)
-      document.addEventListener('keyup', game.keyUp)
-
-      // On recommence l'intervalle d'animation des éléments
-      player.animation = setInterval(player.animate, 1000 / 8)
-      testKibble.animation = setInterval(function () {
-        testKibble.animate()
-      }, 1000 / 8)
-      testBumblebee.animation = setInterval(function () {
-        testBumblebee.animate()
-      }, 1000 / 8)
-
-      // On remet les options audio à leur valeur originale
-      appendAudioSettings()
-    } else {
-      // Si la partie n'était pas déjà arrêtée, on l'arrête
-      game.paused = true
-
-      // On désactive toutes les touches du clavier pour éviter les surprises
-      keys.clear()
-
-      // Si le joueur était en train de marcher, on le remet 'idle'
-      if (player.sprite.action == 'walk') player.sprite.action = 'idle'
-
-      // On enlève les listeners du clavier
-      document.removeEventListener('keydown', game.keyDown)
-      document.removeEventListener('keyup', game.keyUp)
-
-      // On arrête l'animation des éléments du jeu
-      clearInterval(player.animation)
-      clearInterval(testKibble.animation)
-      clearInterval(testBumblebee.animation)
-
-      // On initialise l'écran de pause et on réduit le volume de la musique
-      pauseScreen.init()
-      pauseScreenMusic()
-    }
   },
 }
 

@@ -12,7 +12,7 @@ const warningPrompt = {
   visible: false,
   reason: '', // raison pour laquelle on appelle l'avertissement
   pos: {
-    x: 96,
+    x: GAME_WIDTH / 2 - 304,
     y: 136,
   },
   clear: () => {
@@ -99,7 +99,7 @@ const confirmButton = {
   img: new Image(),
   hover: false,
   pos: {
-    x: 330,
+    x: GAME_WIDTH / 2 - 70,
     y: 370,
   },
   width: 60,
@@ -152,7 +152,7 @@ const cancelButton = {
   img: new Image(),
   hover: false,
   pos: {
-    x: 410,
+    x: GAME_WIDTH / 2 + 10,
     y: 370,
   },
   width: 60,

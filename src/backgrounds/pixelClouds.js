@@ -1,4 +1,4 @@
-import { ctx } from '../gameScreen.js'
+import { ctx, GAME_WIDTH } from '../gameScreen.js'
 
 // variable pour stocker l'intervalle de mouvement des nuages
 let cloudMoveInterval
@@ -13,7 +13,7 @@ const pixelClouds = {
   draw: () => {
     // fonction d'affichage de l'arrière-plan
     ctx.drawImage(pixelClouds.img, pixelClouds.pos.x, pixelClouds.pos.y)
-    ctx.drawImage(pixelClouds.img, pixelClouds.pos.x + 800, pixelClouds.pos.y)
+    ctx.drawImage(pixelClouds.img, pixelClouds.pos.x + GAME_WIDTH, pixelClouds.pos.y)
   },
   move: (speed = 1) => {
     // fonction d'initialisation du déplacement des nuages

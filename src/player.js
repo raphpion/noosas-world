@@ -147,9 +147,9 @@ const player = {
     player.velocity.y *= 0.9
 
     // Si le personnage dépasse le sol, on remet sa vélocité Y à zéro et on invalide sa booléenne de saut
-    if (player.pos.y > 452) {
+    if (player.pos.y > 492) {
       player.jumping = false
-      player.pos.y = 452
+      player.pos.y = 492
       player.velocity.y = 0
     }
 
