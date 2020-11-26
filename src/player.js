@@ -94,8 +94,8 @@ const player = {
   draw: () => {
     // Fonction d'affichage du personnage dans le canvas
 
-    // Si la partie n'est pas en pause, on appelle la fonction de déplacement du personnage
-    if (!game.paused) player.move()
+    // Si la partie n'est pas en pause ou arrêté, on appelle la fonction de déplacement du personnage
+    if (!game.paused && !game.isOver) player.move()
 
     ctx.drawImage(
       player.sprite.img,
@@ -110,25 +110,15 @@ const player = {
     )
 
     //* DEBUG: AFFICHAGE DE LA HITBOX
-    ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
-    for (let i = 0; i < player.hitbox.length; i++) {
-      if (player.hitbox[i].type == 'rectangle')
+    if (localStorage.getItem('debugMode') == 'true') {
+      ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
+      for (let i = 0; i < player.hitbox.length; i++) {
         ctx.fillRect(
           player.hitbox[i].pos.x + player.pos.x,
           player.hitbox[i].pos.y + player.pos.y,
           player.hitbox[i].width,
           player.hitbox[i].height
         )
-      if (player.hitbox[i].type == 'circle') {
-        ctx.beginPath()
-        ctx.arc(
-          player.hitbox[i].pos.x + player.pos.x,
-          player.hitbox[i].pos.y + player.pos.y,
-          player.hitbox[i].radius,
-          0,
-          2 * Math.PI
-        )
-        ctx.fill()
       }
     }
   },
@@ -177,18 +167,18 @@ const player = {
       // Direction droite
       if (player.sprite.direction == 'right') {
         player.hitbox.push(
-          { type: 'circle', pos: { x: 88, y: 64 }, radius: 11 }, // tête
-          { type: 'rectangle', pos: { x: 4, y: 54 }, width: 80, height: 22 }, // corps
-          { type: 'rectangle', pos: { x: 10, y: 76 }, width: 72, height: 8 } // pattes
+          { pos: { x: 82, y: 54 }, width: 14, height: 20 }, // tête
+          { pos: { x: 4, y: 54 }, width: 80, height: 22 }, // corps
+          { pos: { x: 10, y: 76 }, width: 72, height: 8 } // pattes
         )
       }
 
       // Direction gauche
       if (player.sprite.direction == 'left') {
         player.hitbox.push(
-          { type: 'circle', pos: { x: 11, y: 64 }, radius: 11 }, // tête
-          { type: 'rectangle', pos: { x: 16, y: 54 }, width: 80, height: 22 }, // corps
-          { type: 'rectangle', pos: { x: 18, y: 76 }, width: 72, height: 8 } // pattes
+          { pos: { x: 2, y: 54 }, width: 14, height: 20 }, // tête
+          { pos: { x: 16, y: 54 }, width: 80, height: 22 }, // corps
+          { pos: { x: 18, y: 76 }, width: 72, height: 8 } // pattes
         )
       }
     }
@@ -200,33 +190,36 @@ const player = {
         // Index 0
         if (player.sprite.index == 0) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 88, y: 42 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 2, y: 0 }, width: 12, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 16, y: 36 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 14, y: 68 }, width: 22, height: 16 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 64, y: 68 }, width: 18, height: 16 } // pattes avant
+            { pos: { x: 78, y: 36 }, width: 20, height: 18 }, // tête
+            { pos: { x: 2, y: 0 }, width: 14, height: 38 }, // queue
+            { pos: { x: 8, y: 38 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 12, y: 60 }, width: 64, height: 12 }, // bas de corps
+            { pos: { x: 16, y: 72 }, width: 20, height: 12 }, // pattes arrières
+            { pos: { x: 64, y: 72 }, width: 18, height: 12 } // pattes avant
           )
         }
 
         // Index 1
         if (player.sprite.index == 1) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 88, y: 44 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 4, y: 2 }, width: 10, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 4, y: 38 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 8, y: 70 }, width: 18, height: 12 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 64, y: 70 }, width: 18, height: 8 } // pattes avant
+            { pos: { x: 78, y: 38 }, width: 20, height: 18 }, // tête
+            { pos: { x: 4, y: 2 }, width: 10, height: 40 }, // queue
+            { pos: { x: 8, y: 40 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 8, y: 62 }, width: 74, height: 8 }, // bas de corps
+            { pos: { x: 8, y: 70 }, width: 18, height: 12 }, // pattes arrières
+            { pos: { x: 64, y: 70 }, width: 18, height: 8 } // pattes avant
           )
         }
 
         // Index 2
         if (player.sprite.index == 2) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 88, y: 42 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 2, y: 0 }, width: 10, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 4, y: 36 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 0, y: 68 }, width: 16, height: 14 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 68, y: 68 }, width: 18, height: 14 } // pattes avant
+            { pos: { x: 78, y: 36 }, width: 20, height: 18 }, // tête
+            { pos: { x: 2, y: 0 }, width: 10, height: 40 }, // queue
+            { pos: { x: 6, y: 38 }, width: 72, height: 22 }, // haut de corps
+            { pos: { x: 4, y: 60 }, width: 74, height: 8 }, // bas de corps
+            { pos: { x: 0, y: 68 }, width: 16, height: 14 }, // pattes arrières
+            { pos: { x: 68, y: 68 }, width: 18, height: 14 } // pattes avant
           )
         }
       }
@@ -236,33 +229,36 @@ const player = {
         // Index 0
         if (player.sprite.index == 0) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 11, y: 42 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 86, y: 0 }, width: 12, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 6, y: 36 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 18, y: 68 }, width: 22, height: 16 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 64, y: 68 }, width: 18, height: 16 } // pattes avant
+            { pos: { x: 2, y: 36 }, width: 20, height: 18 }, // tête
+            { pos: { x: 84, y: 0 }, width: 14, height: 38 }, // queue
+            { pos: { x: 22, y: 38 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 24, y: 60 }, width: 64, height: 12 }, // bas de corps
+            { pos: { x: 64, y: 72 }, width: 20, height: 12 }, // pattes arrières
+            { pos: { x: 18, y: 72 }, width: 18, height: 12 } // pattes avant
           )
         }
 
         // Index 1
         if (player.sprite.index == 1) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 11, y: 44 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 86, y: 2 }, width: 10, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 18, y: 38 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 74, y: 70 }, width: 18, height: 12 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 18, y: 70 }, width: 18, height: 8 } // pattes avant
+            { pos: { x: 2, y: 38 }, width: 20, height: 18 }, // tête
+            { pos: { x: 86, y: 2 }, width: 10, height: 40 }, // queue
+            { pos: { x: 22, y: 40 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 18, y: 62 }, width: 74, height: 8 }, // bas de corps
+            { pos: { x: 74, y: 70 }, width: 18, height: 12 }, // pattes arrières
+            { pos: { x: 18, y: 70 }, width: 18, height: 8 } // pattes avant
           )
         }
 
         // Index 2
         if (player.sprite.index == 2) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 11, y: 42 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 88, y: 0 }, width: 10, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 18, y: 36 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 84, y: 68 }, width: 16, height: 14 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 14, y: 68 }, width: 18, height: 14 } // pattes avant
+            { pos: { x: 2, y: 36 }, width: 20, height: 18 }, // tête
+            { pos: { x: 88, y: 0 }, width: 10, height: 40 }, // queue
+            { pos: { x: 22, y: 38 }, width: 72, height: 22 }, // haut de corps
+            { pos: { x: 22, y: 60 }, width: 74, height: 8 }, // bas de corps
+            { pos: { x: 84, y: 68 }, width: 16, height: 14 }, // pattes arrières
+            { pos: { x: 14, y: 68 }, width: 18, height: 14 } // pattes avant
           )
         }
       }
@@ -273,22 +269,24 @@ const player = {
       // Direction droite
       if (player.sprite.direction == 'right') {
         player.hitbox.push(
-          { type: 'circle', pos: { x: 88, y: 42 }, radius: 11 }, // tête
-          { type: 'rectangle', pos: { x: 2, y: 0 }, width: 12, height: 36 }, // queue
-          { type: 'rectangle', pos: { x: 6, y: 36 }, width: 78, height: 32 }, // corps
-          { type: 'rectangle', pos: { x: 14, y: 68 }, width: 22, height: 16 }, // pattes arrière
-          { type: 'rectangle', pos: { x: 64, y: 68 }, width: 18, height: 16 } // pattes avant
+          { pos: { x: 78, y: 36 }, width: 20, height: 18 }, // tête
+          { pos: { x: 2, y: 0 }, width: 14, height: 38 }, // queue
+          { pos: { x: 8, y: 38 }, width: 70, height: 22 }, // haut de corps
+          { pos: { x: 12, y: 60 }, width: 64, height: 12 }, // bas de corps
+          { pos: { x: 16, y: 72 }, width: 20, height: 12 }, // pattes arrières
+          { pos: { x: 64, y: 72 }, width: 18, height: 12 } // pattes avant
         )
       }
 
       // Direction gauche
       if (player.sprite.direction == 'left') {
         player.hitbox.push(
-          { type: 'circle', pos: { x: 11, y: 42 }, radius: 11 }, // tête
-          { type: 'rectangle', pos: { x: 86, y: 0 }, width: 12, height: 36 }, // queue
-          { type: 'rectangle', pos: { x: 16, y: 36 }, width: 78, height: 32 }, // corps
-          { type: 'rectangle', pos: { x: 64, y: 68 }, width: 22, height: 16 }, // pattes arrière
-          { type: 'rectangle', pos: { x: 18, y: 68 }, width: 18, height: 16 } // pattes avant
+          { pos: { x: 2, y: 36 }, width: 20, height: 18 }, // tête
+          { pos: { x: 84, y: 0 }, width: 14, height: 38 }, // queue
+          { pos: { x: 22, y: 38 }, width: 70, height: 22 }, // haut de corps
+          { pos: { x: 24, y: 60 }, width: 64, height: 12 }, // bas de corps
+          { pos: { x: 64, y: 72 }, width: 20, height: 12 }, // pattes arrières
+          { pos: { x: 18, y: 72 }, width: 18, height: 12 } // pattes avant
         )
       }
     }
@@ -300,33 +298,36 @@ const player = {
         // Index 0
         if (player.sprite.index == 0) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 88, y: 42 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 2, y: 0 }, width: 12, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 6, y: 36 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 16, y: 68 }, width: 22, height: 16 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 64, y: 68 }, width: 18, height: 16 } // pattes avant
+            { pos: { x: 78, y: 36 }, width: 20, height: 18 }, // tête
+            { pos: { x: 2, y: 0 }, width: 14, height: 38 }, // queue
+            { pos: { x: 8, y: 38 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 12, y: 60 }, width: 64, height: 12 }, // bas de corps
+            { pos: { x: 16, y: 72 }, width: 20, height: 12 }, // pattes arrières
+            { pos: { x: 64, y: 72 }, width: 18, height: 12 } // pattes avant
           )
         }
 
         // Index 1
         if (player.sprite.index == 1) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 88, y: 46 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 4, y: 4 }, width: 10, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 4, y: 40 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 16, y: 72 }, width: 28, height: 12 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 60, y: 72 }, width: 22, height: 12 } // pattes avant
+            { pos: { x: 78, y: 40 }, width: 20, height: 18 }, // tête
+            { pos: { x: 4, y: 4 }, width: 10, height: 40 }, // queue
+            { pos: { x: 8, y: 42 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 8, y: 64 }, width: 74, height: 10 }, // bas de corps
+            { pos: { x: 8, y: 74 }, width: 28, height: 10 }, // pattes arrières
+            { pos: { x: 60, y: 74 }, width: 20, height: 10 } // pattes avant
           )
         }
 
         // Index 2
         if (player.sprite.index == 2) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 88, y: 44 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 4, y: 4 }, width: 10, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 4, y: 38 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 0, y: 70 }, width: 40, height: 14 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 58, y: 70 }, width: 28, height: 14 } // pattes avant
+            { pos: { x: 78, y: 38 }, width: 20, height: 18 }, // tête
+            { pos: { x: 2, y: 2 }, width: 10, height: 40 }, // queue
+            { pos: { x: 8, y: 40 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 0, y: 62 }, width: 78, height: 12 }, // bas de corps
+            { pos: { x: 0, y: 74 }, width: 40, height: 10 }, // pattes arrières
+            { pos: { x: 58, y: 74 }, width: 28, height: 10 } // pattes avant
           )
         }
       }
@@ -337,33 +338,36 @@ const player = {
         // Index 0
         if (player.sprite.index == 0) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 11, y: 42 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 86, y: 0 }, width: 12, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 18, y: 36 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 64, y: 68 }, width: 22, height: 16 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 18, y: 68 }, width: 18, height: 16 } // pattes avant
+            { pos: { x: 2, y: 36 }, width: 20, height: 18 }, // tête
+            { pos: { x: 84, y: 0 }, width: 14, height: 38 }, // queue
+            { pos: { x: 22, y: 38 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 24, y: 60 }, width: 64, height: 12 }, // bas de corps
+            { pos: { x: 64, y: 72 }, width: 20, height: 12 }, // pattes arrières
+            { pos: { x: 18, y: 72 }, width: 18, height: 12 } // pattes avant
           )
         }
 
         // Index 1
         if (player.sprite.index == 1) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 11, y: 46 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 86, y: 4 }, width: 10, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 18, y: 40 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 64, y: 72 }, width: 28, height: 12 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 18, y: 72 }, width: 22, height: 12 } // pattes avant
+            { pos: { x: 2, y: 40 }, width: 20, height: 18 }, // tête
+            { pos: { x: 86, y: 4 }, width: 10, height: 40 }, // queue
+            { pos: { x: 22, y: 42 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 18, y: 64 }, width: 74, height: 10 }, // bas de corps
+            { pos: { x: 64, y: 74 }, width: 28, height: 10 }, // pattes arrières
+            { pos: { x: 20, y: 74 }, width: 20, height: 10 } // pattes avant
           )
         }
 
         // Index 2
         if (player.sprite.index == 2) {
           player.hitbox.push(
-            { type: 'circle', pos: { x: 11, y: 44 }, radius: 11 }, // tête
-            { type: 'rectangle', pos: { x: 88, y: 2 }, width: 10, height: 36 }, // queue
-            { type: 'rectangle', pos: { x: 18, y: 38 }, width: 78, height: 32 }, // corps
-            { type: 'rectangle', pos: { x: 60, y: 70 }, width: 40, height: 14 }, // pattes arrière
-            { type: 'rectangle', pos: { x: 14, y: 70 }, width: 28, height: 14 } // pattes avant
+            { pos: { x: 2, y: 38 }, width: 20, height: 18 }, // tête
+            { pos: { x: 88, y: 2 }, width: 10, height: 40 }, // queue
+            { pos: { x: 22, y: 40 }, width: 70, height: 22 }, // haut de corps
+            { pos: { x: 22, y: 62 }, width: 78, height: 12 }, // bas de corps
+            { pos: { x: 60, y: 74 }, width: 40, height: 10 }, // pattes arrières
+            { pos: { x: 14, y: 74 }, width: 28, height: 10 } // pattes avant
           )
         }
       }

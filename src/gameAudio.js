@@ -1,11 +1,9 @@
 let currentSong // Musique en cours de lecture (s'il y a lieu)
 let gameMusic = new Audio() // Musique du jeu
-let sfx = new Audio() // Effet sonore à jouer
 
 function appendAudioSettings() {
   // Application des options utilisateurs audio aux variables de musique et de son
   gameMusic.volume = Number(localStorage.getItem('musicVolume'))
-  sfx.volume = Number(localStorage.getItem('soundVolume'))
 }
 
 function playMusic(song, loop = true) {
@@ -30,6 +28,8 @@ function pauseScreenMusic() {
 
 function playSound(sound) {
   // On assigne le bon fichier audio et on le fait jouer
+  let sfx = new Audio()
+  sfx.volume = Number(localStorage.getItem('soundVolume'))
   sfx.src = `../assets/sfx/${sound}.wav`
   sfx.play()
 }

@@ -20,12 +20,12 @@ const pauseScreen = {
     document.removeEventListener('click', pauseScreen.mouseClick)
     document.removeEventListener('mousemove', pauseScreen.mouseMove)
 
-    // Si on n'est pas en train d'afficher un warning prompt, on met le jeu en pause
+    // Si on n'est pas en train d'afficher un warning prompt, on enlève le mode pause
     if (!warningPrompt.visible) game.pause()
   },
   draw: () => {
-    // Fonction d'affichage du menu de pause dans l'écran de jeu et de ses composantes
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7'
+    // Fonction d'affichage du menu de pause et de ses composantes dans l'écran de jeu
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
     ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT)
     ctx.drawImage(pauseScreen.title.img, pauseScreen.title.pos.x, pauseScreen.title.pos.y)
     quitButton.draw()

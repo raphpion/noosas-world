@@ -1,8 +1,9 @@
 import { ctx } from '../gameScreen.js'
+import { game } from '../game.js'
 
 // Classe d'objet d'un bourdon
 class Bumblebee {
-  constructor(x, y, direction = 'left') {
+  constructor(x = 0, y = 0, direction = 'left') {
     this.sprite = {
       img: new Image(),
       direction,
@@ -28,22 +29,26 @@ class Bumblebee {
     // mise à jour des hitbox
     this.updateHitbox()
   }
-  collide() {}
+  collide() {
+    // fonction qui s'exécute lorsque le joueur entre en collision avec le bourdon
+    game.over()
+  }
   draw() {
     // fonction pour dessiner le bourdon à l'écran
 
-    //? L'image ne s'affiche pas
-    ctx.drawImage(this.sprite.img, this.sourceX, 0, 46, 60, this.pos.x, this.pos.y, 46, 60)
+    ctx.drawImage(this.sprite.img, this.sprite.sourceX, 0, 46, 60, this.pos.x, this.pos.y, 46, 60)
 
     //* DEBUG: AFFICHAGE DE LA HITBOX
-    for (let i = 0; i < this.hitbox.length; i++) {
-      ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
-      ctx.fillRect(
-        this.hitbox[i].pos.x + this.pos.x,
-        this.hitbox[i].pos.y + this.pos.y,
-        this.hitbox[i].width,
-        this.hitbox[i].height
-      )
+    if (localStorage.getItem('debugMode') == 'true') {
+      for (let i = 0; i < this.hitbox.length; i++) {
+        ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
+        ctx.fillRect(
+          this.hitbox[i].pos.x + this.pos.x,
+          this.hitbox[i].pos.y + this.pos.y,
+          this.hitbox[i].width,
+          this.hitbox[i].height
+        )
+      }
     }
   }
   updateHitbox() {
@@ -55,16 +60,16 @@ class Bumblebee {
     // droite
     if (this.sprite.direction == 'right') {
       this.hitbox.push(
-        { type: 'rectangle', pos: { x: 0, y: 26 }, width: 38, height: 16 }, // haut du corps
-        { type: 'rectangle', pos: { x: 0, y: 42 }, width: 26, height: 18 } // bas du corps
+        { pos: { x: 0, y: 26 }, width: 38, height: 16 }, // haut du corps
+        { pos: { x: 0, y: 42 }, width: 26, height: 18 } // bas du corps
       )
     }
 
     // gauche
     if (this.sprite.direction == 'left') {
       this.hitbox.push(
-        { type: 'rectangle', pos: { x: 8, y: 26 }, width: 38, height: 16 }, // haut du corps
-        { type: 'rectangle', pos: { x: 20, y: 42 }, width: 26, height: 18 } // bas du corps
+        { pos: { x: 8, y: 26 }, width: 38, height: 16 }, // haut du corps
+        { pos: { x: 20, y: 42 }, width: 26, height: 18 } // bas du corps
       )
     }
   }
