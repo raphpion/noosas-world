@@ -64,9 +64,9 @@ const gameOverScreen = {
 
     // Placement des éléments
     hiscoresButton.pos.x = (GAME_WIDTH - hiscoresButton.width) / 2
-    hiscoresButton.pos.y = 363
+    hiscoresButton.pos.y = 393
     returnButton.pos.x = (GAME_WIDTH - returnButton.width) / 2
-    returnButton.pos.y = 463
+    returnButton.pos.y = 493
   },
   mouseClick: e => {
     // gestion des clics de la souris, si le joueur clique sur un bouton, on appelle sa fonction de click
