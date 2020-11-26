@@ -37,6 +37,14 @@ const titleScreen = {
     gameScreen.style.backgroundColor = titleScreen.background
     playMusic('titlescreen')
 
+    // positionnement des boutons
+    startButton.pos.x = 200
+    startButton.pos.y = 260
+    hiscoresButton.pos.x = 200
+    hiscoresButton.pos.y = 360
+    settingsButton.pos.x = 200
+    settingsButton.pos.y = 460
+
     // on ajoute les listeners de souris et on retourne l'intervalle d'affichage
     document.addEventListener('click', titleScreen.mouseClick)
     document.addEventListener('mousemove', titleScreen.mouseMove)

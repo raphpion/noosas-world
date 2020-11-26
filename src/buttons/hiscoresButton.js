@@ -8,8 +8,8 @@ const hiscoresButton = {
   content: 'Records',
   hover: false,
   pos: {
-    x: 200,
-    y: 360,
+    x: 0,
+    y: 0,
   },
   width: 400,
   height: 60,

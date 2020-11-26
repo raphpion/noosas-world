@@ -8,8 +8,8 @@ const settingsButton = {
   content: 'Options',
   hover: false,
   pos: {
-    x: 200,
-    y: 460,
+    x: 0,
+    y: 0,
   },
   width: 400,
   height: 60,
