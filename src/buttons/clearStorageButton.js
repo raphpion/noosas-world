@@ -8,8 +8,8 @@ const clearStorageButton = {
   content: 'Réinitialiser',
   hover: false,
   pos: {
-    x: 200,
-    y: 390,
+    x: 0,
+    y: 0,
   },
   width: 400,
   height: 60,

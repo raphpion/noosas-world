@@ -50,12 +50,15 @@ const startButton = {
 
     // on initialise la position et la direction du joueur
     player.pos.x = 60
-    player.pos.y = 492
+    player.pos.y = 532
     player.sprite.direction = 'right'
 
-    // si l'option d'affichage du tutoriel est activée, on le montre; sinon on passe au jeu
-    if (localStorage.getItem('showTutorial') == 'true') getScene(tutorialScreen)
-    else getScene(game)
+    // si l'option d'affichage du tutoriel est activée, on active l'objet tutorialScreen
+    if (localStorage.getItem('showTutorial') == 'true') tutorialScreen.show = true
+    else tutorialScreen.show = false
+
+    // début du jeu
+    getScene(game)
   },
 }
 

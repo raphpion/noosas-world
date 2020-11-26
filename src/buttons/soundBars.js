@@ -1,11 +1,11 @@
-import { ctx } from '../gameScreen.js'
+import { ctx, GAME_WIDTH } from '../gameScreen.js'
 
 // barre de son du volume de la musique
 const musicBar = {
   img: new Image(),
   pos: {
-    x: 370,
-    y: 185,
+    x: 0,
+    y: 0,
   },
   width: 16,
   height: 52,
@@ -26,7 +26,7 @@ const musicBar = {
         0,
         musicBar.width,
         musicBar.height,
-        musicBar.pos.x + i * 25,
+        musicBar.pos.x + i * 24,
         musicBar.pos.y,
         musicBar.width,
         musicBar.height
@@ -39,8 +39,8 @@ const musicBar = {
 const soundBar = {
   img: new Image(),
   pos: {
-    x: 370,
-    y: 270,
+    x: 0,
+    y: 0,
   },
   width: 16,
   height: 52,
@@ -60,7 +60,7 @@ const soundBar = {
         0,
         soundBar.width,
         soundBar.height,
-        soundBar.pos.x + i * 25,
+        soundBar.pos.x + i * 24,
         soundBar.pos.y,
         soundBar.width,
         soundBar.height
