@@ -2,7 +2,7 @@ import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
 import { clouds } from '../backgrounds/clouds.js'
 import { returnButton } from '../buttons/returnButton.js'
 import { playMusic } from '../gameAudio.js'
-import { isMouseOverButton } from '../methods.js'
+import { isLocalItemValid, isMouseOverButton } from '../methods.js'
 
 // Variable pour aller chercher le tableau des records dans le local storage
 let hiscores
@@ -45,6 +45,12 @@ const hiscoresScreen = {
   },
   draw: () => {
     // Fonction d'affichage de l'écran des records
+
+    // Si le tableau des records est invalide, supprime la clé du local storage, sinon on va chercher le tableau des records
+    if (!isLocalItemValid('hiscores')) {
+      localStorage.removeItem('hiscores')
+      hiscores = null
+    } else hiscores = JSON.parse(localStorage.getItem('hiscores'))
     clearScreen()
     clouds.draw()
     ctx.drawImage(hiscoresScreen.title.img, hiscoresScreen.title.pos.x, hiscoresScreen.title.pos.y)
@@ -87,13 +93,12 @@ const hiscoresScreen = {
 
     // Si le record existe on l'affiche, sinon on affiche une barre pointillée
     if (score[i]) {
-      ctx.fillText(`${score[i].score} - ${score[i].name}`, GAME_WIDTH / 2, 145 + i * 60)
+      ctx.fillText(`${score[i]}`, GAME_WIDTH / 2, 145 + i * 60)
     } else ctx.fillText('----------', GAME_WIDTH / 2, 145 + i * 60)
   },
   init: () => {
     // Fonction d'initialisation de l'écran des records
     // On affecte le tableau des records du local storage dans la variable et on initialise les images, le fond et la musique
-    hiscores = JSON.parse(localStorage.getItem('hiscores'))
     hiscoresScreen.title.img.src = '../assets/menu/records.png'
     hiscoresScreen.goldMedal.img.src = '../assets/menu/medal_gold.png'
     hiscoresScreen.silverMedal.img.src = '../assets/menu/medal_silver.png'
