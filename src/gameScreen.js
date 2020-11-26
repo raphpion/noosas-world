@@ -33,13 +33,4 @@ function getScene(scene) {
   currentScene = scene
 }
 
-function pauseScene() {
-  // Fonction de mise en pause de la scène de jeu
-  // S'il y a déjà une scène en cours, on appelle sa fonction d'arrêt et on vide l'intervalle d'affichage du jeu
-  if (currentScene != null) {
-    currentScene.clear()
-    clearInterval(gameInterval)
-  }
-}
-
-export { gameScreen, ctx, GAME_WIDTH, GAME_HEIGHT, clearScreen, drawCredits, getScene, pauseScene }
+export { gameScreen, ctx, GAME_WIDTH, GAME_HEIGHT, clearScreen, drawCredits, getScene }

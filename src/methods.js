@@ -123,7 +123,6 @@ function pushHiscore(score) {
   let hiscores
   if (localStorage.getItem('hiscores') != null) hiscores = JSON.parse(localStorage.getItem('hiscores'))
   else hiscores = []
-
   // on vérifie si le record n'est pas déjà présent et on store la réponse dans une variable
   let doubloon = false
   for (const hiscore of hiscores) {
@@ -131,9 +130,17 @@ function pushHiscore(score) {
   }
 
   // Si le record n'est pas un doublon et est meilleur que le cinquième meilleur score c'est un nouveau record
-  !doubloon && (score > hiscores[4] || hiscores.length < 5)
-    ? (gameOverScreen.newRecord = true)
-    : (gameOverScreen.newRecord = false)
+  if (!doubloon && (score > hiscores[4] || hiscores.length < 5)) {
+    gameOverScreen.newRecord = true
+    // Si le tableau est vide ou que le score est meilleur que le premier record, on assigne la médaille d'or
+    if (hiscores.length == 0 || score > hiscores[0]) gameOverScreen.medal.type = 'gold'
+    // Sinon, si le tableau a une seule entrée ou que le score est meilleur que le deuxième record, on assigne la médaille d'argent
+    else if (hiscores.length == 1 || score > hiscores[1]) gameOverScreen.medal.type = 'silver'
+    // Sinon, si le tableau a deux entrées ou que le score est meilleur que le troisième record, on assigne la médaille de bronze
+    else if (hiscores.length == 2 || score > hiscores[2]) gameOverScreen.medal.type = 'bronze'
+    // Sinon, on n'affiche pas de médaille dans l'écran Game Over
+    else gameOverScreen.medal.type = null
+  } else gameOverScreen.newRecord = false
 
   // Si le record n'est pas un doublon, on l'ajoute au tableau et on le trie par ordre décroissant
   if (!doubloon) {
