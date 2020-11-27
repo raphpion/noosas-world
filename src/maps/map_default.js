@@ -15,13 +15,14 @@ const map_default = {
   platforms: [],
   draw: () => {
     // fonction d'affichage de la map à l'écran
-    // affichage du background
     // affichage du layer 1
     ctx.drawImage(map_default.layer1, -map_default.offset.x, -map_default.offset.y)
     // affichage du joueur et des éléments
     player.draw()
     // affichage du layer 2
     ctx.drawImage(map_default.layer2, -map_default.offset.x, -map_default.offset.y)
+    // si le joueur tombe en bas, la partie est terminée
+    if (player.pos.y > map_default.height) game.over()
   },
   init: () => {
     // fonction d'initialisation de la map
@@ -33,9 +34,9 @@ const map_default = {
     // réinitialisation des plateformes
     map_default.platforms = []
     map_default.platforms.push(
-      { pos: { x: 192, y: 576 }, width: 1664, height: 1 },
-      { pos: { x: 960, y: 480 }, width: 512, height: 1 },
-      { pos: { x: 1216, y: 384 }, width: 512, height: 1 }
+      { pos: { x: 192, y: 576 }, width: 1664 },
+      { pos: { x: 960, y: 480 }, width: 512 },
+      { pos: { x: 1216, y: 384 }, width: 512 }
     )
 
     // position du joueur et offset de la caméra

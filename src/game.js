@@ -162,8 +162,10 @@ const game = {
   over: () => {
     // Fonction de gestion de défaite
     playMusic('gameover', false)
-    pushHiscore(game.kibbles)
     game.isOver = true
+
+    // Si le score est supérieur à zéro on tente de l'ajouter aux records
+    if (game.kibbles > 0) pushHiscore(game.kibbles)
 
     // on arrête le jeu
     game.stop()
