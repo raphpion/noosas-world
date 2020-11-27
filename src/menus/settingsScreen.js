@@ -1,5 +1,5 @@
 import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
-import { clouds } from '../backgrounds/clouds.js'
+import { bg_clouds } from '../backgrounds/clouds.js'
 import { musicMinus, musicPlus, soundMinus, soundPlus } from '../buttons/soundControls.js'
 import { musicBar, soundBar } from '../buttons/soundBars.js'
 import { clearStorageButton } from '../buttons/clearStorageButton.js'
@@ -36,7 +36,7 @@ const settingsScreen = {
   draw: () => {
     // fonction d'affichage du menu à l'écran
     clearScreen()
-    clouds.draw()
+    bg_clouds.draw()
     ctx.drawImage(settingsScreen.title.img, settingsScreen.title.pos.x, settingsScreen.title.pos.y)
 
     ctx.drawImage(settingsScreen.musicIcon.img, settingsScreen.musicIcon.pos.x, settingsScreen.musicIcon.pos.y)

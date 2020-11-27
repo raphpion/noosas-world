@@ -1,5 +1,5 @@
 import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
-import { clouds } from '../backgrounds/clouds.js'
+import { bg_clouds } from '../backgrounds/clouds.js'
 import { returnButton } from '../buttons/returnButton.js'
 import { playMusic } from '../gameAudio.js'
 import { isLocalItemValid, isMouseOverButton } from '../methods.js'
@@ -52,7 +52,7 @@ const hiscoresScreen = {
       hiscores = null
     } else hiscores = JSON.parse(localStorage.getItem('hiscores'))
     clearScreen()
-    clouds.draw()
+    bg_clouds.draw()
     ctx.drawImage(hiscoresScreen.title.img, hiscoresScreen.title.pos.x, hiscoresScreen.title.pos.y)
     hiscoresScreen.drawHiscores()
     returnButton.draw()

@@ -1,6 +1,5 @@
 import { game } from '../game.js'
-import { gameScreen, ctx, GAME_WIDTH, GAME_HEIGHT, clearScreen, getScene } from '../gameScreen.js'
-import { pixelClouds } from '../backgrounds/pixelClouds.js'
+import { gameScreen, ctx, GAME_WIDTH, GAME_HEIGHT } from '../gameScreen.js'
 import { playMusic } from '../gameAudio.js'
 import { player } from '../player.js'
 import { tutorialToggleButton } from '../buttons/tutorialToggleButton.js'

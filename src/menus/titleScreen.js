@@ -1,5 +1,5 @@
 import { gameScreen, ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
-import { clouds } from '../backgrounds/clouds.js'
+import { bg_clouds } from '../backgrounds/clouds.js'
 import { startButton } from '../buttons/startButton.js'
 import { hiscoresButton } from '../buttons/hiscoresButton.js'
 import { settingsButton } from '../buttons/settingsButton.js'
@@ -24,7 +24,7 @@ const titleScreen = {
   draw: () => {
     // fonction d'affichage de l'écran-titre
     clearScreen()
-    clouds.draw()
+    bg_clouds.draw()
     ctx.drawImage(titleScreen.title.img, titleScreen.title.pos.x, titleScreen.title.pos.y)
     startButton.draw()
     hiscoresButton.draw()
