@@ -1,6 +1,8 @@
 import { game } from '../game.js'
 import { ctx } from '../gameScreen.js'
 import { player } from '../player.js'
+import { bg_pixelClouds } from '../backgrounds/pixelClouds.js'
+import { bg_hills } from '../backgrounds/hills.js'
 
 // Map du mode de jeu normal
 const map_default = {
@@ -10,11 +12,15 @@ const map_default = {
     x: 0,
     y: 0,
   },
+  background: [],
   layer1: new Image(),
   layer2: new Image(),
   platforms: [],
   draw: () => {
     // fonction d'affichage de la map à l'écran
+    // affichage de l'arrière plan
+    for (let bg of map_default.background) bg.draw()
+
     // affichage du layer 1
     ctx.drawImage(map_default.layer1, -map_default.offset.x, -map_default.offset.y)
     // affichage du joueur et des éléments
@@ -30,6 +36,10 @@ const map_default = {
 
     map_default.layer1.src = '../assets/maps/default_layer1.png'
     map_default.layer2.src = '../assets/maps/default_layer2.png'
+
+    // initialisation de l'arrière-plan
+    map_default.background = []
+    map_default.background.push(bg_pixelClouds, bg_hills)
 
     // réinitialisation des plateformes
     map_default.platforms = []
