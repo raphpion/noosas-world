@@ -17,8 +17,8 @@ const gameOverScreen = {
     img: new Image(),
     type: null,
     pos: {
-      x: 513,
-      y: 265,
+      x: GAME_WIDTH / 2 + 111,
+      y: 285,
     },
   },
   newRecord: false,
