@@ -1,6 +1,5 @@
 import { gameScreen, ctx, clearScreen, GAME_WIDTH } from './gameScreen.js'
 import { keys } from './controller.js'
-import { pixelClouds } from './backgrounds/pixelClouds.js'
 import { playMusic, pauseScreenMusic, appendAudioSettings } from './gameAudio.js'
 import { player } from './player.js'
 import { pauseScreen } from './menus/pauseScreen.js'
@@ -8,7 +7,7 @@ import { gameOverScreen } from './menus/gameOverScreen.js'
 import { warningPrompt } from './menus/warningPrompt.js'
 import { pushHiscore } from './methods.js'
 import { tutorialScreen } from './menus/tutorialScreen.js'
-import { map_default } from './maps/map_default.js'
+import { map_default } from './maps/default.js'
 
 // Objet qui représente une partie
 const game = {
@@ -30,17 +29,15 @@ const game = {
     document.removeEventListener('keydown', game.keyDown)
     document.removeEventListener('keyup', game.keyUp)
 
-    // Arrêt de l'animation du joueur et de son mouvement et arrêt du défilement des nuages
+    // Arrêt de l'animation du joueur et de son mouvement
     clearInterval(player.animation)
     player.velocity.x = 0
     player.velocity.y = 0
-    pixelClouds.stop()
   },
   draw: () => {
     // Fonction d'affichage du jeu dans le canvas
     clearScreen()
 
-    pixelClouds.draw()
     game.map.draw()
 
     // Si la partie est terminée, on affiche le menu
@@ -198,8 +195,10 @@ const game = {
     document.addEventListener('keydown', game.keyDown)
     document.addEventListener('keyup', game.keyUp)
 
+    // curseur par défaut
+    document.body.style.cursor = 'default'
+
     // animations
-    pixelClouds.move(0.6)
     player.animation = setInterval(player.animate, 1000 / 8)
 
     // valeur initiale pour paramètres audio
@@ -219,7 +218,6 @@ const game = {
     document.removeEventListener('keyup', game.keyUp)
 
     // On arrête l'animation des éléments du jeu
-    pixelClouds.stop()
     clearInterval(player.animation)
   },
 }
