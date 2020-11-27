@@ -21,7 +21,7 @@ const pixelClouds = {
       pixelClouds.pos.x--
 
       // si le centre de l'image dépasse l'origine du canevas, on la replace à sa position initiale
-      if (pixelClouds.pos.x < -800) pixelClouds.pos.x = 0
+      if (pixelClouds.pos.x < -GAME_WIDTH) pixelClouds.pos.x = 0
     }, 1000 / (30 * speed))
   },
   stop: () => {
