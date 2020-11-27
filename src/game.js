@@ -129,6 +129,7 @@ const game = {
       player.animate()
     }
     if (e.keyCode == 32) keys.space = true
+    if (e.keyCode == 16) keys.shift = true
 
     // Touche échap, on met le jeu en pause
     if (e.keyCode == 27) game.pause()
@@ -158,6 +159,7 @@ const game = {
       player.animate()
     }
     if (e.keyCode == 32) keys.space = false
+    if (e.keyCode == 16) keys.shift = false
   },
   over: () => {
     // Fonction de gestion de défaite
