@@ -1,7 +1,8 @@
 import { keys } from './controller.js'
 import { playSound } from './gameAudio.js'
-import { ctx, GAME_WIDTH } from './gameScreen.js'
+import { ctx, GAME_WIDTH, GAME_HEIGHT } from './gameScreen.js'
 import { game } from './game.js'
+import { areObjectsColliding } from './methods.js'
 
 // Personnage joueur
 const player = {
@@ -97,28 +98,53 @@ const player = {
     // Si la partie n'est pas en pause ou arrêté, on appelle la fonction de déplacement du personnage
     if (!game.paused && !game.isOver) player.move()
 
-    ctx.drawImage(
-      player.sprite.img,
-      player.sprite.sourceX,
-      player.sprite.sourceY,
-      player.sprite.width,
-      player.sprite.height,
-      player.pos.x,
-      player.pos.y,
-      player.sprite.width,
-      player.sprite.height
-    )
+    // Si le joueur est sur une map, on affiche sa position relative à celle-ci
+    if (game.map != null)
+      ctx.drawImage(
+        player.sprite.img,
+        player.sprite.sourceX,
+        player.sprite.sourceY,
+        player.sprite.width,
+        player.sprite.height,
+        player.pos.x - game.map.offset.x,
+        player.pos.y - game.map.offset.y,
+        player.sprite.width,
+        player.sprite.height
+      )
+    // sinon, on affiche le joueur avec sa position par-rapport au canvas
+    else
+      ctx.drawImage(
+        player.sprite.img,
+        player.sprite.sourceX,
+        player.sprite.sourceY,
+        player.sprite.width,
+        player.sprite.height,
+        player.pos.x,
+        player.pos.y,
+        player.sprite.width,
+        player.sprite.height
+      )
 
     //* DEBUG: AFFICHAGE DE LA HITBOX
     if (localStorage.getItem('debugMode') == 'true') {
       ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
       for (let i = 0; i < player.hitbox.length; i++) {
-        ctx.fillRect(
-          player.hitbox[i].pos.x + player.pos.x,
-          player.hitbox[i].pos.y + player.pos.y,
-          player.hitbox[i].width,
-          player.hitbox[i].height
-        )
+        // Si le joueur est sur une map, on affiche ses hitbox à sa position relative à la map
+        if (game.map != null)
+          ctx.fillRect(
+            player.hitbox[i].pos.x + player.pos.x - game.map.offset.x,
+            player.hitbox[i].pos.y + player.pos.y - game.map.offset.y,
+            player.hitbox[i].width,
+            player.hitbox[i].height
+          )
+        // sinon, on affiche les hitbox avec la position relative au canvas
+        else
+          ctx.fillRect(
+            player.hitbox[i].pos.x + player.pos.x,
+            player.hitbox[i].pos.y + player.pos.y,
+            player.hitbox[i].width,
+            player.hitbox[i].height
+          )
       }
     }
   },
@@ -142,6 +168,24 @@ const player = {
     player.pos.x += player.velocity.x
     player.pos.y += player.velocity.y
 
+    // Si le joueur est sur une map et qu'il est au milieu de l'écran, on incrémente le offset X et Y de celle-ci
+    if (game.map != null) {
+      // Si le joueur va vers la gauche et qu'il est dans la zone de défilement gauche
+      // ou si le joueur va vers la droite et qu'il est dans la zone de défilement droite, on modifie le offset X de la map
+      if (
+        (player.velocity.x < 0 && player.pos.x - game.map.offset.x >= 252 && player.pos.x - game.map.offset.x <= 348) ||
+        (player.velocity.x > 0 && player.pos.x - game.map.offset.x >= 576 && player.pos.x - game.map.offset.x <= 672)
+      )
+        game.map.offset.x += player.velocity.x
+      game.map.offset.y += player.velocity.y
+
+      // Si la map dépasse un de ses offsets, on la ramène sur le offset
+      if (game.map.offset.x < 0) game.map.offset.x = 0
+      if (game.map.offset.x > game.map.width - GAME_WIDTH) game.map.offset.x = game.map.width - GAME_WIDTH
+      if (game.map.offset.y > 0) game.map.offset.y = 0
+      if (game.map.offset.y < game.map.width - GAME_HEIGHT) game.map.offset.y = game.map.height - GAME_HEIGHT
+    }
+
     // On applique l'effet de friction sur la vélocité du personnage
     player.velocity.x *= 0.9
     player.velocity.y *= 0.9
@@ -154,8 +198,14 @@ const player = {
     }
 
     // Si le personnage dépasse une des limites horizontales, on le replace sur la limite
-    if (player.pos.x < 10) player.pos.x = 10
-    if (player.pos.x > GAME_WIDTH - 110) player.pos.x = GAME_WIDTH - 110
+    if (player.pos.x < 0) player.pos.x = 0
+
+    // Si le joueur est sur une map et qu'il dépasse la limite horizontale, on le replace sur la limite
+    if (game.map != null && player.pos.x > game.map.width - player.sprite.width)
+      player.pos.x = game.map.width - player.sprite.width
+    // Sinon, si le joueur n'est pas sur une map et qu'il dépasse le canvas à droite, on le replace sur la limite
+    if (game.map == null && player.pos.x > GAME_WIDTH - player.sprite.width)
+      player.pos.x = GAME_WIDTH - player.sprite.width
   },
   updateHitbox: () => {
     // Fonction pour mettre à jour la taille et la position du hitbox du joueur selon son animation

@@ -6,15 +6,9 @@ import { player } from './player.js'
 import { pauseScreen } from './menus/pauseScreen.js'
 import { gameOverScreen } from './menus/gameOverScreen.js'
 import { warningPrompt } from './menus/warningPrompt.js'
-import { Kibble } from './prefabs/Kibble.js'
-import { Bumblebee } from './prefabs/Bumblebee.js'
-import { areObjectsColliding, pushHiscore } from './methods.js'
+import { pushHiscore } from './methods.js'
 import { tutorialScreen } from './menus/tutorialScreen.js'
-import { clouds } from './backgrounds/clouds.js'
-
-// objets de test
-let testKibble
-let testBumblebee
+import { map_default } from './maps/map_default.js'
 
 // Objet qui représente une partie
 const game = {
@@ -30,6 +24,7 @@ const game = {
   paused: false,
   kibbles: 0,
   goldenKibbles: 0,
+  map: null,
   clear: () => {
     // Enlever le listener des touches du clavier
     document.removeEventListener('keydown', game.keyDown)
@@ -45,20 +40,8 @@ const game = {
     // Fonction d'affichage du jeu dans le canvas
     clearScreen()
 
-    // Éléments de la map
     pixelClouds.draw()
-    ctx.drawImage(game.ground.img, game.ground.pos.x, game.ground.pos.y)
-
-    // Objets et personnages
-    testKibble.draw()
-    testBumblebee.draw()
-    player.draw()
-
-    // Collisions si le jeu n'est pas sur pause ou terminé
-    if (!game.paused && !game.isOver) {
-      if (areObjectsColliding(player, testKibble)) testKibble.collide()
-      if (areObjectsColliding(player, testBumblebee)) testBumblebee.collide()
-    }
+    game.map.draw()
 
     // Si la partie est terminée, on affiche le menu
     if (game.isOver) gameOverScreen.draw()
@@ -110,15 +93,8 @@ const game = {
     game.paused = false
     game.isOver = false
 
-    // Création d'objets de test
-    testKibble = new Kibble(250, 540)
-    testBumblebee = new Bumblebee(450, 316)
-    testKibble.animation = setInterval(function () {
-      testKibble.animate()
-    }, 1000 / 8)
-    testBumblebee.animation = setInterval(function () {
-      testBumblebee.animate()
-    }, 1000 / 8)
+    // On initialise la map
+    map_default.init()
 
     // si on doit afficher le tutoriel, on l'initialise. Sinon, on démarre la partie
     if (tutorialScreen.show) {
@@ -221,12 +197,6 @@ const game = {
     // animations
     pixelClouds.move(0.6)
     player.animation = setInterval(player.animate, 1000 / 8)
-    testKibble.animation = setInterval(function () {
-      testKibble.animate()
-    }, 1000 / 8)
-    testBumblebee.animation = setInterval(function () {
-      testBumblebee.animate()
-    }, 1000 / 8)
 
     // valeur initiale pour paramètres audio
     appendAudioSettings()
@@ -247,8 +217,6 @@ const game = {
     // On arrête l'animation des éléments du jeu
     pixelClouds.stop()
     clearInterval(player.animation)
-    clearInterval(testKibble.animation)
-    clearInterval(testBumblebee.animation)
   },
 }
 
