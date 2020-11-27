@@ -1,4 +1,5 @@
 import { ctx, GAME_WIDTH, getScene } from '../gameScreen.js'
+import { game } from '../game.js'
 import { isMouseOverButton } from '../methods.js'
 import { settingsScreen } from './settingsScreen.js'
 import { pauseScreen } from './pauseScreen.js'
@@ -121,6 +122,7 @@ const confirmButton = {
     if (warningPrompt.reason == 'quitGame') {
       // on enlève les listeners de l'écran de pause et on passe à l'écran-titre
       pauseScreen.clear()
+      game.map = null
       getScene(titleScreen)
     }
   },

@@ -2,7 +2,6 @@ import { keys } from './controller.js'
 import { playSound } from './gameAudio.js'
 import { ctx, GAME_WIDTH, GAME_HEIGHT } from './gameScreen.js'
 import { game } from './game.js'
-import { areObjectsColliding } from './methods.js'
 
 // Personnage joueur
 const player = {
@@ -148,6 +147,26 @@ const player = {
       }
     }
   },
+  handlePlatforms: () => {
+    // Fonction qui vérifie si le joueur tombe sur une plateforme et qui, dans le cas échéant, arrête sa chute
+    for (let platform of game.map.platforms) {
+      // pour chaque plateforme de la carte, si le bas du joueur entre en collision avec la plateforme
+      if (
+        player.pos.y + player.sprite.height >= platform.pos.y - player.velocity.y &&
+        player.pos.y + player.sprite.height <= platform.pos.y + 2
+      ) {
+        // si au moins la moitié avant du corps du joueur est sur la plateforme
+        if (player.pos.x >= platform.pos.x - 50 && player.pos.x <= platform.pos.x + platform.width - 50) {
+          // le joueur ne saute plus, on arrête sa vélocité Y et on le replace sur le dessus de la platforme
+          player.jumping = false
+          player.velocity.y = 0
+          player.pos.y = platform.pos.y - player.sprite.height
+
+          return
+        }
+      }
+    }
+  },
   move: () => {
     // Fonction de déplacement du personnage
     // Si le joueur appuie sur espace et que le personnage n'est pas en train de sauter, on le fait sauter
@@ -190,12 +209,8 @@ const player = {
     player.velocity.x *= 0.9
     player.velocity.y *= 0.9
 
-    // Si le personnage dépasse le sol, on remet sa vélocité Y à zéro et on invalide sa booléenne de saut
-    if (player.pos.y > 492) {
-      player.jumping = false
-      player.pos.y = 492
-      player.velocity.y = 0
-    }
+    // Si le personnage est en train de tomber, on vérifie s'il atterit sur une plateforme
+    if (player.velocity.y > 0) player.handlePlatforms()
 
     // Si le personnage dépasse une des limites horizontales, on le replace sur la limite
     if (player.pos.x < 0) player.pos.x = 0

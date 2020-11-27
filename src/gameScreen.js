@@ -6,6 +6,13 @@ const GAME_HEIGHT = 640 // hauteur de l'écran de jeu
 let gameInterval // intervalle d'affichage du jeu
 let currentScene // scène de jeu présentement en affichage
 
+// on empêche le clic droit sur le canvas
+// source : https://stackoverflow.com/questions/10864249/disabling-right-click-context-menu-on-a-html-canvas
+gameScreen.oncontextmenu = function (e) {
+  e.preventDefault()
+  e.stopPropagation()
+}
+
 function clearScreen() {
   // On efface l'écran sur toute sa superficie
   ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT)
