@@ -38,6 +38,7 @@ const titleScreen = {
     playMusic('titlescreen')
 
     // positionnement des boutons
+    startButton.content = 'Jouer'
     startButton.pos.x = (GAME_WIDTH - startButton.width) / 2
     startButton.pos.y = 280
     hiscoresButton.pos.x = (GAME_WIDTH - hiscoresButton.width) / 2

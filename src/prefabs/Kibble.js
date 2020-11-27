@@ -1,6 +1,5 @@
 import { ctx } from '../gameScreen.js'
 import { game } from '../game.js'
-import { GAME_WIDTH } from '../gameScreen.js'
 import { playSound } from '../gameAudio.js'
 
 // Classe d'objet d'une croquette
@@ -30,19 +29,10 @@ class Kibble {
   collide() {
     // fonction qui s'exécute lorsque le joueur entre en collision avec la croquette
     playSound('coin')
-
-    //* Test: on déplace la croquette en X
-    let newPosition
-
-    do {
-      // boucle pour empêcher que la croquette ne réapparaisse trop près de l'ancienne
-      newPosition = Math.floor(Math.random() * (GAME_WIDTH - 50))
-    } while (newPosition <= this.pos.x + 200 && newPosition >= this.pos.x - 200)
-
-    this.pos.x = newPosition
-
-    // augmentation du score
     game.kibbles++
+
+    // on change la position de la croquette
+    this.pos = game.map.moveKibble()
   }
   draw() {
     // fonction pour dessiner la croquette à l'écran
@@ -50,7 +40,7 @@ class Kibble {
     ctx.drawImage(
       this.sprite.img,
       this.sprite.sourceX,
-      0,
+      32,
       32,
       32,
       this.pos.x - game.map.offset.x,
@@ -62,7 +52,7 @@ class Kibble {
     //* DEBUG: AFFICHAGE DE LA HITBOX
     if (localStorage.getItem('debugMode') == 'true') {
       ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
-      for (let i = 0; i < player.hitbox.length; i++) {
+      for (let i = 0; i < this.hitbox.length; i++) {
         // on affiche les hitbox avec la position relative à la map
         ctx.fillRect(
           this.hitbox[i].pos.x + this.pos.x - game.map.offset.x,

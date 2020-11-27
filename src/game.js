@@ -22,7 +22,6 @@ const game = {
   isOver: false,
   paused: false,
   kibbles: 0,
-  goldenKibbles: 0,
   map: null,
   clear: () => {
     // Enlever le listener des touches du clavier
@@ -62,12 +61,6 @@ const game = {
     ctx.fillStyle = 'black'
     ctx.textBaseline = 'top'
 
-    // affichage des croquettes d'or
-    ctx.textAlign = 'left'
-    ctx.drawImage(hudIcons, 0, 0, 16, 16, 13, 13, 16, 16)
-    ctx.font = '20pt VT323'
-    ctx.fillText(`x${game.goldenKibbles}`, 32, 8)
-
     // affichage du score
     ctx.font = '24pt VT323'
     ctx.textAlign = 'center'
@@ -84,11 +77,13 @@ const game = {
 
     // On remet le score à zéro
     game.kibbles = 0
-    game.goldenKibbles = 0
 
     // Le jeu n'est plus en pause ni terminé
     game.paused = false
     game.isOver = false
+
+    // On remet les paramètres par défaut du joueur
+    player.default()
 
     // On initialise la map
     map_default.init()
@@ -162,6 +157,10 @@ const game = {
     // Fonction de gestion de défaite
     playMusic('gameover', false)
     game.isOver = true
+
+    // par défaut, ce n'est pas un nouveau record et il n'y a pas de médaille à afficher
+    gameOverScreen.newRecord = false
+    gameOverScreen.medal.type = null
 
     // Si le score est supérieur à zéro on tente de l'ajouter aux records
     if (game.kibbles > 0) pushHiscore(game.kibbles)

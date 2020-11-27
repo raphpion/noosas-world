@@ -3,17 +3,20 @@ import { game } from '../game.js'
 
 // Classe d'objet d'un bourdon
 class Bumblebee {
-  constructor(x = 0, y = 0, direction = 'left') {
+  constructor(x = 0, y = 0, direction = 'right') {
     this.sprite = {
       img: new Image(),
       direction,
       index: 0,
       sourceX: 0,
     }
+    this.speed = Math.ceil(Math.random() * (8 - 4) + 4)
     this.sprite.img.src = '../assets/sprites/bumblebee.png'
     this.animation = null // pour stocker l'intervalle d'animation du bourdon
     this.pos = { x, y }
     this.hitbox = []
+    // si le bourdon va vers la gauche on change sa sourceX
+    if (this.sprite.direction == 'left') this.sourceX = 92
   }
   animate() {
     // fonction d'animation du bourdon
@@ -51,7 +54,7 @@ class Bumblebee {
     //* DEBUG: AFFICHAGE DE LA HITBOX
     if (localStorage.getItem('debugMode') == 'true') {
       ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
-      for (let i = 0; i < player.hitbox.length; i++) {
+      for (let i = 0; i < this.hitbox.length; i++) {
         // on affiche les hitbox avec la position relative à la map
         ctx.fillRect(
           this.hitbox[i].pos.x + this.pos.x - game.map.offset.x,

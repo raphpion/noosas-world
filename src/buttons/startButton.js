@@ -4,10 +4,10 @@ import { tutorialScreen } from '../menus/tutorialScreen.js'
 import { game } from '../game.js'
 import { player } from '../player.js'
 
-// bouton 'Jouer' de l'écran-titre
+// bouton 'Jouer' de l'écran-titre et 'Rejouer' de l'écran gameOver
 const startButton = {
   img: new Image(),
-  content: 'Jouer',
+  content: '',
   hover: false,
   pos: {
     x: 0,
@@ -54,8 +54,10 @@ const startButton = {
     player.sprite.direction = 'right'
 
     // si l'option d'affichage du tutoriel est activée, on active l'objet tutorialScreen
-    if (localStorage.getItem('showTutorial') == 'true') tutorialScreen.show = true
-    else tutorialScreen.show = false
+    if (localStorage.getItem('showTutorial') == 'true') {
+      tutorialScreen.show = true
+      tutorialScreen.init()
+    } else tutorialScreen.show = false
 
     // début du jeu
     getScene(game)

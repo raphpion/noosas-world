@@ -107,6 +107,21 @@ const player = {
     // Mise à jour de la hitbox du personnage
     player.updateHitbox()
   },
+  default: () => {
+    // Fonction de mise à la valeur par défaut des paramètres de l'objet du joueur
+    player.sprite.action = 'idle'
+    player.sprite.direction = 'right'
+    player.sprite.index = 0
+    player.sprite.sourceX = 0
+    player.sprite.sourceY = 0
+    player.sprite.width = 100
+    player.sprite.height = 84
+    player.animation = null
+    player.crouching = false
+    player.jumping = true
+    player.velocity.x = 0
+    player.velocity.y = 0
+  },
   draw: () => {
     // Fonction d'affichage du personnage dans le canvas
 
@@ -142,6 +157,7 @@ const player = {
   },
   handlePlatforms: () => {
     // Fonction qui vérifie si le joueur tombe sur une plateforme et qui, dans le cas échéant, arrête sa chute
+    // Si la partie est terminée, on arrête l'exécution
     for (let platform of game.map.platforms) {
       // pour chaque plateforme de la carte, si le bas du joueur entre en collision avec la plateforme
       if (

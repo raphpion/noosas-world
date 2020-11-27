@@ -119,6 +119,7 @@ function isMouseOverButton(btn, e) {
 
 function pushHiscore(score) {
   // Fonction d'enregistrement de score
+
   // On affecte le tableau des records du local storage dans la variable hiscore et si la donnée n'existe pas, on transforme la variable en array
   let hiscores
   if (localStorage.getItem('hiscores') != null) hiscores = JSON.parse(localStorage.getItem('hiscores'))
@@ -140,7 +141,10 @@ function pushHiscore(score) {
     else if (hiscores.length == 2 || score > hiscores[2]) gameOverScreen.medal.type = 'bronze'
     // Sinon, on n'affiche pas de médaille dans l'écran Game Over
     else gameOverScreen.medal.type = null
-  } else gameOverScreen.newRecord = false
+  } else {
+    gameOverScreen.newRecord = false
+    gameOverScreen.medal.type = null
+  }
 
   // Si le record n'est pas un doublon, on l'ajoute au tableau et on le trie par ordre décroissant
   if (!doubloon) {
