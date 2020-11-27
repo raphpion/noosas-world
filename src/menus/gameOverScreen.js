@@ -1,5 +1,6 @@
 import { ctx, GAME_WIDTH, GAME_HEIGHT } from '../gameScreen.js'
 import { game } from '../game.js'
+import { startButton } from '../buttons/startButton.js'
 import { hiscoresButton } from '../buttons/hiscoresButton.js'
 import { returnButton } from '../buttons/returnButton.js'
 import { isMouseOverButton } from '../methods.js'
@@ -52,6 +53,7 @@ const gameOverScreen = {
     }
 
     // Affichage des boutons
+    startButton.draw()
     hiscoresButton.draw()
     returnButton.draw()
   },
@@ -63,13 +65,20 @@ const gameOverScreen = {
     document.addEventListener('mousemove', gameOverScreen.mouseMove)
 
     // Placement des éléments
+    startButton.content = 'Rejouer'
+    startButton.pos.x = (GAME_WIDTH - startButton.width) / 2
+    startButton.pos.y = 393
     hiscoresButton.pos.x = (GAME_WIDTH - hiscoresButton.width) / 2
-    hiscoresButton.pos.y = 393
+    hiscoresButton.pos.y = 473
     returnButton.pos.x = (GAME_WIDTH - returnButton.width) / 2
-    returnButton.pos.y = 493
+    returnButton.pos.y = 553
   },
   mouseClick: e => {
     // gestion des clics de la souris, si le joueur clique sur un bouton, on appelle sa fonction de click
+    if (isMouseOverButton(startButton, e)) {
+      gameOverScreen.clear()
+      startButton.click()
+    }
     if (isMouseOverButton(hiscoresButton, e)) {
       gameOverScreen.clear()
       hiscoresButton.click()
@@ -82,11 +91,16 @@ const gameOverScreen = {
   mouseMove: e => {
     // Fonction de gestion des déplacements de la souris
     // Les boutons ne sont pas 'hover' par défaut et le curseur est celui par défaut
+    startButton.hover = false
     hiscoresButton.hover = false
     returnButton.hover = false
     document.body.style.cursor = 'default'
 
     // si la souris est par-dessus un bouton, on le met 'hover' et on change le curseur
+    if (isMouseOverButton(startButton, e)) {
+      startButton.hover = true
+      document.body.style.cursor = 'pointer'
+    }
     if (isMouseOverButton(hiscoresButton, e)) {
       hiscoresButton.hover = true
       document.body.style.cursor = 'pointer'

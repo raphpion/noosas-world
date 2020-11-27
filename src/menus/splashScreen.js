@@ -1,6 +1,6 @@
 import { gameScreen, ctx, GAME_WIDTH, clearScreen, drawCredits, getScene } from '../gameScreen.js'
 import { titleScreen } from '../menus/titleScreen.js'
-import { clouds } from '../backgrounds/clouds.js'
+import { bg_clouds } from '../backgrounds/clouds.js'
 
 // Écran d'accueil
 const splashScreen = {
@@ -19,7 +19,7 @@ const splashScreen = {
   draw: () => {
     // fonction d'affichage de l'écran d'accueil
     clearScreen()
-    clouds.draw()
+    bg_clouds.draw()
     ctx.drawImage(splashScreen.title.img, splashScreen.title.pos.x, splashScreen.title.pos.y)
     ctx.font = '24pt VT323'
     ctx.fillStyle = 'black'
