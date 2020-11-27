@@ -72,6 +72,22 @@ const player = {
       player.sprite.sourceY = 0
     }
 
+    // Sinon, si le personnage court
+    else if (player.sprite.action == 'run') {
+      // On applique les dimensions et on incrémente l'index
+      player.sprite.width = 100
+      player.sprite.height = 84
+      player.sprite.index++
+
+      // Si l'index dépasse 2, on le ramène à zéro
+      if (player.sprite.index > 2) player.sprite.index = 0
+
+      // Selon la direction du personnage, on lui assigne la bonne source X, puis sa source Y
+      if (player.sprite.direction == 'right') player.sprite.sourceX = player.sprite.index * player.sprite.width
+      if (player.sprite.direction == 'left') player.sprite.sourceX = 300 + player.sprite.index * player.sprite.width
+      player.sprite.sourceY = 84
+    }
+
     // Sinon, si le personnage est en train de marcher
     else if (player.sprite.action == 'walk') {
       // On applique les dimensions et on incrémente l'index
@@ -177,8 +193,21 @@ const player = {
     }
 
     // Si le joueur appuie sur une touche de déplacement et qu'il n'est pas penché, on incrémente sa vélocité
-    if (keys.a && !player.crouching) player.velocity.x -= 0.5
-    if (keys.d && !player.crouching) player.velocity.x += 0.5
+    // Si la touche shift est enfoncée, on augmente la vélocité à un rythme augmenté
+    if (keys.shift) {
+      if (keys.a && !player.crouching) {
+        player.velocity.x -= 0.75
+        player.sprite.action = 'run'
+      }
+      if (keys.d && !player.crouching) {
+        player.velocity.x += 0.75
+        player.sprite.action = 'run'
+      }
+    } else {
+      if (keys.a || keys.d) player.sprite.action = 'walk'
+      if (keys.a && !player.crouching) player.velocity.x -= 0.5
+      if (keys.d && !player.crouching) player.velocity.x += 0.5
+    }
 
     // On applique la gravité sur la vélocité Y du personnage
     player.velocity.y += 1.5
@@ -248,8 +277,8 @@ const player = {
       }
     }
 
-    // Sinon, si le joueur saute
-    else if (player.jumping) {
+    // Sinon, si le joueur saute ou qu'il court
+    else if (player.jumping || player.sprite.action == 'run') {
       // Direction droite
       if (player.sprite.direction == 'right') {
         // Index 0

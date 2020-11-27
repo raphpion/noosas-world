@@ -5,6 +5,7 @@ const keys = {
   s: false, // touche s
   d: false, // touche d
   space: false, // touche espace
+  shift: false, // touche shift
   clear: () => {
     // Fonction pour mettre à false toutes les touches du clavier
     keys.w = false
