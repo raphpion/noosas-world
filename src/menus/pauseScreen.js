@@ -10,8 +10,8 @@ const pauseScreen = {
   title: {
     img: new Image(),
     pos: {
-      x: 238,
-      y: 43,
+      x: GAME_WIDTH / 2 - 162,
+      y: 63,
     },
   },
   clear: () => {
@@ -34,6 +34,14 @@ const pauseScreen = {
   init: () => {
     // Fonction d'initialisation du menu de pause
     pauseScreen.title.img.src = '../assets/menu/pause.png'
+
+    // boutons
+    resumeButton.pos.x = (GAME_WIDTH - resumeButton.width) / 2
+    resumeButton.pos.y = 280
+    quitButton.pos.x = (GAME_WIDTH - quitButton.width) / 2
+    quitButton.pos.y = 380
+
+    // event listeners
     document.addEventListener('keydown', pauseScreen.keyDown)
     document.addEventListener('click', pauseScreen.mouseClick)
     document.addEventListener('mousemove', pauseScreen.mouseMove)

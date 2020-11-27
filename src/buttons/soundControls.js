@@ -6,8 +6,8 @@ const musicMinus = {
   img: new Image(),
   hover: false,
   pos: {
-    x: 300,
-    y: 185,
+    x: 0,
+    y: 0,
   },
   width: 48,
   height: 48,
@@ -55,8 +55,8 @@ const musicPlus = {
   img: new Image(),
   hover: false,
   pos: {
-    x: 510,
-    y: 185,
+    x: 0,
+    y: 0,
   },
   width: 48,
   height: 48,
@@ -104,8 +104,8 @@ const soundMinus = {
   img: new Image(),
   hover: false,
   pos: {
-    x: 300,
-    y: 270,
+    x: 0,
+    y: 0,
   },
   width: 48,
   height: 48,
@@ -152,8 +152,8 @@ const soundPlus = {
   img: new Image(),
   hover: false,
   pos: {
-    x: 510,
-    y: 270,
+    x: 0,
+    y: 0,
   },
   width: 48,
   height: 48,

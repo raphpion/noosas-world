@@ -35,19 +35,41 @@ class Bumblebee {
   }
   draw() {
     // fonction pour dessiner le bourdon à l'écran
-
-    ctx.drawImage(this.sprite.img, this.sprite.sourceX, 0, 46, 60, this.pos.x, this.pos.y, 46, 60)
+    // si on est sur une map, on affiche le bourdon à sa position relative à la map
+    if (game.map != null)
+      ctx.drawImage(
+        this.sprite.img,
+        this.sprite.sourceX,
+        0,
+        46,
+        60,
+        this.pos.x - game.map.offset.x,
+        this.pos.y - game.map.offset.y,
+        46,
+        60
+      )
+    else ctx.drawImage(this.sprite.img, this.sprite.sourceX, 0, 46, 60, this.pos.x, this.pos.y, 46, 60)
 
     //* DEBUG: AFFICHAGE DE LA HITBOX
     if (localStorage.getItem('debugMode') == 'true') {
-      for (let i = 0; i < this.hitbox.length; i++) {
-        ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
-        ctx.fillRect(
-          this.hitbox[i].pos.x + this.pos.x,
-          this.hitbox[i].pos.y + this.pos.y,
-          this.hitbox[i].width,
-          this.hitbox[i].height
-        )
+      ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'
+      for (let i = 0; i < player.hitbox.length; i++) {
+        // Si le bourdon est sur une map, on affiche ses hitbox à sa position relative à la map
+        if (game.map != null)
+          ctx.fillRect(
+            this.hitbox[i].pos.x + this.pos.x - game.map.offset.x,
+            this.hitbox[i].pos.y + this.pos.y - game.map.offset.y,
+            this.hitbox[i].width,
+            this.hitbox[i].height
+          )
+        // sinon, on affiche les hitbox avec la position relative au canvas
+        else
+          ctx.fillRect(
+            this.hitbox[i].pos.x + this.pos.x,
+            this.hitbox[i].pos.y + this.pos.y,
+            this.hitbox[i].width,
+            this.hitbox[i].height
+          )
       }
     }
   }

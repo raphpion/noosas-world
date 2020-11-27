@@ -1,4 +1,4 @@
-import { ctx, clearScreen, drawCredits } from '../gameScreen.js'
+import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
 import { clouds } from '../backgrounds/clouds.js'
 import { musicMinus, musicPlus, soundMinus, soundPlus } from '../buttons/soundControls.js'
 import { musicBar, soundBar } from '../buttons/soundBars.js'
@@ -14,22 +14,22 @@ const settingsScreen = {
   title: {
     img: new Image(),
     pos: {
-      x: 175,
-      y: 43,
+      x: GAME_WIDTH / 2 - 223,
+      y: 63,
     },
   },
   musicIcon: {
     img: new Image(),
     pos: {
-      x: 220,
-      y: 182,
+      x: GAME_WIDTH / 2 - 160,
+      y: 202,
     },
   },
   soundIcon: {
     img: new Image(),
     pos: {
-      x: 222,
-      y: 262,
+      x: GAME_WIDTH / 2 - 160,
+      y: 282,
     },
   },
   background: '#ff9257',
@@ -38,17 +38,24 @@ const settingsScreen = {
     clearScreen()
     clouds.draw()
     ctx.drawImage(settingsScreen.title.img, settingsScreen.title.pos.x, settingsScreen.title.pos.y)
+
     ctx.drawImage(settingsScreen.musicIcon.img, settingsScreen.musicIcon.pos.x, settingsScreen.musicIcon.pos.y)
     ctx.drawImage(settingsScreen.soundIcon.img, settingsScreen.soundIcon.pos.x, settingsScreen.soundIcon.pos.y)
+
     musicMinus.draw()
     musicPlus.draw()
     musicBar.draw()
+
     soundMinus.draw()
     soundPlus.draw()
     soundBar.draw()
+
+    ctx.fillStyle = 'black'
     tutorialToggleButton.draw()
+
     clearStorageButton.draw()
     returnButton.draw()
+
     drawCredits()
 
     // Si l'avertissement est visible, on l'affiche
@@ -65,8 +72,31 @@ const settingsScreen = {
     settingsScreen.musicIcon.img.src = '../assets/menu/music.png'
     settingsScreen.soundIcon.img.src = '../assets/menu/sound.png'
     gameScreen.style.backgroundColor = settingsScreen.background
-    tutorialToggleButton.pos.x = 275
-    tutorialToggleButton.pos.y = 341
+
+    // placement des éléments
+    musicBar.pos.x = GAME_WIDTH / 2 - 28
+    musicBar.pos.y = 205
+    soundBar.pos.x = GAME_WIDTH / 2 - 28
+    soundBar.pos.y = 290
+
+    musicMinus.pos.x = GAME_WIDTH / 2 - 90
+    musicMinus.pos.y = 205
+    musicPlus.pos.x = GAME_WIDTH / 2 + 98
+    musicPlus.pos.y = 205
+
+    soundMinus.pos.x = GAME_WIDTH / 2 - 90
+    soundMinus.pos.y = 290
+    soundPlus.pos.x = GAME_WIDTH / 2 + 98
+    soundPlus.pos.y = 290
+
+    tutorialToggleButton.pos.x = GAME_WIDTH / 2 - 120
+    tutorialToggleButton.pos.y = 361
+
+    clearStorageButton.pos.x = (GAME_WIDTH - clearStorageButton.width) / 2
+    clearStorageButton.pos.y = 410
+    returnButton.pos.x = (GAME_WIDTH - returnButton.width) / 2
+    returnButton.pos.y = 510
+
     playMusic('titlescreen', true)
 
     // on ajoute les listeners de souris au document et on retourne l'intervalle d'affichage

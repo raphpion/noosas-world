@@ -12,30 +12,30 @@ const hiscoresScreen = {
   title: {
     img: new Image(),
     pos: {
-      x: 175,
-      y: 35,
+      x: GAME_WIDTH / 2 - 219,
+      y: 55,
     },
   },
   background: '#ff9257',
   goldMedal: {
     img: new Image(),
     pos: {
-      x: 160,
-      y: 140,
+      x: GAME_WIDTH / 2 - 165,
+      y: 180,
     },
   },
   silverMedal: {
     img: new Image(),
     pos: {
-      x: 160,
-      y: 200,
+      x: GAME_WIDTH / 2 - 165,
+      y: 240,
     },
   },
   bronzeMedal: {
     img: new Image(),
     pos: {
-      x: 160,
-      y: 260,
+      x: GAME_WIDTH / 2 - 165,
+      y: 300,
     },
   },
   clear: () => {
@@ -71,8 +71,8 @@ const hiscoresScreen = {
       ctx.textBaseline = 'top'
       ctx.fillStyle = 'black'
       ctx.textAlign = 'center'
-      ctx.fillText('Jouez pour voir apparaître', GAME_WIDTH / 2, 255)
-      ctx.fillText('vos résultats !', GAME_WIDTH / 2, 305)
+      ctx.fillText('Jouez pour voir apparaître', GAME_WIDTH / 2, 275)
+      ctx.fillText('vos résultats !', GAME_WIDTH / 2, 325)
     }
   },
   drawMedals: () => {
@@ -93,8 +93,8 @@ const hiscoresScreen = {
 
     // Si le record existe on l'affiche, sinon on affiche une barre pointillée
     if (score[i]) {
-      ctx.fillText(`${score[i]}`, GAME_WIDTH / 2, 145 + i * 60)
-    } else ctx.fillText('----------', GAME_WIDTH / 2, 145 + i * 60)
+      ctx.fillText(`${score[i]}`, GAME_WIDTH / 2, 185 + i * 60)
+    } else ctx.fillText('----------', GAME_WIDTH / 2, 185 + i * 60)
   },
   init: () => {
     // Fonction d'initialisation de l'écran des records
@@ -105,6 +105,9 @@ const hiscoresScreen = {
     hiscoresScreen.bronzeMedal.img.src = '../assets/menu/medal_bronze.png'
     gameScreen.style.backgroundColor = hiscoresScreen.background
     playMusic('titlescreen')
+
+    returnButton.pos.x = (GAME_WIDTH - returnButton.width) / 2
+    returnButton.pos.y = 510
 
     // On ajoute les listeners de souris au document et on retourne l'intervalle d'affichage
     document.addEventListener('click', hiscoresScreen.mouseClick)

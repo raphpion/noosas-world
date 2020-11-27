@@ -38,7 +38,6 @@ const tutorialToggleButton = {
       tutorialToggleButton.width,
       tutorialToggleButton.height
     )
-    ctx.fillStyle = 'black'
     ctx.font = '20pt VT323'
     ctx.textAlign = 'center'
     ctx.fillText('Afficher le tutoriel', GAME_WIDTH / 2 + 23, tutorialToggleButton.pos.y + 27)

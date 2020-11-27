@@ -1,7 +1,7 @@
 const gameScreen = document.getElementById('gameScreen') // l'écran de jeu
 const ctx = gameScreen.getContext('2d') // contexte de l'écran de jeu
-const GAME_WIDTH = 800 // largeur de l'écran de jeu
-const GAME_HEIGHT = 600 // hauteur de l'écran de jeu
+const GAME_WIDTH = 1024 // largeur de l'écran de jeu
+const GAME_HEIGHT = 640 // hauteur de l'écran de jeu
 
 let gameInterval // intervalle d'affichage du jeu
 let currentScene // scène de jeu présentement en affichage

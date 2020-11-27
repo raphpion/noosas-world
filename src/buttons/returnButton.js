@@ -8,8 +8,8 @@ const returnButton = {
   content: 'Retour',
   hover: false,
   pos: {
-    x: 200,
-    y: 490,
+    x: 0,
+    y: 0,
   },
   width: 400,
   height: 60,

@@ -8,8 +8,8 @@ const resumeButton = {
   content: 'Reprendre',
   hover: false,
   pos: {
-    x: 200,
-    y: 260,
+    x: 0,
+    y: 0,
   },
   width: 400,
   height: 60,

@@ -9,7 +9,7 @@ const gameOverScreen = {
   title: {
     img: new Image(),
     pos: {
-      x: 248,
+      x: GAME_WIDTH / 2 - 152,
       y: 43,
     },
   },
@@ -17,8 +17,8 @@ const gameOverScreen = {
     img: new Image(),
     type: null,
     pos: {
-      x: 513,
-      y: 265,
+      x: GAME_WIDTH / 2 + 111,
+      y: 285,
     },
   },
   newRecord: false,
@@ -63,10 +63,10 @@ const gameOverScreen = {
     document.addEventListener('mousemove', gameOverScreen.mouseMove)
 
     // Placement des éléments
-    hiscoresButton.pos.x = 200
-    hiscoresButton.pos.y = 363
-    returnButton.pos.x = 200
-    returnButton.pos.y = 463
+    hiscoresButton.pos.x = (GAME_WIDTH - hiscoresButton.width) / 2
+    hiscoresButton.pos.y = 393
+    returnButton.pos.x = (GAME_WIDTH - returnButton.width) / 2
+    returnButton.pos.y = 493
   },
   mouseClick: e => {
     // gestion des clics de la souris, si le joueur clique sur un bouton, on appelle sa fonction de click
