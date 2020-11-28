@@ -89,7 +89,7 @@ const map_default = {
     player.pos.y = 492
 
     // initialisation du spawner d'ennemis
-    map_default.spawnInterval = setInterval(map_default.spawnEnemies, 2000)
+    map_default.spawnInterval = setInterval(map_default.spawnEnemies, 1000)
 
     // initialisation de la croquette
     let k = new Kibble()
