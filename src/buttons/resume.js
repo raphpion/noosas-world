@@ -1,5 +1,5 @@
-import { playSound } from '../gameAudio.js'
-import { ctx } from '../gameScreen.js'
+import { playSound } from '../audio.js'
+import { ctx } from '../screen.js'
 import { menu_pause } from '../menus/pause.js'
 
 // bouton 'Reprendre' dans l'écran de pause

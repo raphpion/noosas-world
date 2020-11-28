@@ -1,6 +1,6 @@
-import { ctx } from '../gameScreen.js'
+import { ctx } from '../screen.js'
 import { game } from '../game.js'
-import { playSound } from '../gameAudio.js'
+import { playSound } from '../audio.js'
 
 // Classe d'objet d'une croquette
 class Kibble {

@@ -1,5 +1,5 @@
-import { playSound } from '../gameAudio.js'
-import { ctx, getScene } from '../gameScreen.js'
+import { playSound } from '../audio.js'
+import { ctx, getScene } from '../screen.js'
 import { menu_hiscores } from '../menus/hiscores.js'
 
 // bouton d'accès à l'écran des records

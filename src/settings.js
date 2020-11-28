@@ -1,4 +1,4 @@
-import { appendAudioSettings } from './gameAudio.js'
+import { appendAudioSettings } from './audio.js'
 import { isLocalItemValid } from './methods.js'
 
 function initialSettings() {

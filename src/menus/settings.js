@@ -1,11 +1,11 @@
-import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
+import { screen, ctx, GAME_WIDTH, clearScreen, drawCredits } from '../screen.js'
 import { bg_clouds } from '../backgrounds/clouds.js'
 import { btn_musicMinus, btn_musicPlus, btn_soundMinus, btn_soundPlus } from '../buttons/soundControls.js'
 import { musicBar, soundBar } from '../buttons/soundBars.js'
 import { btn_clearStorage } from '../buttons/clearStorage.js'
 import { btn_return } from '../buttons/return.js'
 import { btn_tutorialToggle } from '../buttons/tutorialToggle.js'
-import { playMusic } from '../gameAudio.js'
+import { playMusic } from '../audio.js'
 import { isMouseOverButton } from '../methods.js'
 import { menu_warningPrompt } from './warningPrompt.js'
 
@@ -71,7 +71,7 @@ const menu_settings = {
     menu_settings.title.img.src = '../assets/menu/options.png'
     menu_settings.musicIcon.img.src = '../assets/menu/music.png'
     menu_settings.soundIcon.img.src = '../assets/menu/sound.png'
-    gameScreen.style.backgroundColor = menu_settings.background
+    screen.style.backgroundColor = menu_settings.background
 
     // placement des éléments
     musicBar.pos.x = GAME_WIDTH / 2 - 28

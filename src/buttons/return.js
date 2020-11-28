@@ -1,5 +1,5 @@
-import { playSound } from '../gameAudio.js'
-import { ctx, getScene } from '../gameScreen.js'
+import { playSound } from '../audio.js'
+import { ctx, getScene } from '../screen.js'
 import { menu_titlescreen } from '../menus/titlescreen.js'
 
 // bouton de retour dans les écrans 'Options' et 'Records'

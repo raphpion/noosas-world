@@ -1,4 +1,4 @@
-import { ctx } from '../gameScreen.js'
+import { ctx } from '../screen.js'
 import { game } from '../game.js'
 
 // Classe d'objet d'un bourdon

@@ -1,7 +1,7 @@
-import { ctx, GAME_WIDTH, clearScreen, drawCredits } from '../gameScreen.js'
+import { screen, ctx, GAME_WIDTH, clearScreen, drawCredits } from '../screen.js'
 import { bg_clouds } from '../backgrounds/clouds.js'
 import { btn_return } from '../buttons/return.js'
-import { playMusic } from '../gameAudio.js'
+import { playMusic } from '../audio.js'
 import { isLocalItemValid, isMouseOverButton } from '../methods.js'
 
 // Variable pour aller chercher le tableau des records dans le local storage
@@ -103,7 +103,7 @@ const menu_hiscores = {
     menu_hiscores.goldMedal.img.src = '../assets/menu/medal_gold.png'
     menu_hiscores.silverMedal.img.src = '../assets/menu/medal_silver.png'
     menu_hiscores.bronzeMedal.img.src = '../assets/menu/medal_bronze.png'
-    gameScreen.style.backgroundColor = menu_hiscores.background
+    screen.style.backgroundColor = menu_hiscores.background
     playMusic('titlescreen')
 
     btn_return.pos.x = (GAME_WIDTH - btn_return.width) / 2

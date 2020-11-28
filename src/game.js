@@ -1,6 +1,6 @@
-import { gameScreen, ctx, clearScreen, GAME_WIDTH } from './gameScreen.js'
+import { screen, ctx, clearScreen, GAME_WIDTH } from './screen.js'
 import { keys } from './controller.js'
-import { playMusic, menu_pauseMusic, appendAudioSettings } from './gameAudio.js'
+import { playMusic, menu_pauseMusic, appendAudioSettings } from './audio.js'
 import { player } from './player.js'
 import { menu_pause } from './menus/pause.js'
 import { menu_gameOver } from './menus/gameOver.js'
@@ -34,7 +34,7 @@ const game = {
     player.velocity.y = 0
   },
   draw: () => {
-    // Fonction d'affichage du jeu dans le canvas
+    // Fonction d'affichage du jeu dans le screen
     clearScreen()
 
     game.map.draw()
@@ -70,7 +70,7 @@ const game = {
   init: () => {
     // Fonction d'initialisation d'une partie
     // Assignation des images et de la musique
-    gameScreen.style.backgroundColor = game.background
+    screen.style.backgroundColor = game.background
     game.ground.img.src = '../assets/tiles/ground_grass.png'
     player.sprite.img.src = '../assets/sprites/noosa.png'
     playMusic('arcade')

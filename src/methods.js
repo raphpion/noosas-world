@@ -1,8 +1,9 @@
+import { screen } from './screen.js'
 import { menu_gameOver } from './menus/gameOver.js'
 
 function getMousePos(e) {
   // Fonction qui renvoie un objet comprenant la position x et y de la souris par-rapport au coin supérieur gauche de l'écran de jeu
-  let rect = gameScreen.getBoundingClientRect()
+  let rect = screen.getBoundingClientRect()
   return {
     x: e.clientX - rect.left,
     y: e.clientY - rect.top,

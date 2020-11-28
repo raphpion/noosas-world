@@ -1,5 +1,5 @@
-import { playSound } from '../gameAudio.js'
-import { ctx, getScene } from '../gameScreen.js'
+import { playSound } from '../audio.js'
+import { ctx, getScene } from '../screen.js'
 import { menu_tutorial } from '../menus/tutorial.js'
 import { game } from '../game.js'
 import { player } from '../player.js'

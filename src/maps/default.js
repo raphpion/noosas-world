@@ -1,5 +1,5 @@
 import { game } from '../game.js'
-import { ctx } from '../gameScreen.js'
+import { ctx } from '../screen.js'
 import { player } from '../player.js'
 import { bg_pixelClouds } from '../backgrounds/pixelClouds.js'
 import { bg_hills } from '../backgrounds/hills.js'

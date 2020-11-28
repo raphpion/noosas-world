@@ -1,5 +1,5 @@
-import { appendAudioSettings, playSound } from '../gameAudio.js'
-import { ctx } from '../gameScreen.js'
+import { appendAudioSettings, playSound } from '../audio.js'
+import { ctx } from '../screen.js'
 
 // bouton pour diminuer la musique
 const btn_musicMinus = {

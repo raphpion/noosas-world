@@ -7,7 +7,7 @@
 // © Copyright Raphaël Pion 2020
 
 import { initialSettings } from './settings.js'
-import { getScene } from './gameScreen.js'
+import { getScene } from './screen.js'
 import { menu_intro } from './menus/intro.js'
 
 // Vérification de l'intégrité des options utilisateurs

@@ -1,9 +1,9 @@
-import { ctx, GAME_WIDTH, getScene } from '../gameScreen.js'
+import { ctx, GAME_WIDTH, getScene } from '../screen.js'
 import { game } from '../game.js'
 import { isMouseOverButton } from '../methods.js'
 import { menu_settings } from './settings.js'
 import { menu_pause } from './pause.js'
-import { playSound } from '../gameAudio.js'
+import { playSound } from '../audio.js'
 import { initialSettings } from '../settings.js'
 import { menu_titlescreen } from './titlescreen.js'
 

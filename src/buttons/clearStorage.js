@@ -1,5 +1,5 @@
-import { playSound } from '../gameAudio.js'
-import { ctx } from '../gameScreen.js'
+import { playSound } from '../audio.js'
+import { ctx } from '../screen.js'
 import { menu_warningPrompt } from '../menus/warningPrompt.js'
 
 // bouton 'Réinitialiser' du menu des options

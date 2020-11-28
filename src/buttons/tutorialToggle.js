@@ -1,5 +1,5 @@
-import { playSound } from '../gameAudio.js'
-import { ctx, GAME_WIDTH } from '../gameScreen.js'
+import { playSound } from '../audio.js'
+import { ctx, GAME_WIDTH } from '../screen.js'
 
 // bouton 'toggle' d'affichage du tutoriel
 const btn_tutorialToggle = {

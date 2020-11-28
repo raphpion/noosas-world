@@ -1,14 +1,14 @@
-const gameScreen = document.getElementById('gameScreen') // l'écran de jeu
-const ctx = gameScreen.getContext('2d') // contexte de l'écran de jeu
+const screen = document.getElementById('screen') // l'écran de jeu
+const ctx = screen.getContext('2d') // contexte de l'écran de jeu
 const GAME_WIDTH = 1024 // largeur de l'écran de jeu
 const GAME_HEIGHT = 640 // hauteur de l'écran de jeu
 
 let gameInterval // intervalle d'affichage du jeu
 let currentScene // scène de jeu présentement en affichage
 
-// on empêche le clic droit sur le canvas
-// source : https://stackoverflow.com/questions/10864249/disabling-right-click-context-menu-on-a-html-canvas
-gameScreen.oncontextmenu = function (e) {
+// on empêche le clic droit sur le screen
+// source : https://stackoverflow.com/questions/10864249/disabling-right-click-context-menu-on-a-html-screen
+screen.oncontextmenu = function (e) {
   e.preventDefault()
   e.stopPropagation()
 }
@@ -40,4 +40,4 @@ function getScene(scene) {
   currentScene = scene
 }
 
-export { gameScreen, ctx, GAME_WIDTH, GAME_HEIGHT, clearScreen, drawCredits, getScene }
+export { screen, ctx, GAME_WIDTH, GAME_HEIGHT, clearScreen, drawCredits, getScene }

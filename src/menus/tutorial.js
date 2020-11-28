@@ -1,6 +1,6 @@
 import { game } from '../game.js'
-import { gameScreen, ctx, GAME_WIDTH, GAME_HEIGHT } from '../gameScreen.js'
-import { playMusic } from '../gameAudio.js'
+import { screen, ctx, GAME_WIDTH, GAME_HEIGHT } from '../screen.js'
+import { playMusic } from '../audio.js'
 import { player } from '../player.js'
 import { btn_tutorialToggle } from '../buttons/tutorialToggle.js'
 import { isMouseOverButton } from '../methods.js'
@@ -105,7 +105,7 @@ const menu_tutorial = {
   },
   init: () => {
     // fonction d'initialisation de l'écran tutoriel
-    gameScreen.style.backgroundColor = game.background
+    screen.style.backgroundColor = game.background
     game.ground.img.src = '../assets/tiles/ground_grass.png'
     player.sprite.img.src = '../assets/sprites/noosa.png'
     playMusic('arcade')

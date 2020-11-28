@@ -1,4 +1,4 @@
-import { ctx, GAME_WIDTH, GAME_HEIGHT } from '../gameScreen.js'
+import { ctx, GAME_WIDTH, GAME_HEIGHT } from '../screen.js'
 
 // arrière-plan de nuages du menu principal
 const bg_clouds = {

@@ -1,4 +1,4 @@
-import { gameScreen, ctx, GAME_WIDTH, clearScreen, drawCredits, getScene } from '../gameScreen.js'
+import { screen, ctx, GAME_WIDTH, clearScreen, drawCredits, getScene } from '../screen.js'
 import { menu_titlescreen } from './titlescreen.js'
 import { bg_clouds } from '../backgrounds/clouds.js'
 
@@ -31,7 +31,7 @@ const menu_intro = {
   init: () => {
     // fonction d'initialisation de l'écran d'accueil
     menu_intro.title.img.src = '../assets/menu/titleAlt.png'
-    gameScreen.style.backgroundColor = menu_intro.background
+    screen.style.backgroundColor = menu_intro.background
 
     // on ajoute le listener de clavier et on retourne l'intervalle d'affichage
     document.addEventListener('keydown', menu_intro.keyDown)

@@ -1,5 +1,5 @@
 import { game } from '../game.js'
-import { ctx, GAME_WIDTH, GAME_HEIGHT } from '../gameScreen.js'
+import { ctx, GAME_WIDTH, GAME_HEIGHT } from '../screen.js'
 import { btn_resume } from '../buttons/resume.js'
 import { btn_quit } from '../buttons/quit.js'
 import { isMouseOverButton } from '../methods.js'
