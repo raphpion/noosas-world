@@ -4,7 +4,7 @@ import { player } from '../player.js'
 import { bg_pixelClouds } from '../backgrounds/pixelClouds.js'
 import { bg_hills } from '../backgrounds/hills.js'
 import { Bumblebee } from '../prefabs/Bumblebee.js'
-import { tutorialScreen } from '../menus/tutorialScreen.js'
+import { menu_tutorial } from '../menus/tutorial.js'
 import { areObjectsColliding } from '../methods.js'
 import { Kibble } from '../prefabs/Kibble.js'
 
@@ -136,7 +136,7 @@ const map_default = {
   spawnEnemies: () => {
     // fonction qui fait apparaître des bourdons en fonction du score du joueur
     // si le jeu est en pause ou terminé, ou si on affiche le tutoriel, on arrête l'exécution
-    if (game.paused || game.isOver || tutorialScreen.show) return
+    if (game.paused || game.isOver || menu_tutorial.show) return
     // s'il y a moins de bourdons que 2 + le score du joueur divisé par 10, on en génère un nouveau et on le fait apparaître
     if (map_default.enemies.length < Math.floor(game.kibbles / 20) + 2) {
       let r = Math.ceil(Math.random() * 2)

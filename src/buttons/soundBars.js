@@ -1,4 +1,4 @@
-import { ctx, GAME_WIDTH } from '../gameScreen.js'
+import { ctx } from '../gameScreen.js'
 
 // barre de son du volume de la musique
 const musicBar = {

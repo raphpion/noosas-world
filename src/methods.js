@@ -1,4 +1,4 @@
-import { gameOverScreen } from './menus/gameOverScreen.js'
+import { menu_gameOver } from './menus/gameOver.js'
 
 function getMousePos(e) {
   // Fonction qui renvoie un objet comprenant la position x et y de la souris par-rapport au coin supérieur gauche de l'écran de jeu
@@ -132,18 +132,18 @@ function pushHiscore(score) {
 
   // Si le record n'est pas un doublon et est meilleur que le cinquième meilleur score c'est un nouveau record
   if (!doubloon && (score > hiscores[4] || hiscores.length < 5)) {
-    gameOverScreen.newRecord = true
+    menu_gameOver.newRecord = true
     // Si le tableau est vide ou que le score est meilleur que le premier record, on assigne la médaille d'or
-    if (hiscores.length == 0 || score > hiscores[0]) gameOverScreen.medal.type = 'gold'
+    if (hiscores.length == 0 || score > hiscores[0]) menu_gameOver.medal.type = 'gold'
     // Sinon, si le tableau a une seule entrée ou que le score est meilleur que le deuxième record, on assigne la médaille d'argent
-    else if (hiscores.length == 1 || score > hiscores[1]) gameOverScreen.medal.type = 'silver'
+    else if (hiscores.length == 1 || score > hiscores[1]) menu_gameOver.medal.type = 'silver'
     // Sinon, si le tableau a deux entrées ou que le score est meilleur que le troisième record, on assigne la médaille de bronze
-    else if (hiscores.length == 2 || score > hiscores[2]) gameOverScreen.medal.type = 'bronze'
+    else if (hiscores.length == 2 || score > hiscores[2]) menu_gameOver.medal.type = 'bronze'
     // Sinon, on n'affiche pas de médaille dans l'écran Game Over
-    else gameOverScreen.medal.type = null
+    else menu_gameOver.medal.type = null
   } else {
-    gameOverScreen.newRecord = false
-    gameOverScreen.medal.type = null
+    menu_gameOver.newRecord = false
+    menu_gameOver.medal.type = null
   }
 
   // Si le record n'est pas un doublon, on l'ajoute au tableau et on le trie par ordre décroissant

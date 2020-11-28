@@ -1,9 +1,9 @@
 import { gameScreen, ctx, GAME_WIDTH, clearScreen, drawCredits, getScene } from '../gameScreen.js'
-import { titleScreen } from '../menus/titleScreen.js'
+import { menu_titlescreen } from './titlescreen.js'
 import { bg_clouds } from '../backgrounds/clouds.js'
 
 // Écran d'accueil
-const splashScreen = {
+const menu_intro = {
   title: {
     img: new Image(),
     pos: {
@@ -14,13 +14,13 @@ const splashScreen = {
   background: '#b1e7f8',
   clear: () => {
     // fonction d'arrêt de l'écran d'accueil
-    document.removeEventListener('keydown', splashScreen.keyDown)
+    document.removeEventListener('keydown', menu_intro.keyDown)
   },
   draw: () => {
     // fonction d'affichage de l'écran d'accueil
     clearScreen()
     bg_clouds.draw()
-    ctx.drawImage(splashScreen.title.img, splashScreen.title.pos.x, splashScreen.title.pos.y)
+    ctx.drawImage(menu_intro.title.img, menu_intro.title.pos.x, menu_intro.title.pos.y)
     ctx.font = '24pt VT323'
     ctx.fillStyle = 'black'
     ctx.textAlign = 'center'
@@ -30,16 +30,16 @@ const splashScreen = {
   },
   init: () => {
     // fonction d'initialisation de l'écran d'accueil
-    splashScreen.title.img.src = '../assets/menu/titleAlt.png'
-    gameScreen.style.backgroundColor = splashScreen.background
+    menu_intro.title.img.src = '../assets/menu/titleAlt.png'
+    gameScreen.style.backgroundColor = menu_intro.background
 
     // on ajoute le listener de clavier et on retourne l'intervalle d'affichage
-    document.addEventListener('keydown', splashScreen.keyDown)
-    return setInterval(splashScreen.draw, 1000 / 60)
+    document.addEventListener('keydown', menu_intro.keyDown)
+    return setInterval(menu_intro.draw, 1000 / 60)
   },
   keyDown: () => {
-    getScene(titleScreen)
+    getScene(menu_titlescreen)
   },
 }
 
-export { splashScreen }
+export { menu_intro }

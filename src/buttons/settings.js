@@ -1,9 +1,9 @@
 import { playSound } from '../gameAudio.js'
 import { ctx, getScene } from '../gameScreen.js'
-import { settingsScreen } from '../menus/settingsScreen.js'
+import { menu_settings } from '../menus/settings.js'
 
 // bouton d'accès à l'écran des options
-const settingsButton = {
+const btn_settings = {
   img: new Image(),
   content: 'Options',
   hover: false,
@@ -16,36 +16,36 @@ const settingsButton = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    settingsButton.img.src = '../assets/menu/button_yellow.png'
+    btn_settings.img.src = '../assets/menu/button_yellow.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (settingsButton.hover) settingsButton.sourceX = 400
-    else settingsButton.sourceX = 0
+    if (btn_settings.hover) btn_settings.sourceX = 400
+    else btn_settings.sourceX = 0
 
     // affichage du bouton et de son texte
     ctx.drawImage(
-      settingsButton.img,
-      settingsButton.sourceX,
+      btn_settings.img,
+      btn_settings.sourceX,
       0,
-      settingsButton.width,
-      settingsButton.height,
-      settingsButton.pos.x,
-      settingsButton.pos.y,
-      settingsButton.width,
-      settingsButton.height
+      btn_settings.width,
+      btn_settings.height,
+      btn_settings.pos.x,
+      btn_settings.pos.y,
+      btn_settings.width,
+      btn_settings.height
     )
     ctx.font = '40pt VT323'
     ctx.textBaseline = 'top'
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
-    ctx.fillText(settingsButton.content, settingsButton.pos.x + 200, settingsButton.pos.y)
+    ctx.fillText(btn_settings.content, btn_settings.pos.x + 200, btn_settings.pos.y)
   },
   click: () => {
     playSound('button')
-    settingsButton.hover = false
+    btn_settings.hover = false
     document.body.style.cursor = 'default'
-    getScene(settingsScreen)
+    getScene(menu_settings)
   },
 }
 
-export { settingsButton }
+export { btn_settings }

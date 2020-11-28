@@ -21,7 +21,7 @@ function playMusic(song, loop = true) {
   }
 }
 
-function pauseScreenMusic() {
+function menu_pauseMusic() {
   // Réduction du volume de la musique lorsque le jeu est en pause
   gameMusic.volume = Number(localStorage.getItem('musicVolume')) * 0.3
 }
@@ -40,4 +40,4 @@ function stopMusic() {
   currentSong = null
 }
 
-export { appendAudioSettings, playMusic, pauseScreenMusic, playSound, stopMusic }
+export { appendAudioSettings, playMusic, menu_pauseMusic, playSound, stopMusic }

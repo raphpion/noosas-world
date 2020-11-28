@@ -1,9 +1,9 @@
 import { playSound } from '../gameAudio.js'
 import { ctx } from '../gameScreen.js'
-import { pauseScreen } from '../menus/pauseScreen.js'
+import { menu_pause } from '../menus/pause.js'
 
 // bouton 'Reprendre' dans l'écran de pause
-const resumeButton = {
+const btn_resume = {
   img: new Image(),
   content: 'Reprendre',
   hover: false,
@@ -16,37 +16,37 @@ const resumeButton = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    resumeButton.img.src = '../assets/menu/button_blue.png'
+    btn_resume.img.src = '../assets/menu/button_blue.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (resumeButton.hover) resumeButton.sourceX = 400
-    else resumeButton.sourceX = 0
+    if (btn_resume.hover) btn_resume.sourceX = 400
+    else btn_resume.sourceX = 0
 
     // affichage du bouton et de son texte
     ctx.drawImage(
-      resumeButton.img,
-      resumeButton.sourceX,
+      btn_resume.img,
+      btn_resume.sourceX,
       0,
-      resumeButton.width,
-      resumeButton.height,
-      resumeButton.pos.x,
-      resumeButton.pos.y,
-      resumeButton.width,
-      resumeButton.height
+      btn_resume.width,
+      btn_resume.height,
+      btn_resume.pos.x,
+      btn_resume.pos.y,
+      btn_resume.width,
+      btn_resume.height
     )
     ctx.font = '40pt VT323'
     ctx.textBaseline = 'top'
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
-    ctx.fillText(resumeButton.content, resumeButton.pos.x + 200, resumeButton.pos.y)
+    ctx.fillText(btn_resume.content, btn_resume.pos.x + 200, btn_resume.pos.y)
   },
   click: () => {
     // si le joueur clique sur le bouton, on retourne au jeu
     playSound('button')
-    resumeButton.hover = false
+    btn_resume.hover = false
     document.body.style.cursor = 'default'
-    pauseScreen.clear()
+    menu_pause.clear()
   },
 }
 
-export { resumeButton }
+export { btn_resume }

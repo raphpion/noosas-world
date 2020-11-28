@@ -1,9 +1,9 @@
 import { playSound } from '../gameAudio.js'
 import { ctx, getScene } from '../gameScreen.js'
-import { hiscoresScreen } from '../menus/hiscoresScreen.js'
+import { menu_hiscores } from '../menus/hiscores.js'
 
 // bouton d'accès à l'écran des records
-const hiscoresButton = {
+const btn_hiscores = {
   img: new Image(),
   content: 'Records',
   hover: false,
@@ -16,37 +16,37 @@ const hiscoresButton = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton
-    hiscoresButton.img.src = '../assets/menu/button_blue.png'
+    btn_hiscores.img.src = '../assets/menu/button_blue.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (hiscoresButton.hover) hiscoresButton.sourceX = 400
-    else hiscoresButton.sourceX = 0
+    if (btn_hiscores.hover) btn_hiscores.sourceX = 400
+    else btn_hiscores.sourceX = 0
 
     // affichage du bouton et de son texte
     ctx.drawImage(
-      hiscoresButton.img,
-      hiscoresButton.sourceX,
+      btn_hiscores.img,
+      btn_hiscores.sourceX,
       0,
-      hiscoresButton.width,
-      hiscoresButton.height,
-      hiscoresButton.pos.x,
-      hiscoresButton.pos.y,
-      hiscoresButton.width,
-      hiscoresButton.height
+      btn_hiscores.width,
+      btn_hiscores.height,
+      btn_hiscores.pos.x,
+      btn_hiscores.pos.y,
+      btn_hiscores.width,
+      btn_hiscores.height
     )
     ctx.font = '40pt VT323'
     ctx.textBaseline = 'top'
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
-    ctx.fillText(hiscoresButton.content, hiscoresButton.pos.x + 200, hiscoresButton.pos.y)
+    ctx.fillText(btn_hiscores.content, btn_hiscores.pos.x + 200, btn_hiscores.pos.y)
   },
   click: () => {
     // si le joueur clique sur le bouton, on passe à l'écran des records
     playSound('button')
-    hiscoresButton.hover = false
+    btn_hiscores.hover = false
     document.body.style.cursor = 'default'
-    getScene(hiscoresScreen)
+    getScene(menu_hiscores)
   },
 }
 
-export { hiscoresButton }
+export { btn_hiscores }
