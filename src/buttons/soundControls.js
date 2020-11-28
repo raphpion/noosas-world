@@ -1,8 +1,8 @@
-import { appendAudioSettings, playSound } from '../gameAudio.js'
-import { ctx } from '../gameScreen.js'
+import { appendAudioSettings, playSound } from '../audio.js'
+import { ctx } from '../screen.js'
 
 // bouton pour diminuer la musique
-const musicMinus = {
+const btn_musicMinus = {
   img: new Image(),
   hover: false,
   pos: {
@@ -14,23 +14,23 @@ const musicMinus = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton
-    musicMinus.img.src = '../assets/menu/Minus.png'
+    btn_musicMinus.img.src = '../assets/menu/Minus.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (musicMinus.hover) musicMinus.sourceX = 48
-    else musicMinus.sourceX = 0
+    if (btn_musicMinus.hover) btn_musicMinus.sourceX = 48
+    else btn_musicMinus.sourceX = 0
 
     // affichage du bouton à l'écran
     ctx.drawImage(
-      musicMinus.img,
-      musicMinus.sourceX,
+      btn_musicMinus.img,
+      btn_musicMinus.sourceX,
       0,
-      musicMinus.width,
-      musicMinus.height,
-      musicMinus.pos.x,
-      musicMinus.pos.y,
-      musicMinus.width,
-      musicMinus.height
+      btn_musicMinus.width,
+      btn_musicMinus.height,
+      btn_musicMinus.pos.x,
+      btn_musicMinus.pos.y,
+      btn_musicMinus.width,
+      btn_musicMinus.height
     )
   },
   click: () => {
@@ -51,7 +51,7 @@ const musicMinus = {
 }
 
 // bouton pour augmenter le volume de la musique
-const musicPlus = {
+const btn_musicPlus = {
   img: new Image(),
   hover: false,
   pos: {
@@ -63,23 +63,23 @@ const musicPlus = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    musicPlus.img.src = '../assets/menu/plus.png'
+    btn_musicPlus.img.src = '../assets/menu/plus.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (musicPlus.hover) musicPlus.sourceX = 48
-    else musicPlus.sourceX = 0
+    if (btn_musicPlus.hover) btn_musicPlus.sourceX = 48
+    else btn_musicPlus.sourceX = 0
 
     // affichage du bouton à l'écran
     ctx.drawImage(
-      musicPlus.img,
-      musicPlus.sourceX,
+      btn_musicPlus.img,
+      btn_musicPlus.sourceX,
       0,
-      musicPlus.width,
-      musicPlus.height,
-      musicPlus.pos.x,
-      musicPlus.pos.y,
-      musicPlus.width,
-      musicPlus.height
+      btn_musicPlus.width,
+      btn_musicPlus.height,
+      btn_musicPlus.pos.x,
+      btn_musicPlus.pos.y,
+      btn_musicPlus.width,
+      btn_musicPlus.height
     )
   },
   click: () => {
@@ -100,7 +100,7 @@ const musicPlus = {
 }
 
 // bouton pour diminuer le volume du son
-const soundMinus = {
+const btn_soundMinus = {
   img: new Image(),
   hover: false,
   pos: {
@@ -111,23 +111,23 @@ const soundMinus = {
   height: 48,
   sourceX: 0,
   draw: () => {
-    soundMinus.img.src = '../assets/menu/Minus.png'
+    btn_soundMinus.img.src = '../assets/menu/Minus.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (soundMinus.hover) soundMinus.sourceX = 48
-    else soundMinus.sourceX = 0
+    if (btn_soundMinus.hover) btn_soundMinus.sourceX = 48
+    else btn_soundMinus.sourceX = 0
 
     // affichage du bouton à l'écran
     ctx.drawImage(
-      soundMinus.img,
-      soundMinus.sourceX,
+      btn_soundMinus.img,
+      btn_soundMinus.sourceX,
       0,
-      soundMinus.width,
-      soundMinus.height,
-      soundMinus.pos.x,
-      soundMinus.pos.y,
-      soundMinus.width,
-      soundMinus.height
+      btn_soundMinus.width,
+      btn_soundMinus.height,
+      btn_soundMinus.pos.x,
+      btn_soundMinus.pos.y,
+      btn_soundMinus.width,
+      btn_soundMinus.height
     )
   },
   click: () => {
@@ -148,7 +148,7 @@ const soundMinus = {
 }
 
 // bouton pour augmenter le volume du son
-const soundPlus = {
+const btn_soundPlus = {
   img: new Image(),
   hover: false,
   pos: {
@@ -160,23 +160,23 @@ const soundPlus = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    soundPlus.img.src = '../assets/menu/plus.png'
+    btn_soundPlus.img.src = '../assets/menu/plus.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (soundPlus.hover) soundPlus.sourceX = 48
-    else soundPlus.sourceX = 0
+    if (btn_soundPlus.hover) btn_soundPlus.sourceX = 48
+    else btn_soundPlus.sourceX = 0
 
     // affichage du bouton à l'écran
     ctx.drawImage(
-      soundPlus.img,
-      soundPlus.sourceX,
+      btn_soundPlus.img,
+      btn_soundPlus.sourceX,
       0,
-      soundPlus.width,
-      soundPlus.height,
-      soundPlus.pos.x,
-      soundPlus.pos.y,
-      soundPlus.width,
-      soundPlus.height
+      btn_soundPlus.width,
+      btn_soundPlus.height,
+      btn_soundPlus.pos.x,
+      btn_soundPlus.pos.y,
+      btn_soundPlus.width,
+      btn_soundPlus.height
     )
   },
   click: () => {
@@ -196,4 +196,4 @@ const soundPlus = {
   },
 }
 
-export { musicMinus, musicPlus, soundMinus, soundPlus }
+export { btn_musicMinus, btn_musicPlus, btn_soundMinus, btn_soundPlus }

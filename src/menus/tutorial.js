@@ -1,12 +1,12 @@
 import { game } from '../game.js'
-import { gameScreen, ctx, GAME_WIDTH, GAME_HEIGHT } from '../gameScreen.js'
-import { playMusic } from '../gameAudio.js'
+import { screen, ctx, GAME_WIDTH, GAME_HEIGHT } from '../screen.js'
+import { playMusic } from '../audio.js'
 import { player } from '../player.js'
-import { tutorialToggleButton } from '../buttons/tutorialToggleButton.js'
+import { btn_tutorialToggle } from '../buttons/tutorialToggle.js'
 import { isMouseOverButton } from '../methods.js'
 
 // Écran de tutoriel
-const tutorialScreen = {
+const menu_tutorial = {
   show: false,
   aKey: {
     img: new Image(),
@@ -59,9 +59,9 @@ const tutorialScreen = {
   },
   clear: () => {
     // fonction appelée lors de l'arrêt de l'écran de tutoriel
-    document.removeEventListener('keydown', tutorialScreen.keyDown)
-    document.removeEventListener('mousemove', tutorialScreen.mouseMove)
-    document.removeEventListener('click', tutorialScreen.mouseClick)
+    document.removeEventListener('keydown', menu_tutorial.keyDown)
+    document.removeEventListener('mousemove', menu_tutorial.mouseMove)
+    document.removeEventListener('click', menu_tutorial.mouseClick)
     pixelClouds.stop()
   },
   draw: () => {
@@ -72,16 +72,16 @@ const tutorialScreen = {
     ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT)
 
     // touches du clavier
-    ctx.drawImage(tutorialScreen.aKey.img, tutorialScreen.aKey.pos.x, tutorialScreen.aKey.pos.y)
-    ctx.drawImage(tutorialScreen.dKey.img, tutorialScreen.dKey.pos.x, tutorialScreen.dKey.pos.y)
-    ctx.drawImage(tutorialScreen.sKey.img, tutorialScreen.sKey.pos.x, tutorialScreen.sKey.pos.y)
-    ctx.drawImage(tutorialScreen.enterKey.img, tutorialScreen.enterKey.pos.x, tutorialScreen.enterKey.pos.y)
-    ctx.drawImage(tutorialScreen.escKey.img, tutorialScreen.escKey.pos.x, tutorialScreen.escKey.pos.y)
-    ctx.drawImage(tutorialScreen.shiftKey.img, tutorialScreen.shiftKey.pos.x, tutorialScreen.shiftKey.pos.y)
-    ctx.drawImage(tutorialScreen.spacebarKey.img, tutorialScreen.spacebarKey.pos.x, tutorialScreen.spacebarKey.pos.y)
+    ctx.drawImage(menu_tutorial.aKey.img, menu_tutorial.aKey.pos.x, menu_tutorial.aKey.pos.y)
+    ctx.drawImage(menu_tutorial.dKey.img, menu_tutorial.dKey.pos.x, menu_tutorial.dKey.pos.y)
+    ctx.drawImage(menu_tutorial.sKey.img, menu_tutorial.sKey.pos.x, menu_tutorial.sKey.pos.y)
+    ctx.drawImage(menu_tutorial.enterKey.img, menu_tutorial.enterKey.pos.x, menu_tutorial.enterKey.pos.y)
+    ctx.drawImage(menu_tutorial.escKey.img, menu_tutorial.escKey.pos.x, menu_tutorial.escKey.pos.y)
+    ctx.drawImage(menu_tutorial.shiftKey.img, menu_tutorial.shiftKey.pos.x, menu_tutorial.shiftKey.pos.y)
+    ctx.drawImage(menu_tutorial.spacebarKey.img, menu_tutorial.spacebarKey.pos.x, menu_tutorial.spacebarKey.pos.y)
 
     ctx.fillStyle = 'white'
-    tutorialToggleButton.draw()
+    btn_tutorialToggle.draw()
 
     ctx.textAlign = 'center'
     ctx.textBaseline = 'bottom'
@@ -105,53 +105,53 @@ const tutorialScreen = {
   },
   init: () => {
     // fonction d'initialisation de l'écran tutoriel
-    gameScreen.style.backgroundColor = game.background
+    screen.style.backgroundColor = game.background
     game.ground.img.src = '../assets/tiles/ground_grass.png'
     player.sprite.img.src = '../assets/sprites/noosa.png'
     playMusic('arcade')
 
     // touches du clavier
-    tutorialScreen.aKey.img.src = '../assets/menu/a_key.png'
-    tutorialScreen.enterKey.img.src = '../assets/menu/enter_key.png'
-    tutorialScreen.escKey.img.src = '../assets/menu/esc_key.png'
-    tutorialScreen.dKey.img.src = '../assets/menu/d_key.png'
-    tutorialScreen.sKey.img.src = '../assets/menu/s_key.png'
-    tutorialScreen.shiftKey.img.src = '../assets/menu/shift_key.png'
-    tutorialScreen.spacebarKey.img.src = '../assets/menu/spacebar_key.png'
+    menu_tutorial.aKey.img.src = '../assets/menu/a_key.png'
+    menu_tutorial.enterKey.img.src = '../assets/menu/enter_key.png'
+    menu_tutorial.escKey.img.src = '../assets/menu/esc_key.png'
+    menu_tutorial.dKey.img.src = '../assets/menu/d_key.png'
+    menu_tutorial.sKey.img.src = '../assets/menu/s_key.png'
+    menu_tutorial.shiftKey.img.src = '../assets/menu/shift_key.png'
+    menu_tutorial.spacebarKey.img.src = '../assets/menu/spacebar_key.png'
 
     // bouton toggle
-    tutorialToggleButton.pos.x = GAME_WIDTH / 2 - 120
-    tutorialToggleButton.pos.y = 460
+    btn_tutorialToggle.pos.x = GAME_WIDTH / 2 - 120
+    btn_tutorialToggle.pos.y = 460
 
     // event listeners et retour de l'intervalle
-    document.addEventListener('keydown', tutorialScreen.keyDown)
-    document.addEventListener('mousemove', tutorialScreen.mouseMove)
-    document.addEventListener('click', tutorialScreen.mouseClick)
+    document.addEventListener('keydown', menu_tutorial.keyDown)
+    document.addEventListener('mousemove', menu_tutorial.mouseMove)
+    document.addEventListener('click', menu_tutorial.mouseClick)
   },
   keyDown: e => {
     // fonction de gestion de l'appui sur une touche
     if (e.keyCode == 13) {
-      tutorialScreen.show = false
+      menu_tutorial.show = false
       game.start()
     }
   },
   mouseClick: e => {
     // fonction de gestion des clics de la souris
-    if (isMouseOverButton(tutorialToggleButton, e)) tutorialToggleButton.click()
+    if (isMouseOverButton(btn_tutorialToggle, e)) btn_tutorialToggle.click()
   },
   mouseMove: e => {
     // fonction de gestion du mouvement de la souris
     // si la souris est par-dessus le bouton toggle, il est hover et le curseur est changé
-    if (isMouseOverButton(tutorialToggleButton, e)) {
-      tutorialToggleButton.hover = true
+    if (isMouseOverButton(btn_tutorialToggle, e)) {
+      btn_tutorialToggle.hover = true
       document.body.style.cursor = 'pointer'
     }
     // sinon, on remet le curseur par défaut et le bouton n'est plus hover
     else {
-      tutorialToggleButton.hover = false
+      btn_tutorialToggle.hover = false
       document.body.style.cursor = 'default'
     }
   },
 }
 
-export { tutorialScreen }
+export { menu_tutorial }

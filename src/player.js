@@ -1,6 +1,6 @@
 import { keys } from './controller.js'
-import { playSound } from './gameAudio.js'
-import { ctx, GAME_WIDTH, GAME_HEIGHT } from './gameScreen.js'
+import { playSound } from './audio.js'
+import { ctx, GAME_WIDTH, GAME_HEIGHT } from './screen.js'
 import { game } from './game.js'
 
 // Personnage joueur
@@ -123,7 +123,7 @@ const player = {
     player.velocity.y = 0
   },
   draw: () => {
-    // Fonction d'affichage du personnage dans le canvas
+    // Fonction d'affichage du personnage dans le screen
 
     // Si la partie n'est pas en pause ou arrêté, on appelle la fonction de déplacement du personnage
     if (!game.paused && !game.isOver) player.move()

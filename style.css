@@ -5,7 +5,7 @@ body {
   height: 100vh;
 }
 
-#gameScreen {
+#screen {
   position: absolute;
   top: 50%;
   left: 50%;

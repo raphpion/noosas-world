@@ -1,4 +1,4 @@
-import { ctx, GAME_WIDTH, GAME_HEIGHT } from '../gameScreen.js'
+import { ctx, GAME_WIDTH, GAME_HEIGHT } from '../screen.js'
 import { game } from '../game.js'
 
 // arrière-plan de nuages en jeu

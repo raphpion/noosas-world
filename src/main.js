@@ -7,11 +7,11 @@
 // © Copyright Raphaël Pion 2020
 
 import { initialSettings } from './settings.js'
-import { getScene } from './gameScreen.js'
-import { splashScreen } from './menus/splashScreen.js'
+import { getScene } from './screen.js'
+import { menu_intro } from './menus/intro.js'
 
 // Vérification de l'intégrité des options utilisateurs
 initialSettings()
 
 // Appel de l'écran titre
-getScene(splashScreen)
+getScene(menu_intro)

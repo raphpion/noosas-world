@@ -1,12 +1,12 @@
-import { gameScreen, ctx, clearScreen, GAME_WIDTH } from './gameScreen.js'
+import { screen, ctx, clearScreen, GAME_WIDTH } from './screen.js'
 import { keys } from './controller.js'
-import { playMusic, pauseScreenMusic, appendAudioSettings } from './gameAudio.js'
+import { playMusic, menu_pauseMusic, appendAudioSettings } from './audio.js'
 import { player } from './player.js'
-import { pauseScreen } from './menus/pauseScreen.js'
-import { gameOverScreen } from './menus/gameOverScreen.js'
-import { warningPrompt } from './menus/warningPrompt.js'
+import { menu_pause } from './menus/pause.js'
+import { menu_gameOver } from './menus/gameOver.js'
+import { menu_warningPrompt } from './menus/warningPrompt.js'
 import { pushHiscore } from './methods.js'
-import { tutorialScreen } from './menus/tutorialScreen.js'
+import { menu_tutorial } from './menus/tutorial.js'
 import { map_default } from './maps/default.js'
 
 // Objet qui représente une partie
@@ -34,22 +34,22 @@ const game = {
     player.velocity.y = 0
   },
   draw: () => {
-    // Fonction d'affichage du jeu dans le canvas
+    // Fonction d'affichage du jeu dans le screen
     clearScreen()
 
     game.map.draw()
 
     // Si la partie est terminée, on affiche le menu
-    if (game.isOver) gameOverScreen.draw()
+    if (game.isOver) menu_gameOver.draw()
     // Sinon si le jeu est sur Pause, on affiche l'écran pause
     else if (game.paused) {
-      pauseScreen.draw()
+      menu_pause.draw()
       // Si l'alerte est visible, on l'affiche
-      if (warningPrompt.visible) warningPrompt.draw()
+      if (menu_warningPrompt.visible) menu_warningPrompt.draw()
     }
 
     // Sinon, si on doit afficher le tutoriel
-    else if (tutorialScreen.show) tutorialScreen.draw()
+    else if (menu_tutorial.show) menu_tutorial.draw()
     // Sinon, on affiche le HUD
     else game.drawHUD()
   },
@@ -70,7 +70,7 @@ const game = {
   init: () => {
     // Fonction d'initialisation d'une partie
     // Assignation des images et de la musique
-    gameScreen.style.backgroundColor = game.background
+    screen.style.backgroundColor = game.background
     game.ground.img.src = '../assets/tiles/ground_grass.png'
     player.sprite.img.src = '../assets/sprites/noosa.png'
     playMusic('arcade')
@@ -89,8 +89,8 @@ const game = {
     map_default.init()
 
     // si on doit afficher le tutoriel, on l'initialise. Sinon, on démarre la partie
-    if (tutorialScreen.show) {
-      tutorialScreen.init()
+    if (menu_tutorial.show) {
+      menu_tutorial.init()
       game.stop()
     } else game.start()
 
@@ -159,8 +159,8 @@ const game = {
     game.isOver = true
 
     // par défaut, ce n'est pas un nouveau record et il n'y a pas de médaille à afficher
-    gameOverScreen.newRecord = false
-    gameOverScreen.medal.type = null
+    menu_gameOver.newRecord = false
+    menu_gameOver.medal.type = null
 
     // Si le score est supérieur à zéro on tente de l'ajouter aux records
     if (game.kibbles > 0) pushHiscore(game.kibbles)
@@ -169,7 +169,7 @@ const game = {
     game.stop()
 
     // On initialise l'écran de GameOver
-    gameOverScreen.init()
+    menu_gameOver.init()
   },
   pause: () => {
     // Fonction de gestion de pause
@@ -183,8 +183,8 @@ const game = {
       game.stop()
 
       // On initialise l'écran de pause et on réduit le volume de la musique
-      pauseScreen.init()
-      pauseScreenMusic()
+      menu_pause.init()
+      menu_pauseMusic()
     }
   },
   start: () => {

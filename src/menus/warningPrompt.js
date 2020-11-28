@@ -1,14 +1,14 @@
-import { ctx, GAME_WIDTH, getScene } from '../gameScreen.js'
+import { ctx, GAME_WIDTH, getScene } from '../screen.js'
 import { game } from '../game.js'
 import { isMouseOverButton } from '../methods.js'
-import { settingsScreen } from './settingsScreen.js'
-import { pauseScreen } from './pauseScreen.js'
-import { playSound } from '../gameAudio.js'
+import { menu_settings } from './settings.js'
+import { menu_pause } from './pause.js'
+import { playSound } from '../audio.js'
 import { initialSettings } from '../settings.js'
-import { titleScreen } from './titleScreen.js'
+import { menu_titlescreen } from './titlescreen.js'
 
 // avertissement qui demande une confirmation
-const warningPrompt = {
+const menu_warningPrompt = {
   background: new Image(),
   visible: false,
   reason: '', // raison pour laquelle on appelle l'avertissement
@@ -18,37 +18,37 @@ const warningPrompt = {
   },
   clear: () => {
     // fonction d'arrêt de l'écran d'avertissement, on retire les listeners et on le cache
-    document.removeEventListener('click', warningPrompt.mouseClick)
-    document.removeEventListener('mousemove', warningPrompt.mouseMove)
-    warningPrompt.visible = false
+    document.removeEventListener('click', menu_warningPrompt.mouseClick)
+    document.removeEventListener('mousemove', menu_warningPrompt.mouseMove)
+    menu_warningPrompt.visible = false
 
     // si la demande provient de l'écran des options, on remet les listeners de cet écran
-    if (warningPrompt.reason == 'clearStorage') {
-      document.addEventListener('click', settingsScreen.mouseClick)
-      document.addEventListener('mousemove', settingsScreen.mouseMove)
+    if (menu_warningPrompt.reason == 'clearStorage') {
+      document.addEventListener('click', menu_settings.mouseClick)
+      document.addEventListener('mousemove', menu_settings.mouseMove)
     }
 
     // si la demande provient de l'écran pause, on remet les listeners de cet écran
-    if (warningPrompt.reason == 'quitGame') {
-      document.addEventListener('keydown', pauseScreen.keyDown)
-      document.addEventListener('click', pauseScreen.mouseClick)
-      document.addEventListener('mousemove', pauseScreen.mouseMove)
+    if (menu_warningPrompt.reason == 'quitGame') {
+      document.addEventListener('keydown', menu_pause.keyDown)
+      document.addEventListener('click', menu_pause.mouseClick)
+      document.addEventListener('mousemove', menu_pause.mouseMove)
     }
   },
   draw: () => {
     // fonction d'affichage de l'avertissement à l'écran
-    ctx.drawImage(warningPrompt.background, warningPrompt.pos.x, warningPrompt.pos.y)
+    ctx.drawImage(menu_warningPrompt.background, menu_warningPrompt.pos.x, menu_warningPrompt.pos.y)
     ctx.font = '40pt VT323'
     ctx.fillStyle = 'black'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'bottom'
 
     // selon la demande, on affiche un texte différent
-    if (warningPrompt.reason == 'clearStorage') {
+    if (menu_warningPrompt.reason == 'clearStorage') {
       ctx.fillText('Cette action va effacer', GAME_WIDTH / 2, 210)
       ctx.fillText('toutes vos données de jeu.', GAME_WIDTH / 2, 260)
       ctx.fillText('Continuer ?', GAME_WIDTH / 2, 310)
-    } else if (warningPrompt.reason == 'quitGame') {
+    } else if (menu_warningPrompt.reason == 'quitGame') {
       ctx.fillText('Votre progression et votre', GAME_WIDTH / 2, 210)
       ctx.fillText('score seront perdus.', GAME_WIDTH / 2, 260)
       ctx.fillText('Continuer ?', GAME_WIDTH / 2, 310)
@@ -60,17 +60,17 @@ const warningPrompt = {
   },
   init: reason => {
     // fonction d'initialisation de l'avertissement
-    warningPrompt.visible = true
-    warningPrompt.reason = reason
-    warningPrompt.background.src = '../assets/menu/warning_prompt.png'
+    menu_warningPrompt.visible = true
+    menu_warningPrompt.reason = reason
+    menu_warningPrompt.background.src = '../assets/menu/warning_prompt.png'
 
     // selon la raison, on enlève les listeners de l'écran précédent
-    if (warningPrompt.reason == 'clearStorage') settingsScreen.clear()
-    if (warningPrompt.reason == 'quitGame') pauseScreen.clear()
+    if (menu_warningPrompt.reason == 'clearStorage') menu_settings.clear()
+    if (menu_warningPrompt.reason == 'quitGame') menu_pause.clear()
 
     // on applique les nouveaux listeners
-    document.addEventListener('click', warningPrompt.mouseClick)
-    document.addEventListener('mousemove', warningPrompt.mouseMove)
+    document.addEventListener('click', menu_warningPrompt.mouseClick)
+    document.addEventListener('mousemove', menu_warningPrompt.mouseMove)
   },
   mouseClick: e => {
     // gestion des clics de la souris, si le joueur clique sur un bouton on appelle sa fonction
@@ -109,21 +109,21 @@ const confirmButton = {
   click: () => {
     // si le joueur clique sur le bouton
     playSound('button')
-    warningPrompt.clear()
+    menu_warningPrompt.clear()
 
     // si la demande était de réinitialiser les paramètres
-    if (warningPrompt.reason == 'clearStorage') {
+    if (menu_warningPrompt.reason == 'clearStorage') {
       // on vide le local storage et on applique les paramètres par défaut
       localStorage.clear()
       initialSettings()
     }
 
     // si la demande était de quitter le jeu
-    if (warningPrompt.reason == 'quitGame') {
+    if (menu_warningPrompt.reason == 'quitGame') {
       // on enlève les listeners de l'écran de pause et on passe à l'écran-titre
-      pauseScreen.clear()
+      menu_pause.clear()
       game.map = null
-      getScene(titleScreen)
+      getScene(menu_titlescreen)
     }
   },
   draw: () => {
@@ -163,7 +163,7 @@ const cancelButton = {
   click: () => {
     // si le joueur clique sur le bouton, on quitte l'écran d'avertissement
     playSound('button')
-    warningPrompt.clear()
+    menu_warningPrompt.clear()
   },
   draw: () => {
     // fonction d'affichage du bouton d'annulation à l'écran
@@ -188,4 +188,4 @@ const cancelButton = {
   },
 }
 
-export { warningPrompt }
+export { menu_warningPrompt }

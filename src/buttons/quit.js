@@ -1,9 +1,9 @@
-import { playSound } from '../gameAudio.js'
-import { ctx } from '../gameScreen.js'
-import { warningPrompt } from '../menus/warningPrompt.js'
+import { playSound } from '../audio.js'
+import { ctx } from '../screen.js'
+import { menu_warningPrompt } from '../menus/warningPrompt.js'
 
 // bouton 'quitter' dans l'écran de pause
-const quitButton = {
+const btn_quit = {
   img: new Image(),
   content: 'Quitter',
   hover: false,
@@ -16,37 +16,37 @@ const quitButton = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton
-    quitButton.img.src = '../assets/menu/button_red.png'
+    btn_quit.img.src = '../assets/menu/button_red.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (quitButton.hover) quitButton.sourceX = 400
-    else quitButton.sourceX = 0
+    if (btn_quit.hover) btn_quit.sourceX = 400
+    else btn_quit.sourceX = 0
 
     // affichage du bouton et de son texte
     ctx.drawImage(
-      quitButton.img,
-      quitButton.sourceX,
+      btn_quit.img,
+      btn_quit.sourceX,
       0,
-      quitButton.width,
-      quitButton.height,
-      quitButton.pos.x,
-      quitButton.pos.y,
-      quitButton.width,
-      quitButton.height
+      btn_quit.width,
+      btn_quit.height,
+      btn_quit.pos.x,
+      btn_quit.pos.y,
+      btn_quit.width,
+      btn_quit.height
     )
     ctx.font = '40pt VT323'
     ctx.textBaseline = 'top'
     ctx.fillStyle = 'white'
     ctx.textAlign = 'center'
-    ctx.fillText(quitButton.content, quitButton.pos.x + 200, quitButton.pos.y)
+    ctx.fillText(btn_quit.content, btn_quit.pos.x + 200, btn_quit.pos.y)
   },
   click: () => {
     // si le joueur clique sur le bouton, on affiche un avertissement
     playSound('button')
-    quitButton.hover = false
+    btn_quit.hover = false
     document.body.style.cursor = 'default'
-    warningPrompt.init('quitGame')
+    menu_warningPrompt.init('quitGame')
   },
 }
 
-export { quitButton }
+export { btn_quit }

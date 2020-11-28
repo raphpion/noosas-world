@@ -1,10 +1,10 @@
 import { game } from '../game.js'
-import { ctx } from '../gameScreen.js'
+import { ctx } from '../screen.js'
 import { player } from '../player.js'
 import { bg_pixelClouds } from '../backgrounds/pixelClouds.js'
 import { bg_hills } from '../backgrounds/hills.js'
 import { Bumblebee } from '../prefabs/Bumblebee.js'
-import { tutorialScreen } from '../menus/tutorialScreen.js'
+import { menu_tutorial } from '../menus/tutorial.js'
 import { areObjectsColliding } from '../methods.js'
 import { Kibble } from '../prefabs/Kibble.js'
 
@@ -89,7 +89,7 @@ const map_default = {
     player.pos.y = 492
 
     // initialisation du spawner d'ennemis
-    map_default.spawnInterval = setInterval(map_default.spawnEnemies, 2000)
+    map_default.spawnInterval = setInterval(map_default.spawnEnemies, 1000)
 
     // initialisation de la croquette
     let k = new Kibble()
@@ -101,17 +101,16 @@ const map_default = {
   },
   moveEnemies: () => {
     // fonction de gestion du déplacement des ennemis
-    // à chaque 10 croquettes ramassées, la vitesse des ennemis augmente de 1
     // si le jeu est en pause ou que la partie est terminée, on arrête l'exécution
     if (game.paused || game.isOver) return
     for (let i = 0; i < map_default.enemies.length; i++) {
       // si l'ennemi regarde à gauche, on le déplace vers la gauche
       if (map_default.enemies[i].sprite.direction == 'left')
-        map_default.enemies[i].pos.x -= map_default.enemies[i].speed + Math.floor(game.kibbles / 10)
+        map_default.enemies[i].pos.x -= map_default.enemies[i].speed
 
       // si l'ennemi regarde à droite, on le déplace vers la droite
       if (map_default.enemies[i].sprite.direction == 'right')
-        map_default.enemies[i].pos.x += map_default.enemies[i].speed + Math.floor(game.kibbles / 10)
+        map_default.enemies[i].pos.x += map_default.enemies[i].speed
 
       // si l'ennemi n'est plus sur la map, on le retire du tableau des ennemis
       if (map_default.enemies[i].pos.x < 0 || map_default.enemies[i].pos.x > map_default.width)
@@ -137,9 +136,9 @@ const map_default = {
   spawnEnemies: () => {
     // fonction qui fait apparaître des bourdons en fonction du score du joueur
     // si le jeu est en pause ou terminé, ou si on affiche le tutoriel, on arrête l'exécution
-    if (game.paused || game.isOver || tutorialScreen.show) return
-    // s'il y a moins de bourdons que 2 + le score du joueur divisé par 20, on en génère un nouveau et on le fait apparaître
-    if (map_default.enemies.length < Math.floor(game.kibbles / 20) + 3) {
+    if (game.paused || game.isOver || menu_tutorial.show) return
+    // s'il y a moins de bourdons que 2 + le score du joueur divisé par 10, on en génère un nouveau et on le fait apparaître
+    if (map_default.enemies.length < Math.floor(game.kibbles / 20) + 2) {
       let r = Math.ceil(Math.random() * 2)
       let x, y, d // positions x, y et direction du bourdon à créer
 
