@@ -15,7 +15,7 @@ const btn_tutorialToggle = {
   sourceY: 0,
   draw: () => {
     // fonction d'affichage du bouton 'toggle' à l'écran
-    btn_tutorialToggle.img.src = '../assets/menu/button_tutorial.png'
+    btn_tutorialToggle.img.src = '../../assets/menu/button_tutorial.png'
     let value = localStorage.getItem('showTutorial')
 
     // si l'option est activée, le bouton est vert. sinon, on change sa source en Y pour le mettre rouge

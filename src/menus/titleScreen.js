@@ -33,7 +33,7 @@ const menu_titlescreen = {
   },
   init: () => {
     // fonction d'initialisation de l'écran-titre, on initialise les images et la musique
-    menu_titlescreen.title.img.src = '../assets/menu/titleAlt.png'
+    menu_titlescreen.title.img.src = '../../assets/menu/titleAlt.png'
     screen.style.backgroundColor = menu_titlescreen.background
     playMusic('titlescreen')
 

@@ -16,7 +16,7 @@ const btn_quit = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton
-    btn_quit.img.src = '../assets/menu/button_red.png'
+    btn_quit.img.src = '../../assets/menu/button_red.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_quit.hover) btn_quit.sourceX = 400

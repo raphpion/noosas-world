@@ -14,7 +14,7 @@ const btn_musicMinus = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton
-    btn_musicMinus.img.src = '../assets/menu/Minus.png'
+    btn_musicMinus.img.src = '../../assets/menu/Minus.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_musicMinus.hover) btn_musicMinus.sourceX = 48
@@ -63,7 +63,7 @@ const btn_musicPlus = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    btn_musicPlus.img.src = '../assets/menu/plus.png'
+    btn_musicPlus.img.src = '../../assets/menu/plus.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_musicPlus.hover) btn_musicPlus.sourceX = 48
@@ -111,7 +111,7 @@ const btn_soundMinus = {
   height: 48,
   sourceX: 0,
   draw: () => {
-    btn_soundMinus.img.src = '../assets/menu/Minus.png'
+    btn_soundMinus.img.src = '../../assets/menu/Minus.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_soundMinus.hover) btn_soundMinus.sourceX = 48
@@ -160,7 +160,7 @@ const btn_soundPlus = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    btn_soundPlus.img.src = '../assets/menu/plus.png'
+    btn_soundPlus.img.src = '../../assets/menu/plus.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_soundPlus.hover) btn_soundPlus.sourceX = 48

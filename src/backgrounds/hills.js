@@ -33,6 +33,6 @@ const bg_hills = {
   },
 }
 
-bg_hills.img.src = '../assets/backgrounds/hills.png'
+bg_hills.img.src = '../../assets/backgrounds/hills.png'
 
 export { bg_hills }

@@ -106,18 +106,18 @@ const menu_tutorial = {
   init: () => {
     // fonction d'initialisation de l'écran tutoriel
     screen.style.backgroundColor = game.background
-    game.ground.img.src = '../assets/tiles/ground_grass.png'
-    player.sprite.img.src = '../assets/sprites/noosa.png'
+    game.ground.img.src = '../../assets/tiles/ground_grass.png'
+    player.sprite.img.src = '../../assets/sprites/noosa.png'
     playMusic('arcade')
 
     // touches du clavier
-    menu_tutorial.aKey.img.src = '../assets/menu/a_key.png'
-    menu_tutorial.enterKey.img.src = '../assets/menu/enter_key.png'
-    menu_tutorial.escKey.img.src = '../assets/menu/esc_key.png'
-    menu_tutorial.dKey.img.src = '../assets/menu/d_key.png'
-    menu_tutorial.sKey.img.src = '../assets/menu/s_key.png'
-    menu_tutorial.shiftKey.img.src = '../assets/menu/shift_key.png'
-    menu_tutorial.spacebarKey.img.src = '../assets/menu/spacebar_key.png'
+    menu_tutorial.aKey.img.src = '../../assets/menu/a_key.png'
+    menu_tutorial.enterKey.img.src = '../../assets/menu/enter_key.png'
+    menu_tutorial.escKey.img.src = '../../assets/menu/esc_key.png'
+    menu_tutorial.dKey.img.src = '../../assets/menu/d_key.png'
+    menu_tutorial.sKey.img.src = '../../assets/menu/s_key.png'
+    menu_tutorial.shiftKey.img.src = '../../assets/menu/shift_key.png'
+    menu_tutorial.spacebarKey.img.src = '../../assets/menu/spacebar_key.png'
 
     // bouton toggle
     btn_tutorialToggle.pos.x = GAME_WIDTH / 2 - 120

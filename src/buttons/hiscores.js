@@ -16,7 +16,7 @@ const btn_hiscores = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton
-    btn_hiscores.img.src = '../assets/menu/button_blue.png'
+    btn_hiscores.img.src = '../../assets/menu/button_blue.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_hiscores.hover) btn_hiscores.sourceX = 400

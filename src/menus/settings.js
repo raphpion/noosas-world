@@ -68,9 +68,9 @@ const menu_settings = {
   },
   init: () => {
     // fonction d'initialisation de l'écran des option
-    menu_settings.title.img.src = '../assets/menu/options.png'
-    menu_settings.musicIcon.img.src = '../assets/menu/music.png'
-    menu_settings.soundIcon.img.src = '../assets/menu/sound.png'
+    menu_settings.title.img.src = '../../assets/menu/options.png'
+    menu_settings.musicIcon.img.src = '../../assets/menu/music.png'
+    menu_settings.soundIcon.img.src = '../../assets/menu/sound.png'
     screen.style.backgroundColor = menu_settings.background
 
     // placement des éléments

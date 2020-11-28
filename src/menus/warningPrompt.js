@@ -62,7 +62,7 @@ const menu_warningPrompt = {
     // fonction d'initialisation de l'avertissement
     menu_warningPrompt.visible = true
     menu_warningPrompt.reason = reason
-    menu_warningPrompt.background.src = '../assets/menu/warning_prompt.png'
+    menu_warningPrompt.background.src = '../../assets/menu/warning_prompt.png'
 
     // selon la raison, on enlève les listeners de l'écran précédent
     if (menu_warningPrompt.reason == 'clearStorage') menu_settings.clear()
@@ -128,7 +128,7 @@ const confirmButton = {
   },
   draw: () => {
     // fonction d'affichage du bouton de confirmation
-    confirmButton.img.src = '../assets/menu/button_confirm.png'
+    confirmButton.img.src = '../../assets/menu/button_confirm.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X de la vignette
     if (confirmButton.hover) confirmButton.sourceX = 60
@@ -167,7 +167,7 @@ const cancelButton = {
   },
   draw: () => {
     // fonction d'affichage du bouton d'annulation à l'écran
-    cancelButton.img.src = '../assets/menu/button_cancel.png'
+    cancelButton.img.src = '../../assets/menu/button_cancel.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X de la vignette
     if (cancelButton.hover) cancelButton.sourceX = 60

@@ -63,8 +63,8 @@ const map_default = {
     // fonction d'initialisation de la map
     game.map = map_default
 
-    map_default.layer1.src = '../assets/maps/default_layer1.png'
-    map_default.layer2.src = '../assets/maps/default_layer2.png'
+    map_default.layer1.src = '../../assets/maps/default_layer1.png'
+    map_default.layer2.src = '../../assets/maps/default_layer2.png'
 
     // initialisation de l'arrière-plan
     map_default.background = []

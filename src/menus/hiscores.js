@@ -99,10 +99,10 @@ const menu_hiscores = {
   init: () => {
     // Fonction d'initialisation de l'écran des records
     // On affecte le tableau des records du local storage dans la variable et on initialise les images, le fond et la musique
-    menu_hiscores.title.img.src = '../assets/menu/records.png'
-    menu_hiscores.goldMedal.img.src = '../assets/menu/medal_gold.png'
-    menu_hiscores.silverMedal.img.src = '../assets/menu/medal_silver.png'
-    menu_hiscores.bronzeMedal.img.src = '../assets/menu/medal_bronze.png'
+    menu_hiscores.title.img.src = '../../assets/menu/records.png'
+    menu_hiscores.goldMedal.img.src = '../../assets/menu/medal_gold.png'
+    menu_hiscores.silverMedal.img.src = '../../assets/menu/medal_silver.png'
+    menu_hiscores.bronzeMedal.img.src = '../../assets/menu/medal_bronze.png'
     screen.style.backgroundColor = menu_hiscores.background
     playMusic('titlescreen')
 

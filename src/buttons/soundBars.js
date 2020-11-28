@@ -12,7 +12,7 @@ const musicBar = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage de la barre de son
-    musicBar.img.src = '../assets/menu/soundbar.png'
+    musicBar.img.src = '../../assets/menu/soundbar.png'
 
     // pour chaque barre de son, on vérifie si le volume est suffisant pour qu'elle soit verte
     for (let i = 0; i < 5; i++) {
