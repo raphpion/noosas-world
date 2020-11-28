@@ -23,6 +23,6 @@ const bg_clouds = {
 }
 
 // on charge l'image des nuages
-bg_clouds.img.src = '../assets/backgrounds/clouds.png'
+bg_clouds.img.src = '../../assets/backgrounds/clouds.png'
 
 export { bg_clouds }

@@ -30,7 +30,7 @@ const menu_intro = {
   },
   init: () => {
     // fonction d'initialisation de l'écran d'accueil
-    menu_intro.title.img.src = '../assets/menu/titleAlt.png'
+    menu_intro.title.img.src = '../../assets/menu/titleAlt.png'
     screen.style.backgroundColor = menu_intro.background
 
     // on ajoute le listener de clavier et on retourne l'intervalle d'affichage

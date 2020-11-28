@@ -16,7 +16,7 @@ const btn_resume = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    btn_resume.img.src = '../assets/menu/button_blue.png'
+    btn_resume.img.src = '../../assets/menu/button_blue.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_resume.hover) btn_resume.sourceX = 400

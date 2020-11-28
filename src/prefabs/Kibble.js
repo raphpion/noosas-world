@@ -10,7 +10,7 @@ class Kibble {
       index: 0,
       sourceX: 0,
     }
-    this.sprite.img.src = '../assets/sprites/items.png'
+    this.sprite.img.src = '../../assets/sprites/items.png'
     this.animation = null // pour stocker l'intervalle d'animation de la croquette
     this.pos = { x, y }
     this.hitbox = []

@@ -16,7 +16,7 @@ const btn_return = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    btn_return.img.src = '../assets/menu/button_blue.png'
+    btn_return.img.src = '../../assets/menu/button_blue.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_return.hover) btn_return.sourceX = 400

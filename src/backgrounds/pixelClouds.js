@@ -34,6 +34,6 @@ const bg_pixelClouds = {
 }
 
 // on charge l'image des nuages
-bg_pixelClouds.img.src = '../assets/backgrounds/pixel_clouds.png'
+bg_pixelClouds.img.src = '../../assets/backgrounds/pixel_clouds.png'
 
 export { bg_pixelClouds }

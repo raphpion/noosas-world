@@ -33,7 +33,7 @@ const menu_pause = {
   },
   init: () => {
     // Fonction d'initialisation du menu de pause
-    menu_pause.title.img.src = '../assets/menu/pause.png'
+    menu_pause.title.img.src = '../../assets/menu/pause.png'
 
     // boutons
     btn_resume.pos.x = (GAME_WIDTH - btn_resume.width) / 2

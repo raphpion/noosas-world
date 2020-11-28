@@ -18,7 +18,7 @@ const btn_start = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton 'jouer' à l'écran
-    btn_start.img.src = '../assets/menu/button_green.png'
+    btn_start.img.src = '../../assets/menu/button_green.png'
 
     // si le bouton est hover, on change sa source en X
     if (btn_start.hover) btn_start.sourceX = 400

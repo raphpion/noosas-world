@@ -16,7 +16,7 @@ const btn_clearStorage = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton 'Réinitialiser'
-    btn_clearStorage.img.src = '../assets/menu/button_red.png'
+    btn_clearStorage.img.src = '../../assets/menu/button_red.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_clearStorage.hover) btn_clearStorage.sourceX = 400

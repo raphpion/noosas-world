@@ -48,7 +48,7 @@ const menu_gameOver = {
 
     // Si on a un type de médaille à afficher, on le fait
     if (menu_gameOver.medal.type != null) {
-      menu_gameOver.medal.img.src = `../assets/menu/medal_${menu_gameOver.medal.type}.png`
+      menu_gameOver.medal.img.src = `../../assets/menu/medal_${menu_gameOver.medal.type}.png`
       ctx.drawImage(menu_gameOver.medal.img, menu_gameOver.medal.pos.x, menu_gameOver.medal.pos.y)
     }
 
@@ -59,7 +59,7 @@ const menu_gameOver = {
   },
   init: () => {
     // Fonction d'initialisation de l'écran Game Over
-    menu_gameOver.title.img.src = '../assets/menu/gameOver.png'
+    menu_gameOver.title.img.src = '../../assets/menu/gameOver.png'
 
     document.addEventListener('click', menu_gameOver.mouseClick)
     document.addEventListener('mousemove', menu_gameOver.mouseMove)
