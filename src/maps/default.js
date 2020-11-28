@@ -101,17 +101,16 @@ const map_default = {
   },
   moveEnemies: () => {
     // fonction de gestion du déplacement des ennemis
-    // à chaque 10 croquettes ramassées, la vitesse des ennemis augmente de 1
     // si le jeu est en pause ou que la partie est terminée, on arrête l'exécution
     if (game.paused || game.isOver) return
     for (let i = 0; i < map_default.enemies.length; i++) {
       // si l'ennemi regarde à gauche, on le déplace vers la gauche
       if (map_default.enemies[i].sprite.direction == 'left')
-        map_default.enemies[i].pos.x -= map_default.enemies[i].speed + Math.floor(game.kibbles / 10)
+        map_default.enemies[i].pos.x -= map_default.enemies[i].speed
 
       // si l'ennemi regarde à droite, on le déplace vers la droite
       if (map_default.enemies[i].sprite.direction == 'right')
-        map_default.enemies[i].pos.x += map_default.enemies[i].speed + Math.floor(game.kibbles / 10)
+        map_default.enemies[i].pos.x += map_default.enemies[i].speed
 
       // si l'ennemi n'est plus sur la map, on le retire du tableau des ennemis
       if (map_default.enemies[i].pos.x < 0 || map_default.enemies[i].pos.x > map_default.width)
@@ -138,8 +137,8 @@ const map_default = {
     // fonction qui fait apparaître des bourdons en fonction du score du joueur
     // si le jeu est en pause ou terminé, ou si on affiche le tutoriel, on arrête l'exécution
     if (game.paused || game.isOver || tutorialScreen.show) return
-    // s'il y a moins de bourdons que 2 + le score du joueur divisé par 20, on en génère un nouveau et on le fait apparaître
-    if (map_default.enemies.length < Math.floor(game.kibbles / 20) + 3) {
+    // s'il y a moins de bourdons que 2 + le score du joueur divisé par 10, on en génère un nouveau et on le fait apparaître
+    if (map_default.enemies.length < Math.floor(game.kibbles / 20) + 2) {
       let r = Math.ceil(Math.random() * 2)
       let x, y, d // positions x, y et direction du bourdon à créer
 

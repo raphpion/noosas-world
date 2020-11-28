@@ -10,7 +10,7 @@ class Bumblebee {
       index: 0,
       sourceX: 0,
     }
-    this.speed = Math.ceil(Math.random() * (8 - 4) + 4)
+    this.speed = Math.ceil(Math.random() * (10 - 5) + 5)
     this.sprite.img.src = '../assets/sprites/bumblebee.png'
     this.animation = null // pour stocker l'intervalle d'animation du bourdon
     this.pos = { x, y }
