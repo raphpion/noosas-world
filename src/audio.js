@@ -31,7 +31,10 @@ function menu_pauseMusic() {
 function playSound(sound) {
   // On fait jouer le son en s'assurant de ne pas le loop
   for (let sound in sfx) {
-    if (!sfx[sound].paused && !sfx[sound].ended) sfx[sound].pause
+    if (!sfx[sound].paused && !sfx[sound].ended) {
+      sfx[sound].pause
+      sfx[sound].currentTime = 0
+    }
   }
   sound.loop = false
   sound.play()
