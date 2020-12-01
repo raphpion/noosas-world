@@ -24,7 +24,7 @@ const menu_loading = {
     else if (menu_loading.progress > 40) ctx.fillStyle = '#ffff00'
     else if (menu_loading.progress > 20) ctx.fillStyle = '#ffa500'
     else ctx.fillStyle = '#ff0000'
-    ctx.fillRect(GAME_WIDTH / 2 - 200, GAME_HEIGHT / 2, menu_loading.progress * 4, 50)
+    ctx.fillRect(GAME_WIDTH / 2 - 200, GAME_HEIGHT / 2, Math.floor(menu_loading.progress * 4), 50)
 
     // contour
     ctx.strokeStyle = 'white'
