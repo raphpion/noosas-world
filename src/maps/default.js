@@ -7,6 +7,7 @@ import { Bumblebee } from '../prefabs/Bumblebee.js'
 import { menu_tutorial } from '../menus/tutorial.js'
 import { areObjectsColliding } from '../methods.js'
 import { Kibble } from '../prefabs/Kibble.js'
+import { maps } from '../assets.js'
 
 // Map du mode de jeu normal
 const map_default = {
@@ -17,8 +18,6 @@ const map_default = {
     y: 0,
   },
   background: [],
-  layer1: new Image(),
-  layer2: new Image(),
   enemies: [],
   items: [],
   platforms: [],
@@ -29,7 +28,7 @@ const map_default = {
     for (let bg of map_default.background) bg.draw()
 
     // affichage du layer 1
-    ctx.drawImage(map_default.layer1, -map_default.offset.x, -map_default.offset.y)
+    ctx.drawImage(maps.default_layer1, -map_default.offset.x, -map_default.offset.y)
 
     // affichage des objets, du joueur et des ennemis
     player.draw()
@@ -38,7 +37,7 @@ const map_default = {
     for (let item of map_default.items) item.draw()
 
     // affichage du layer 2
-    ctx.drawImage(map_default.layer2, -map_default.offset.x, -map_default.offset.y)
+    ctx.drawImage(maps.default_layer2, -map_default.offset.x, -map_default.offset.y)
 
     // si le joueur tombe en bas, la partie est terminée
     if (player.pos.y > map_default.height) game.over()
@@ -63,14 +62,11 @@ const map_default = {
     // fonction d'initialisation de la map
     game.map = map_default
 
-    map_default.layer1.src = '../../assets/maps/default_layer1.png'
-    map_default.layer2.src = '../../assets/maps/default_layer2.png'
-
     // initialisation de l'arrière-plan
     map_default.background = []
     map_default.background.push(bg_pixelClouds, bg_hills)
 
-    // réinitialisation des plateformes
+    // initialisation des plateformes
     map_default.platforms = []
     map_default.platforms.push(
       { pos: { x: 192, y: 576 }, width: 1664 },
@@ -121,14 +117,14 @@ const map_default = {
     // fonction qui retourne une position pour la prochaine croquette à faire apparaître
     // nombre aléatoire pour la coordonnée x
     let pos = { x: 0, y: 0 }
-    pos.x = Math.ceil(Math.random() * (1824 - 192) + 192)
+    pos.x = Math.floor(Math.random() * (1824 - 192) + 192)
 
     // si x est inférieur à 958, la croquette spawn dans la ZONE 1, où la zone d'apparition verticale est de 416 à 544
-    if (pos.x < 958) pos.y = Math.ceil(Math.random() * (544 - 416) + 416)
+    if (pos.x < 958) pos.y = Math.floor(Math.random() * (544 - 416) + 416)
     // si x est entre 958 et 1152, la croquette spawn dans la ZONE 2, où la zone d'apparition verticale est de 320 à 544
-    else if (pos.x >= 958 && pos.x < 1152) pos.y = Math.ceil(Math.random() * (544 - 320) + 320)
+    else if (pos.x >= 958 && pos.x < 1152) pos.y = Math.floor(Math.random() * (544 - 320) + 320)
     // sinon, x est supérieur à 1152 et la croquette spawn dans la ZONE 3, où la zone d'apparition verticale est de 256 à 544
-    else pos.y = Math.ceil(Math.random() * (544 - 256) + 256)
+    else pos.y = Math.floor(Math.random() * (544 - 256) + 256)
 
     // on retourne la position
     return pos
@@ -139,7 +135,7 @@ const map_default = {
     if (game.paused || game.isOver || menu_tutorial.show) return
     // s'il y a moins de bourdons que 2 + le score du joueur divisé par 10, on en génère un nouveau et on le fait apparaître
     if (map_default.enemies.length < Math.floor(game.kibbles / 20) + 2) {
-      let r = Math.ceil(Math.random() * 2)
+      let r = Math.floor(Math.random() * 2)
       let x, y, d // positions x, y et direction du bourdon à créer
 
       // Si le nombre aléatoire vaut 1, on spawn le bourdon à gauche de la map et on le fait aller vers la droite
@@ -155,7 +151,7 @@ const map_default = {
       }
 
       // On génère aléatoirement une position y pour le bourdon
-      y = Math.ceil(Math.random() * (485 - 150) + 150 + map_default.offset.y)
+      y = Math.floor(Math.random() * (485 - 150) + 150 + map_default.offset.y)
 
       // On crée le bourdon et on l'ajoute au tableau des ennemis
       let b = new Bumblebee(x, y, d)

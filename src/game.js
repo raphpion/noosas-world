@@ -8,17 +8,11 @@ import { menu_warningPrompt } from './menus/warningPrompt.js'
 import { pushHiscore } from './methods.js'
 import { menu_tutorial } from './menus/tutorial.js'
 import { map_default } from './maps/default.js'
+import { music } from './assets.js'
 
 // Objet qui représente une partie
 const game = {
   background: '#b1e7f8',
-  ground: {
-    img: new Image(),
-    pos: {
-      x: 0,
-      y: 0,
-    },
-  },
   isOver: false,
   paused: false,
   kibbles: 0,
@@ -55,9 +49,6 @@ const game = {
   },
   drawHUD: () => {
     // Fonction pour afficher le Head Up Display
-    let hudIcons = new Image()
-    hudIcons.src = '../assets/sprites/hud.png'
-
     ctx.fillStyle = 'black'
     ctx.textBaseline = 'top'
 
@@ -71,9 +62,7 @@ const game = {
     // Fonction d'initialisation d'une partie
     // Assignation des images et de la musique
     screen.style.backgroundColor = game.background
-    game.ground.img.src = '../assets/tiles/ground_grass.png'
-    player.sprite.img.src = '../assets/sprites/noosa.png'
-    playMusic('arcade')
+    playMusic(music.arcade)
 
     // On remet le score à zéro
     game.kibbles = 0
@@ -155,7 +144,7 @@ const game = {
   },
   over: () => {
     // Fonction de gestion de défaite
-    playMusic('gameover', false)
+    playMusic(music.gameover, false)
     game.isOver = true
 
     // par défaut, ce n'est pas un nouveau record et il n'y a pas de médaille à afficher

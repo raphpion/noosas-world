@@ -1,16 +1,15 @@
 import { ctx } from '../screen.js'
 import { game } from '../game.js'
 import { playSound } from '../audio.js'
+import { sprites, sfx } from '../assets.js'
 
 // Classe d'objet d'une croquette
 class Kibble {
   constructor(x = 0, y = 0) {
     this.sprite = {
-      img: new Image(),
       index: 0,
       sourceX: 0,
     }
-    this.sprite.img.src = '../../assets/sprites/items.png'
     this.animation = null // pour stocker l'intervalle d'animation de la croquette
     this.pos = { x, y }
     this.hitbox = []
@@ -28,7 +27,7 @@ class Kibble {
   }
   collide() {
     // fonction qui s'exécute lorsque le joueur entre en collision avec la croquette
-    playSound('coin')
+    playSound(sfx.coin)
     game.kibbles++
 
     // on change la position de la croquette
@@ -38,7 +37,7 @@ class Kibble {
     // fonction pour dessiner la croquette à l'écran
     // on affiche la croquette à sa position relative à la map
     ctx.drawImage(
-      this.sprite.img,
+      sprites.items,
       this.sprite.sourceX,
       32,
       32,

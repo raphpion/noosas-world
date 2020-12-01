@@ -6,10 +6,10 @@ import { menu_pause } from './pause.js'
 import { playSound } from '../audio.js'
 import { initialSettings } from '../settings.js'
 import { menu_titlescreen } from './titlescreen.js'
+import { sprites, sfx } from '../assets.js'
 
 // avertissement qui demande une confirmation
 const menu_warningPrompt = {
-  background: new Image(),
   visible: false,
   reason: '', // raison pour laquelle on appelle l'avertissement
   pos: {
@@ -37,7 +37,7 @@ const menu_warningPrompt = {
   },
   draw: () => {
     // fonction d'affichage de l'avertissement à l'écran
-    ctx.drawImage(menu_warningPrompt.background, menu_warningPrompt.pos.x, menu_warningPrompt.pos.y)
+    ctx.drawImage(sprites.warning_prompt, menu_warningPrompt.pos.x, menu_warningPrompt.pos.y)
     ctx.font = '40pt VT323'
     ctx.fillStyle = 'black'
     ctx.textAlign = 'center'
@@ -62,7 +62,6 @@ const menu_warningPrompt = {
     // fonction d'initialisation de l'avertissement
     menu_warningPrompt.visible = true
     menu_warningPrompt.reason = reason
-    menu_warningPrompt.background.src = '../../assets/menu/warning_prompt.png'
 
     // selon la raison, on enlève les listeners de l'écran précédent
     if (menu_warningPrompt.reason == 'clearStorage') menu_settings.clear()
@@ -97,7 +96,6 @@ const menu_warningPrompt = {
 
 // bouton de confirmation de l'avertissement
 const confirmButton = {
-  img: new Image(),
   hover: false,
   pos: {
     x: GAME_WIDTH / 2 - 70,
@@ -108,7 +106,7 @@ const confirmButton = {
   sourceX: 0,
   click: () => {
     // si le joueur clique sur le bouton
-    playSound('button')
+    playSound(sfx.button)
     menu_warningPrompt.clear()
 
     // si la demande était de réinitialiser les paramètres
@@ -128,7 +126,6 @@ const confirmButton = {
   },
   draw: () => {
     // fonction d'affichage du bouton de confirmation
-    confirmButton.img.src = '../../assets/menu/button_confirm.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X de la vignette
     if (confirmButton.hover) confirmButton.sourceX = 60
@@ -136,7 +133,7 @@ const confirmButton = {
 
     // on dessine le bouton à l'écran
     ctx.drawImage(
-      confirmButton.img,
+      sprites.button_confirm,
       confirmButton.sourceX,
       0,
       confirmButton.width,
@@ -151,7 +148,6 @@ const confirmButton = {
 
 // bouton d'annulation de l'avertissement
 const cancelButton = {
-  img: new Image(),
   hover: false,
   pos: {
     x: GAME_WIDTH / 2 + 10,
@@ -162,12 +158,11 @@ const cancelButton = {
   sourceX: 0,
   click: () => {
     // si le joueur clique sur le bouton, on quitte l'écran d'avertissement
-    playSound('button')
+    playSound(sfx.button)
     menu_warningPrompt.clear()
   },
   draw: () => {
     // fonction d'affichage du bouton d'annulation à l'écran
-    cancelButton.img.src = '../../assets/menu/button_cancel.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X de la vignette
     if (cancelButton.hover) cancelButton.sourceX = 60
@@ -175,7 +170,7 @@ const cancelButton = {
 
     // affichage du bouton à l'écran
     ctx.drawImage(
-      cancelButton.img,
+      sprites.button_cancel,
       cancelButton.sourceX,
       0,
       cancelButton.width,

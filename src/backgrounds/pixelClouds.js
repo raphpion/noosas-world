@@ -1,5 +1,6 @@
 import { ctx, GAME_WIDTH, GAME_HEIGHT } from '../screen.js'
 import { game } from '../game.js'
+import { backgrounds } from '../assets.js'
 
 // arrière-plan de nuages en jeu
 const bg_pixelClouds = {
@@ -18,7 +19,7 @@ const bg_pixelClouds = {
     // pour créer l'effet que les nuages sont plus loin, on soustrait le dixième de l'offset de la map à la position
     for (let i = 0; i < repeatX; i++)
       ctx.drawImage(
-        bg_pixelClouds.img,
+        backgrounds.pixel_clouds,
         bg_pixelClouds.pos.x + i * GAME_WIDTH - Math.floor(game.map.offset.x / 10),
         bg_pixelClouds.pos.y - Math.floor(game.map.offset.y / 10)
       )
@@ -26,14 +27,11 @@ const bg_pixelClouds = {
     // pour créer l'effet que les nuages sont plus loin, on soustrait le dixième de l'offset de la map à la position
     for (let i = 0; i < repeatY; i++)
       ctx.drawImage(
-        bg_pixelClouds.img,
+        backgrounds.pixel_clouds,
         bg_pixelClouds.pos.x - Math.floor(game.map.offset.x / 10),
         bg_pixelClouds.pos.y + i * Math.floor(GAME_HEIGHT - game.map.offset.y / 10)
       )
   },
 }
-
-// on charge l'image des nuages
-bg_pixelClouds.img.src = '../../assets/backgrounds/pixel_clouds.png'
 
 export { bg_pixelClouds }

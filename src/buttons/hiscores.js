@@ -1,10 +1,10 @@
 import { playSound } from '../audio.js'
 import { ctx, getScene } from '../screen.js'
 import { menu_hiscores } from '../menus/hiscores.js'
+import { sprites, sfx } from '../assets.js'
 
 // bouton d'accès à l'écran des records
 const btn_hiscores = {
-  img: new Image(),
   content: 'Records',
   hover: false,
   pos: {
@@ -15,16 +15,13 @@ const btn_hiscores = {
   height: 60,
   sourceX: 0,
   draw: () => {
-    // fonction d'affichage du bouton
-    btn_hiscores.img.src = '../../assets/menu/button_blue.png'
-
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_hiscores.hover) btn_hiscores.sourceX = 400
     else btn_hiscores.sourceX = 0
 
     // affichage du bouton et de son texte
     ctx.drawImage(
-      btn_hiscores.img,
+      sprites.button_blue,
       btn_hiscores.sourceX,
       0,
       btn_hiscores.width,
@@ -42,7 +39,7 @@ const btn_hiscores = {
   },
   click: () => {
     // si le joueur clique sur le bouton, on passe à l'écran des records
-    playSound('button')
+    playSound(sfx.button)
     btn_hiscores.hover = false
     document.body.style.cursor = 'default'
     getScene(menu_hiscores)

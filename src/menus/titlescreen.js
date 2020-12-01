@@ -5,11 +5,11 @@ import { btn_hiscores } from '../buttons/hiscores.js'
 import { btn_settings } from '../buttons/settings.js'
 import { playMusic } from '../audio.js'
 import { isMouseOverButton } from '../methods.js'
+import { sprites, music } from '../assets.js'
 
 // écran-titre
 const menu_titlescreen = {
   title: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 225,
       y: 55,
@@ -25,17 +25,16 @@ const menu_titlescreen = {
     // fonction d'affichage de l'écran-titre
     clearScreen()
     bg_clouds.draw()
-    ctx.drawImage(menu_titlescreen.title.img, menu_titlescreen.title.pos.x, menu_titlescreen.title.pos.y)
+    ctx.drawImage(sprites.title, menu_titlescreen.title.pos.x, menu_titlescreen.title.pos.y)
     btn_start.draw()
     btn_hiscores.draw()
     btn_settings.draw()
     drawCredits()
   },
   init: () => {
-    // fonction d'initialisation de l'écran-titre, on initialise les images et la musique
-    menu_titlescreen.title.img.src = '../../assets/menu/titleAlt.png'
+    // fonction d'initialisation de l'écran-titre
     screen.style.backgroundColor = menu_titlescreen.background
-    playMusic('titlescreen')
+    playMusic(music.titlescreen)
 
     // positionnement des boutons
     btn_start.content = 'Jouer'

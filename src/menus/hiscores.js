@@ -3,6 +3,7 @@ import { bg_clouds } from '../backgrounds/clouds.js'
 import { btn_return } from '../buttons/return.js'
 import { playMusic } from '../audio.js'
 import { isLocalItemValid, isMouseOverButton } from '../methods.js'
+import { sprites, music } from '../assets.js'
 
 // Variable pour aller chercher le tableau des records dans le local storage
 let hiscores
@@ -10,7 +11,6 @@ let hiscores
 // Écran des records
 const menu_hiscores = {
   title: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 219,
       y: 55,
@@ -18,21 +18,18 @@ const menu_hiscores = {
   },
   background: '#ff9257',
   goldMedal: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 165,
       y: 180,
     },
   },
   silverMedal: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 165,
       y: 240,
     },
   },
   bronzeMedal: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 165,
       y: 300,
@@ -45,7 +42,6 @@ const menu_hiscores = {
   },
   draw: () => {
     // Fonction d'affichage de l'écran des records
-
     // Si le tableau des records est invalide, supprime la clé du local storage, sinon on va chercher le tableau des records
     if (!isLocalItemValid('hiscores')) {
       localStorage.removeItem('hiscores')
@@ -53,7 +49,7 @@ const menu_hiscores = {
     } else hiscores = JSON.parse(localStorage.getItem('hiscores'))
     clearScreen()
     bg_clouds.draw()
-    ctx.drawImage(menu_hiscores.title.img, menu_hiscores.title.pos.x, menu_hiscores.title.pos.y)
+    ctx.drawImage(sprites.records, menu_hiscores.title.pos.x, menu_hiscores.title.pos.y)
     menu_hiscores.drawHiscores()
     btn_return.draw()
     drawCredits()
@@ -77,12 +73,11 @@ const menu_hiscores = {
   },
   drawMedals: () => {
     // Fonction d'affichage des records, si un record existe on affiche la médaille à côté
-    if (hiscores[0])
-      ctx.drawImage(menu_hiscores.goldMedal.img, menu_hiscores.goldMedal.pos.x, menu_hiscores.goldMedal.pos.y)
+    if (hiscores[0]) ctx.drawImage(sprites.medal_gold, menu_hiscores.goldMedal.pos.x, menu_hiscores.goldMedal.pos.y)
     if (hiscores[1])
-      ctx.drawImage(menu_hiscores.silverMedal.img, menu_hiscores.silverMedal.pos.x, menu_hiscores.silverMedal.pos.y)
+      ctx.drawImage(sprites.medal_silver, menu_hiscores.silverMedal.pos.x, menu_hiscores.silverMedal.pos.y)
     if (hiscores[2])
-      ctx.drawImage(menu_hiscores.bronzeMedal.img, menu_hiscores.bronzeMedal.pos.x, menu_hiscores.bronzeMedal.pos.y)
+      ctx.drawImage(sprites.medal_bronze, menu_hiscores.bronzeMedal.pos.x, menu_hiscores.bronzeMedal.pos.y)
   },
   drawScore: (score, i) => {
     // Fonction d'affichage du texte des records
@@ -99,12 +94,8 @@ const menu_hiscores = {
   init: () => {
     // Fonction d'initialisation de l'écran des records
     // On affecte le tableau des records du local storage dans la variable et on initialise les images, le fond et la musique
-    menu_hiscores.title.img.src = '../../assets/menu/records.png'
-    menu_hiscores.goldMedal.img.src = '../../assets/menu/medal_gold.png'
-    menu_hiscores.silverMedal.img.src = '../../assets/menu/medal_silver.png'
-    menu_hiscores.bronzeMedal.img.src = '../../assets/menu/medal_bronze.png'
     screen.style.backgroundColor = menu_hiscores.background
-    playMusic('titlescreen')
+    playMusic(music.titlescreen)
 
     btn_return.pos.x = (GAME_WIDTH - btn_return.width) / 2
     btn_return.pos.y = 510

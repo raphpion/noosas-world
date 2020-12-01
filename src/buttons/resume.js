@@ -1,10 +1,10 @@
 import { playSound } from '../audio.js'
 import { ctx } from '../screen.js'
 import { menu_pause } from '../menus/pause.js'
+import { sprites, sfx } from '../assets.js'
 
 // bouton 'Reprendre' dans l'écran de pause
 const btn_resume = {
-  img: new Image(),
   content: 'Reprendre',
   hover: false,
   pos: {
@@ -15,16 +15,13 @@ const btn_resume = {
   height: 60,
   sourceX: 0,
   draw: () => {
-    // fonction d'affichage du bouton à l'écran
-    btn_resume.img.src = '../../assets/menu/button_blue.png'
-
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_resume.hover) btn_resume.sourceX = 400
     else btn_resume.sourceX = 0
 
     // affichage du bouton et de son texte
     ctx.drawImage(
-      btn_resume.img,
+      sprites.button_blue,
       btn_resume.sourceX,
       0,
       btn_resume.width,
@@ -42,7 +39,7 @@ const btn_resume = {
   },
   click: () => {
     // si le joueur clique sur le bouton, on retourne au jeu
-    playSound('button')
+    playSound(sfx.button)
     btn_resume.hover = false
     document.body.style.cursor = 'default'
     menu_pause.clear()

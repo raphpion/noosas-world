@@ -4,11 +4,11 @@ import { btn_resume } from '../buttons/resume.js'
 import { btn_quit } from '../buttons/quit.js'
 import { isMouseOverButton } from '../methods.js'
 import { menu_warningPrompt } from './warningPrompt.js'
+import { sprites } from '../assets.js'
 
 // Écran de pause
 const menu_pause = {
   title: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 162,
       y: 63,
@@ -27,13 +27,12 @@ const menu_pause = {
     // Fonction d'affichage du menu de pause et de ses composantes dans l'écran de jeu
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
     ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT)
-    ctx.drawImage(menu_pause.title.img, menu_pause.title.pos.x, menu_pause.title.pos.y)
+    ctx.drawImage(sprites.pause, menu_pause.title.pos.x, menu_pause.title.pos.y)
     btn_quit.draw()
     btn_resume.draw()
   },
   init: () => {
     // Fonction d'initialisation du menu de pause
-    menu_pause.title.img.src = '../../assets/menu/pause.png'
 
     // boutons
     btn_resume.pos.x = (GAME_WIDTH - btn_resume.width) / 2

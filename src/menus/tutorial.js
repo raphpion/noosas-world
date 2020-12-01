@@ -4,54 +4,48 @@ import { playMusic } from '../audio.js'
 import { player } from '../player.js'
 import { btn_tutorialToggle } from '../buttons/tutorialToggle.js'
 import { isMouseOverButton } from '../methods.js'
+import { sprites, music } from '../assets.js'
 
 // Écran de tutoriel
 const menu_tutorial = {
   show: false,
   aKey: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 60,
       y: 140,
     },
   },
   dKey: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 120,
       y: 140,
     },
   },
   enterKey: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 60,
       y: 520,
     },
   },
   escKey: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 60,
       y: 380,
     },
   },
   sKey: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 60,
       y: 200,
     },
   },
   shiftKey: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 100,
       y: 320,
     },
   },
   spacebarKey: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 100,
       y: 260,
@@ -72,13 +66,13 @@ const menu_tutorial = {
     ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT)
 
     // touches du clavier
-    ctx.drawImage(menu_tutorial.aKey.img, menu_tutorial.aKey.pos.x, menu_tutorial.aKey.pos.y)
-    ctx.drawImage(menu_tutorial.dKey.img, menu_tutorial.dKey.pos.x, menu_tutorial.dKey.pos.y)
-    ctx.drawImage(menu_tutorial.sKey.img, menu_tutorial.sKey.pos.x, menu_tutorial.sKey.pos.y)
-    ctx.drawImage(menu_tutorial.enterKey.img, menu_tutorial.enterKey.pos.x, menu_tutorial.enterKey.pos.y)
-    ctx.drawImage(menu_tutorial.escKey.img, menu_tutorial.escKey.pos.x, menu_tutorial.escKey.pos.y)
-    ctx.drawImage(menu_tutorial.shiftKey.img, menu_tutorial.shiftKey.pos.x, menu_tutorial.shiftKey.pos.y)
-    ctx.drawImage(menu_tutorial.spacebarKey.img, menu_tutorial.spacebarKey.pos.x, menu_tutorial.spacebarKey.pos.y)
+    ctx.drawImage(sprites.a_key, menu_tutorial.aKey.pos.x, menu_tutorial.aKey.pos.y)
+    ctx.drawImage(sprites.d_key, menu_tutorial.dKey.pos.x, menu_tutorial.dKey.pos.y)
+    ctx.drawImage(sprites.s_key, menu_tutorial.sKey.pos.x, menu_tutorial.sKey.pos.y)
+    ctx.drawImage(sprites.enter_key, menu_tutorial.enterKey.pos.x, menu_tutorial.enterKey.pos.y)
+    ctx.drawImage(sprites.esc_key, menu_tutorial.escKey.pos.x, menu_tutorial.escKey.pos.y)
+    ctx.drawImage(sprites.shift_key, menu_tutorial.shiftKey.pos.x, menu_tutorial.shiftKey.pos.y)
+    ctx.drawImage(sprites.spacebar_key, menu_tutorial.spacebarKey.pos.x, menu_tutorial.spacebarKey.pos.y)
 
     ctx.fillStyle = 'white'
     btn_tutorialToggle.draw()
@@ -106,18 +100,7 @@ const menu_tutorial = {
   init: () => {
     // fonction d'initialisation de l'écran tutoriel
     screen.style.backgroundColor = game.background
-    game.ground.img.src = '../../assets/tiles/ground_grass.png'
-    player.sprite.img.src = '../../assets/sprites/noosa.png'
-    playMusic('arcade')
-
-    // touches du clavier
-    menu_tutorial.aKey.img.src = '../../assets/menu/a_key.png'
-    menu_tutorial.enterKey.img.src = '../../assets/menu/enter_key.png'
-    menu_tutorial.escKey.img.src = '../../assets/menu/esc_key.png'
-    menu_tutorial.dKey.img.src = '../../assets/menu/d_key.png'
-    menu_tutorial.sKey.img.src = '../../assets/menu/s_key.png'
-    menu_tutorial.shiftKey.img.src = '../../assets/menu/shift_key.png'
-    menu_tutorial.spacebarKey.img.src = '../../assets/menu/spacebar_key.png'
+    playMusic(music.arcade)
 
     // bouton toggle
     btn_tutorialToggle.pos.x = GAME_WIDTH / 2 - 120

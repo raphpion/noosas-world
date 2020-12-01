@@ -1,10 +1,10 @@
 import { playSound } from '../audio.js'
 import { ctx, getScene } from '../screen.js'
 import { menu_settings } from '../menus/settings.js'
+import { sprites, sfx } from '../assets.js'
 
 // bouton d'accès à l'écran des options
 const btn_settings = {
-  img: new Image(),
   content: 'Options',
   hover: false,
   pos: {
@@ -16,7 +16,6 @@ const btn_settings = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    btn_settings.img.src = '../../assets/menu/button_yellow.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_settings.hover) btn_settings.sourceX = 400
@@ -24,7 +23,7 @@ const btn_settings = {
 
     // affichage du bouton et de son texte
     ctx.drawImage(
-      btn_settings.img,
+      sprites.button_yellow,
       btn_settings.sourceX,
       0,
       btn_settings.width,
@@ -41,7 +40,7 @@ const btn_settings = {
     ctx.fillText(btn_settings.content, btn_settings.pos.x + 200, btn_settings.pos.y)
   },
   click: () => {
-    playSound('button')
+    playSound(sfx.button)
     btn_settings.hover = false
     document.body.style.cursor = 'default'
     getScene(menu_settings)
