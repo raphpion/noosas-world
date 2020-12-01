@@ -8,25 +8,23 @@ import { btn_tutorialToggle } from '../buttons/tutorialToggle.js'
 import { playMusic } from '../audio.js'
 import { isMouseOverButton } from '../methods.js'
 import { menu_warningPrompt } from './warningPrompt.js'
+import { sprites, music } from '../assets.js'
 
 // Écran des options
 const menu_settings = {
   title: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 223,
       y: 63,
     },
   },
   musicIcon: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 160,
       y: 202,
     },
   },
   soundIcon: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 160,
       y: 282,
@@ -37,10 +35,10 @@ const menu_settings = {
     // fonction d'affichage du menu à l'écran
     clearScreen()
     bg_clouds.draw()
-    ctx.drawImage(menu_settings.title.img, menu_settings.title.pos.x, menu_settings.title.pos.y)
+    ctx.drawImage(sprites.options, menu_settings.title.pos.x, menu_settings.title.pos.y)
 
-    ctx.drawImage(menu_settings.musicIcon.img, menu_settings.musicIcon.pos.x, menu_settings.musicIcon.pos.y)
-    ctx.drawImage(menu_settings.soundIcon.img, menu_settings.soundIcon.pos.x, menu_settings.soundIcon.pos.y)
+    ctx.drawImage(sprites.music, menu_settings.musicIcon.pos.x, menu_settings.musicIcon.pos.y)
+    ctx.drawImage(sprites.sound, menu_settings.soundIcon.pos.x, menu_settings.soundIcon.pos.y)
 
     btn_musicMinus.draw()
     btn_musicPlus.draw()
@@ -68,10 +66,8 @@ const menu_settings = {
   },
   init: () => {
     // fonction d'initialisation de l'écran des option
-    menu_settings.title.img.src = '../../assets/menu/options.png'
-    menu_settings.musicIcon.img.src = '../../assets/menu/music.png'
-    menu_settings.soundIcon.img.src = '../../assets/menu/sound.png'
     screen.style.backgroundColor = menu_settings.background
+    playMusic(music.titlescreen)
 
     // placement des éléments
     musicBar.pos.x = GAME_WIDTH / 2 - 28
@@ -96,8 +92,6 @@ const menu_settings = {
     btn_clearStorage.pos.y = 410
     btn_return.pos.x = (GAME_WIDTH - btn_return.width) / 2
     btn_return.pos.y = 510
-
-    playMusic('titlescreen', true)
 
     // on ajoute les listeners de souris au document et on retourne l'intervalle d'affichage
     document.addEventListener('click', menu_settings.mouseClick)

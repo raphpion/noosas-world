@@ -1,17 +1,16 @@
 import { ctx } from '../screen.js'
 import { game } from '../game.js'
+import { sprites } from '../assets.js'
 
 // Classe d'objet d'un bourdon
 class Bumblebee {
   constructor(x = 0, y = 0, direction = 'right') {
     this.sprite = {
-      img: new Image(),
       direction,
       index: 0,
       sourceX: 0,
     }
     this.speed = Math.ceil(Math.random() * (10 - 5) + 5)
-    this.sprite.img.src = '../../assets/sprites/bumblebee.png'
     this.animation = null // pour stocker l'intervalle d'animation du bourdon
     this.pos = { x, y }
     this.hitbox = []
@@ -40,7 +39,7 @@ class Bumblebee {
     // fonction pour dessiner le bourdon à l'écran
     // on affiche le bourdon à sa position relative à la map
     ctx.drawImage(
-      this.sprite.img,
+      sprites.bumblebee,
       this.sprite.sourceX,
       0,
       46,

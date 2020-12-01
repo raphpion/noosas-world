@@ -1,10 +1,10 @@
 import { playSound } from '../audio.js'
 import { ctx, getScene } from '../screen.js'
 import { menu_titlescreen } from '../menus/titlescreen.js'
+import { sprites, sfx } from '../assets.js'
 
 // bouton de retour dans les écrans 'Options' et 'Records'
 const btn_return = {
-  img: new Image(),
   content: 'Retour',
   hover: false,
   pos: {
@@ -16,7 +16,6 @@ const btn_return = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton à l'écran
-    btn_return.img.src = '../../assets/menu/button_blue.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_return.hover) btn_return.sourceX = 400
@@ -24,7 +23,7 @@ const btn_return = {
 
     // affichage du bouton et de son texte
     ctx.drawImage(
-      btn_return.img,
+      sprites.button_blue,
       btn_return.sourceX,
       0,
       btn_return.width,
@@ -42,7 +41,7 @@ const btn_return = {
   },
   click: () => {
     // si le joueur clique sur le bouton, on retourne à l'écran-titre
-    playSound('button')
+    playSound(sfx.button)
     btn_return.hover = false
     document.body.style.cursor = 'default'
     getScene(menu_titlescreen)

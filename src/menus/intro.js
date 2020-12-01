@@ -1,11 +1,11 @@
 import { screen, ctx, GAME_WIDTH, clearScreen, drawCredits, getScene } from '../screen.js'
 import { menu_titlescreen } from './titlescreen.js'
 import { bg_clouds } from '../backgrounds/clouds.js'
+import { sprites } from '../assets.js'
 
 // Écran d'accueil
 const menu_intro = {
   title: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 225,
       y: 185,
@@ -20,7 +20,7 @@ const menu_intro = {
     // fonction d'affichage de l'écran d'accueil
     clearScreen()
     bg_clouds.draw()
-    ctx.drawImage(menu_intro.title.img, menu_intro.title.pos.x, menu_intro.title.pos.y)
+    ctx.drawImage(sprites.title, menu_intro.title.pos.x, menu_intro.title.pos.y)
     ctx.font = '24pt VT323'
     ctx.fillStyle = 'black'
     ctx.textAlign = 'center'
@@ -30,7 +30,6 @@ const menu_intro = {
   },
   init: () => {
     // fonction d'initialisation de l'écran d'accueil
-    menu_intro.title.img.src = '../../assets/menu/titleAlt.png'
     screen.style.backgroundColor = menu_intro.background
 
     // on ajoute le listener de clavier et on retourne l'intervalle d'affichage

@@ -2,11 +2,11 @@ import { keys } from './controller.js'
 import { playSound } from './audio.js'
 import { ctx, GAME_WIDTH, GAME_HEIGHT } from './screen.js'
 import { game } from './game.js'
+import { sprites, sfx } from './assets.js'
 
 // Personnage joueur
 const player = {
   sprite: {
-    img: new Image(),
     action: 'idle',
     direction: 'right',
     index: 0,
@@ -130,7 +130,7 @@ const player = {
 
     // On affiche le joueur sur sa position relative à la map
     ctx.drawImage(
-      player.sprite.img,
+      sprites.noosa,
       player.sprite.sourceX,
       player.sprite.sourceY,
       player.sprite.width,
@@ -180,7 +180,7 @@ const player = {
     // Fonction de déplacement du personnage
     // Si le joueur appuie sur espace et que le personnage n'est pas en train de sauter, on le fait sauter
     if (keys.space && !player.jumping) {
-      playSound('jump')
+      playSound(sfx.jump)
       player.velocity.y -= 35
       player.jumping = true
     }

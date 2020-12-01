@@ -1,4 +1,5 @@
 import { ctx } from '../screen.js'
+import { sprites } from '../assets.js'
 
 // barre de son du volume de la musique
 const musicBar = {
@@ -12,8 +13,6 @@ const musicBar = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage de la barre de son
-    musicBar.img.src = '../../assets/menu/soundbar.png'
-
     // pour chaque barre de son, on vérifie si le volume est suffisant pour qu'elle soit verte
     for (let i = 0; i < 5; i++) {
       if (localStorage.getItem('musicVolume') > i * 0.2) musicBar.sourceX = 16
@@ -21,7 +20,7 @@ const musicBar = {
 
       // on affiche la barre à l'écran
       ctx.drawImage(
-        musicBar.img,
+        sprites.soundbar,
         musicBar.sourceX,
         0,
         musicBar.width,
@@ -47,7 +46,6 @@ const soundBar = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage de la barre de son à l'écran
-    soundBar.img.src = '../assets/menu/soundbar.png'
     // pour chaque barre de son, on vérifie si le volume est suffisant pour qu'elle soit verte
     for (let i = 0; i < 5; i++) {
       if (localStorage.getItem('soundVolume') > i * 0.2) soundBar.sourceX = 16
@@ -55,7 +53,7 @@ const soundBar = {
 
       // on affiche la barre à l'écran
       ctx.drawImage(
-        soundBar.img,
+        sprites.soundbar,
         soundBar.sourceX,
         0,
         soundBar.width,

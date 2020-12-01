@@ -3,10 +3,10 @@ import { ctx, getScene } from '../screen.js'
 import { menu_tutorial } from '../menus/tutorial.js'
 import { game } from '../game.js'
 import { player } from '../player.js'
+import { sprites, sfx } from '../assets.js'
 
 // bouton 'Jouer' de l'écran-titre et 'Rejouer' de l'écran gameOver
 const btn_start = {
-  img: new Image(),
   content: '',
   hover: false,
   pos: {
@@ -17,16 +17,13 @@ const btn_start = {
   height: 60,
   sourceX: 0,
   draw: () => {
-    // fonction d'affichage du bouton 'jouer' à l'écran
-    btn_start.img.src = '../../assets/menu/button_green.png'
-
     // si le bouton est hover, on change sa source en X
     if (btn_start.hover) btn_start.sourceX = 400
     else btn_start.sourceX = 0
 
     // affichage du bouton et du texte qui l'accompagne à l'écran
     ctx.drawImage(
-      btn_start.img,
+      sprites.button_green,
       btn_start.sourceX,
       0,
       btn_start.width,
@@ -44,7 +41,7 @@ const btn_start = {
   },
   click: () => {
     // lorsque le joueur clique sur le bouton
-    playSound('button')
+    playSound(sfx.button)
     document.body.style.cursor = 'default'
     btn_start.hover = false
 

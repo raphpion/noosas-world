@@ -1,10 +1,10 @@
 import { playSound } from '../audio.js'
 import { ctx } from '../screen.js'
 import { menu_warningPrompt } from '../menus/warningPrompt.js'
+import { sprites, sfx } from '../assets.js'
 
 // bouton 'Réinitialiser' du menu des options
 const btn_clearStorage = {
-  img: new Image(),
   content: 'Réinitialiser',
   hover: false,
   pos: {
@@ -16,7 +16,6 @@ const btn_clearStorage = {
   sourceX: 0,
   draw: () => {
     // fonction d'affichage du bouton 'Réinitialiser'
-    btn_clearStorage.img.src = '../../assets/menu/button_red.png'
 
     // selon si le bouton est 'hover' ou non, on change la source en X
     if (btn_clearStorage.hover) btn_clearStorage.sourceX = 400
@@ -24,7 +23,7 @@ const btn_clearStorage = {
 
     // affichage du bouton et de son texte
     ctx.drawImage(
-      btn_clearStorage.img,
+      sprites.button_red,
       btn_clearStorage.sourceX,
       0,
       btn_clearStorage.width,
@@ -42,7 +41,7 @@ const btn_clearStorage = {
   },
   click: () => {
     // si le joueur clique sur le bouton, on affiche un avertissement
-    playSound('button')
+    playSound(sfx.button)
     menu_warningPrompt.init('clearStorage')
   },
 }

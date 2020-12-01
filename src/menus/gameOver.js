@@ -4,18 +4,17 @@ import { btn_start } from '../buttons/start.js'
 import { btn_hiscores } from '../buttons/hiscores.js'
 import { btn_return } from '../buttons/return.js'
 import { isMouseOverButton } from '../methods.js'
+import { sprites } from '../assets.js'
 
 // Écran de Game Over
 const menu_gameOver = {
   title: {
-    img: new Image(),
     pos: {
       x: GAME_WIDTH / 2 - 152,
       y: 43,
     },
   },
   medal: {
-    img: new Image(),
     type: null,
     pos: {
       x: GAME_WIDTH / 2 + 111,
@@ -32,7 +31,7 @@ const menu_gameOver = {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.7)'
     ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT)
 
-    ctx.drawImage(menu_gameOver.title.img, menu_gameOver.title.pos.x, menu_gameOver.title.pos.y)
+    ctx.drawImage(sprites.gameOver, menu_gameOver.title.pos.x, menu_gameOver.title.pos.y)
 
     ctx.font = '32pt VT323'
     ctx.fillStyle = 'white'
@@ -47,10 +46,12 @@ const menu_gameOver = {
     }
 
     // Si on a un type de médaille à afficher, on le fait
-    if (menu_gameOver.medal.type != null) {
-      menu_gameOver.medal.img.src = `../../assets/menu/medal_${menu_gameOver.medal.type}.png`
-      ctx.drawImage(menu_gameOver.medal.img, menu_gameOver.medal.pos.x, menu_gameOver.medal.pos.y)
-    }
+    if (menu_gameOver.medal.type == 'gold')
+      ctx.drawImage(sprites.medal_gold, menu_gameOver.medal.pos.x, menu_gameOver.pos.y)
+    if (menu_gameOver.medal.type == 'silver')
+      ctx.drawImage(sprites.medal_silver, menu_gameOver.medal.pos.x, menu_gameOver.pos.y)
+    if (menu_gameOver.medal.type == 'bronze')
+      ctx.drawImage(sprites.medal_bronze, menu_gameOver.medal.pos.x, menu_gameOver.pos.y)
 
     // Affichage des boutons
     btn_start.draw()
@@ -59,8 +60,6 @@ const menu_gameOver = {
   },
   init: () => {
     // Fonction d'initialisation de l'écran Game Over
-    menu_gameOver.title.img.src = '../../assets/menu/gameOver.png'
-
     document.addEventListener('click', menu_gameOver.mouseClick)
     document.addEventListener('mousemove', menu_gameOver.mouseMove)
 

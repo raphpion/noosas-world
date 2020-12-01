@@ -8,10 +8,12 @@
 
 import { initialSettings } from './settings.js'
 import { getScene } from './screen.js'
-import { menu_intro } from './menus/intro.js'
+import { menu_loading } from './menus/loading.js'
+
+console.log(`Noosa's World running version 1.0`)
 
 // Vérification de l'intégrité des options utilisateurs
 initialSettings()
 
-// Appel de l'écran titre
-getScene(menu_intro)
+// Chargement des ressources du jeu
+getScene(menu_loading)
