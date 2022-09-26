@@ -266,7 +266,7 @@ const player = {
         if (player.sprite.index == 0) {
           player.hitbox.push(
             { pos: { x: 78, y: 36 }, width: 20, height: 18 }, // tête
-            { pos: { x: 2, y: 0 }, width: 14, height: 38 }, // queue
+            // { pos: { x: 2, y: 0 }, width: 14, height: 38 }, // queue
             { pos: { x: 8, y: 38 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 12, y: 60 }, width: 64, height: 12 }, // bas de corps
             { pos: { x: 16, y: 72 }, width: 20, height: 12 }, // pattes arrières
@@ -278,7 +278,7 @@ const player = {
         if (player.sprite.index == 1) {
           player.hitbox.push(
             { pos: { x: 78, y: 38 }, width: 20, height: 18 }, // tête
-            { pos: { x: 4, y: 2 }, width: 10, height: 40 }, // queue
+            // { pos: { x: 4, y: 2 }, width: 10, height: 40 }, // queue
             { pos: { x: 8, y: 40 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 8, y: 62 }, width: 74, height: 8 }, // bas de corps
             { pos: { x: 8, y: 70 }, width: 18, height: 12 }, // pattes arrières
@@ -290,7 +290,7 @@ const player = {
         if (player.sprite.index == 2) {
           player.hitbox.push(
             { pos: { x: 78, y: 36 }, width: 20, height: 18 }, // tête
-            { pos: { x: 2, y: 0 }, width: 10, height: 40 }, // queue
+            // { pos: { x: 2, y: 0 }, width: 10, height: 40 }, // queue
             { pos: { x: 6, y: 38 }, width: 72, height: 22 }, // haut de corps
             { pos: { x: 4, y: 60 }, width: 74, height: 8 }, // bas de corps
             { pos: { x: 0, y: 68 }, width: 16, height: 14 }, // pattes arrières
@@ -305,7 +305,7 @@ const player = {
         if (player.sprite.index == 0) {
           player.hitbox.push(
             { pos: { x: 2, y: 36 }, width: 20, height: 18 }, // tête
-            { pos: { x: 84, y: 0 }, width: 14, height: 38 }, // queue
+            // { pos: { x: 84, y: 0 }, width: 14, height: 38 }, // queue
             { pos: { x: 22, y: 38 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 24, y: 60 }, width: 64, height: 12 }, // bas de corps
             { pos: { x: 64, y: 72 }, width: 20, height: 12 }, // pattes arrières
@@ -317,7 +317,7 @@ const player = {
         if (player.sprite.index == 1) {
           player.hitbox.push(
             { pos: { x: 2, y: 38 }, width: 20, height: 18 }, // tête
-            { pos: { x: 86, y: 2 }, width: 10, height: 40 }, // queue
+            // { pos: { x: 86, y: 2 }, width: 10, height: 40 }, // queue
             { pos: { x: 22, y: 40 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 18, y: 62 }, width: 74, height: 8 }, // bas de corps
             { pos: { x: 74, y: 70 }, width: 18, height: 12 }, // pattes arrières
@@ -329,7 +329,7 @@ const player = {
         if (player.sprite.index == 2) {
           player.hitbox.push(
             { pos: { x: 2, y: 36 }, width: 20, height: 18 }, // tête
-            { pos: { x: 88, y: 0 }, width: 10, height: 40 }, // queue
+            // { pos: { x: 88, y: 0 }, width: 10, height: 40 }, // queue
             { pos: { x: 22, y: 38 }, width: 72, height: 22 }, // haut de corps
             { pos: { x: 22, y: 60 }, width: 74, height: 8 }, // bas de corps
             { pos: { x: 84, y: 68 }, width: 16, height: 14 }, // pattes arrières
@@ -345,7 +345,7 @@ const player = {
       if (player.sprite.direction == 'right') {
         player.hitbox.push(
           { pos: { x: 78, y: 36 }, width: 20, height: 18 }, // tête
-          { pos: { x: 2, y: 0 }, width: 14, height: 38 }, // queue
+          // { pos: { x: 2, y: 0 }, width: 14, height: 38 }, // queue
           { pos: { x: 8, y: 38 }, width: 70, height: 22 }, // haut de corps
           { pos: { x: 12, y: 60 }, width: 64, height: 12 }, // bas de corps
           { pos: { x: 16, y: 72 }, width: 20, height: 12 }, // pattes arrières
@@ -357,7 +357,7 @@ const player = {
       if (player.sprite.direction == 'left') {
         player.hitbox.push(
           { pos: { x: 2, y: 36 }, width: 20, height: 18 }, // tête
-          { pos: { x: 84, y: 0 }, width: 14, height: 38 }, // queue
+          // { pos: { x: 84, y: 0 }, width: 14, height: 38 }, // queue
           { pos: { x: 22, y: 38 }, width: 70, height: 22 }, // haut de corps
           { pos: { x: 24, y: 60 }, width: 64, height: 12 }, // bas de corps
           { pos: { x: 64, y: 72 }, width: 20, height: 12 }, // pattes arrières
@@ -374,7 +374,7 @@ const player = {
         if (player.sprite.index == 0) {
           player.hitbox.push(
             { pos: { x: 78, y: 36 }, width: 20, height: 18 }, // tête
-            { pos: { x: 2, y: 0 }, width: 14, height: 38 }, // queue
+            // { pos: { x: 2, y: 0 }, width: 14, height: 38 }, // queue
             { pos: { x: 8, y: 38 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 12, y: 60 }, width: 64, height: 12 }, // bas de corps
             { pos: { x: 16, y: 72 }, width: 20, height: 12 }, // pattes arrières
@@ -386,7 +386,7 @@ const player = {
         if (player.sprite.index == 1) {
           player.hitbox.push(
             { pos: { x: 78, y: 40 }, width: 20, height: 18 }, // tête
-            { pos: { x: 4, y: 4 }, width: 10, height: 40 }, // queue
+            // { pos: { x: 4, y: 4 }, width: 10, height: 40 }, // queue
             { pos: { x: 8, y: 42 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 8, y: 64 }, width: 74, height: 10 }, // bas de corps
             { pos: { x: 8, y: 74 }, width: 28, height: 10 }, // pattes arrières
@@ -398,7 +398,7 @@ const player = {
         if (player.sprite.index == 2) {
           player.hitbox.push(
             { pos: { x: 78, y: 38 }, width: 20, height: 18 }, // tête
-            { pos: { x: 2, y: 2 }, width: 10, height: 40 }, // queue
+            // { pos: { x: 2, y: 2 }, width: 10, height: 40 }, // queue
             { pos: { x: 8, y: 40 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 0, y: 62 }, width: 78, height: 12 }, // bas de corps
             { pos: { x: 0, y: 74 }, width: 40, height: 10 }, // pattes arrières
@@ -414,7 +414,7 @@ const player = {
         if (player.sprite.index == 0) {
           player.hitbox.push(
             { pos: { x: 2, y: 36 }, width: 20, height: 18 }, // tête
-            { pos: { x: 84, y: 0 }, width: 14, height: 38 }, // queue
+            // { pos: { x: 84, y: 0 }, width: 14, height: 38 }, // queue
             { pos: { x: 22, y: 38 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 24, y: 60 }, width: 64, height: 12 }, // bas de corps
             { pos: { x: 64, y: 72 }, width: 20, height: 12 }, // pattes arrières
@@ -426,7 +426,7 @@ const player = {
         if (player.sprite.index == 1) {
           player.hitbox.push(
             { pos: { x: 2, y: 40 }, width: 20, height: 18 }, // tête
-            { pos: { x: 86, y: 4 }, width: 10, height: 40 }, // queue
+            // { pos: { x: 86, y: 4 }, width: 10, height: 40 }, // queue
             { pos: { x: 22, y: 42 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 18, y: 64 }, width: 74, height: 10 }, // bas de corps
             { pos: { x: 64, y: 74 }, width: 28, height: 10 }, // pattes arrières
@@ -438,7 +438,7 @@ const player = {
         if (player.sprite.index == 2) {
           player.hitbox.push(
             { pos: { x: 2, y: 38 }, width: 20, height: 18 }, // tête
-            { pos: { x: 88, y: 2 }, width: 10, height: 40 }, // queue
+            // { pos: { x: 88, y: 2 }, width: 10, height: 40 }, // queue
             { pos: { x: 22, y: 40 }, width: 70, height: 22 }, // haut de corps
             { pos: { x: 22, y: 62 }, width: 78, height: 12 }, // bas de corps
             { pos: { x: 60, y: 74 }, width: 40, height: 10 }, // pattes arrières
