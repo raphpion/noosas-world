@@ -46,9 +46,9 @@ const menu_gameOver = {
     }
 
     // Si on a un type de médaille à afficher, on le fait
-    if (menu_gameOver.medal.type == 'gold') ctx.drawImage(sprites.medal_gold, menu_gameOver.medal.pos.x, menu_gameOver.pos.y);
-    if (menu_gameOver.medal.type == 'silver') ctx.drawImage(sprites.medal_silver, menu_gameOver.medal.pos.x, menu_gameOver.pos.y);
-    if (menu_gameOver.medal.type == 'bronze') ctx.drawImage(sprites.medal_bronze, menu_gameOver.medal.pos.x, menu_gameOver.pos.y);
+    if (menu_gameOver.medal.type == 'gold') ctx.drawImage(sprites.medal_gold, menu_gameOver.medal.pos.x, menu_gameOver.medal.pos.y);
+    if (menu_gameOver.medal.type == 'silver') ctx.drawImage(sprites.medal_silver, menu_gameOver.medal.pos.x, menu_gameOver.medal.pos.y);
+    if (menu_gameOver.medal.type == 'bronze') ctx.drawImage(sprites.medal_bronze, menu_gameOver.medal.pos.x, menu_gameOver.medal.pos.y);
 
     // Affichage des boutons
     btn_start.draw();
