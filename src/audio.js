@@ -33,9 +33,9 @@ function playSound(sound) {
   for (let sound in sfx) {
     if (!sfx[sound].paused && !sfx[sound].ended) {
       sfx[sound].pause;
-      sfx[sound].currentTime = 0;
     }
   }
+  sound.currentTime = 0;
   sound.loop = false;
   sound.play();
 }
