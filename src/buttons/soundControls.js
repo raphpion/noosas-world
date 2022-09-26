@@ -1,6 +1,6 @@
-import { appendAudioSettings, playSound } from '../audio.js'
-import { ctx } from '../screen.js'
-import { sprites, sfx } from '../assets.js'
+import { appendAudioSettings, playSound } from '../audio.js';
+import { ctx } from '../screen.js';
+import { sprites, sfx } from '../assets.js';
 
 // bouton pour diminuer la musique
 const btn_musicMinus = {
@@ -15,8 +15,8 @@ const btn_musicMinus = {
   draw: () => {
     // fonction d'affichage du bouton
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (btn_musicMinus.hover) btn_musicMinus.sourceX = 48
-    else btn_musicMinus.sourceX = 0
+    if (btn_musicMinus.hover) btn_musicMinus.sourceX = 48;
+    else btn_musicMinus.sourceX = 0;
 
     // affichage du bouton à l'écran
     ctx.drawImage(
@@ -29,24 +29,24 @@ const btn_musicMinus = {
       btn_musicMinus.pos.y,
       btn_musicMinus.width,
       btn_musicMinus.height
-    )
+    );
   },
   click: () => {
     // si le joueur clique sur le bouton, on réduit le son du volume
-    playSound(sfx.button)
-    let value = Number(localStorage.getItem('musicVolume')) - 0.2
+    playSound(sfx.button);
+    let value = Number(localStorage.getItem('musicVolume')) - 0.2;
 
     // si la valeur est sous la limite permise, on la remet à 0
-    if (value < 0) value = 0
+    if (value < 0) value = 0;
 
     //? le code génère des valeurs décimales étranges, on arrondit donc le résultat à une décimale
-    value = Math.round(value * 10) / 10
+    value = Math.round(value * 10) / 10;
 
     // on affecte la valeur au local storage et on applique les modifications aux variables du jeu
-    localStorage.setItem('musicVolume', value)
-    appendAudioSettings()
+    localStorage.setItem('musicVolume', value);
+    appendAudioSettings();
   },
-}
+};
 
 // bouton pour augmenter le volume de la musique
 const btn_musicPlus = {
@@ -61,8 +61,8 @@ const btn_musicPlus = {
   draw: () => {
     // fonction d'affichage du bouton à l'écran
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (btn_musicPlus.hover) btn_musicPlus.sourceX = 48
-    else btn_musicPlus.sourceX = 0
+    if (btn_musicPlus.hover) btn_musicPlus.sourceX = 48;
+    else btn_musicPlus.sourceX = 0;
 
     // affichage du bouton à l'écran
     ctx.drawImage(
@@ -75,24 +75,24 @@ const btn_musicPlus = {
       btn_musicPlus.pos.y,
       btn_musicPlus.width,
       btn_musicPlus.height
-    )
+    );
   },
   click: () => {
     // si le joueur clique sur le bouton, on augmente le volume de la musique
-    playSound(sfx.button)
-    let value = Number(localStorage.getItem('musicVolume')) + 0.2
+    playSound(sfx.button);
+    let value = Number(localStorage.getItem('musicVolume')) + 0.2;
 
     // si la valeur dépasse la limite permise, on la remet à 1
-    if (value > 1) value = 1
+    if (value > 1) value = 1;
 
     //? le code génère des valeurs décimales étranges, on arrondit donc le résultat à une décimale
-    value = Math.round(value * 10) / 10
+    value = Math.round(value * 10) / 10;
 
     // on affecte la valeur au local storage et on applique les modifications aux variables du jeu
-    localStorage.setItem('musicVolume', value)
-    appendAudioSettings()
+    localStorage.setItem('musicVolume', value);
+    appendAudioSettings();
   },
-}
+};
 
 // bouton pour diminuer le volume du son
 const btn_soundMinus = {
@@ -107,8 +107,8 @@ const btn_soundMinus = {
   draw: () => {
     // fonction d'affichage du bouton à l'écran
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (btn_soundMinus.hover) btn_soundMinus.sourceX = 48
-    else btn_soundMinus.sourceX = 0
+    if (btn_soundMinus.hover) btn_soundMinus.sourceX = 48;
+    else btn_soundMinus.sourceX = 0;
 
     // affichage du bouton à l'écran
     ctx.drawImage(
@@ -121,24 +121,24 @@ const btn_soundMinus = {
       btn_soundMinus.pos.y,
       btn_soundMinus.width,
       btn_soundMinus.height
-    )
+    );
   },
   click: () => {
     // si le joueur clique sur le bouton, on réduit le son du volume
-    playSound(sfx.button)
-    let value = Number(localStorage.getItem('soundVolume')) - 0.2
+    playSound(sfx.button);
+    let value = Number(localStorage.getItem('soundVolume')) - 0.2;
 
     // si la valeur est sous la limite permise, on la remet à 0
-    if (value < 0) value = 0
+    if (value < 0) value = 0;
 
     //? le code génère des valeurs décimales étranges, on arrondit donc le résultat à une décimale
-    value = Math.round(value * 10) / 10
+    value = Math.round(value * 10) / 10;
 
     // on affecte la valeur au local storage et on applique les modifications aux variables du jeu
-    localStorage.setItem('soundVolume', value)
-    appendAudioSettings()
+    localStorage.setItem('soundVolume', value);
+    appendAudioSettings();
   },
-}
+};
 
 // bouton pour augmenter le volume du son
 const btn_soundPlus = {
@@ -153,8 +153,8 @@ const btn_soundPlus = {
   draw: () => {
     // fonction d'affichage du bouton à l'écran
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (btn_soundPlus.hover) btn_soundPlus.sourceX = 48
-    else btn_soundPlus.sourceX = 0
+    if (btn_soundPlus.hover) btn_soundPlus.sourceX = 48;
+    else btn_soundPlus.sourceX = 0;
 
     // affichage du bouton à l'écran
     ctx.drawImage(
@@ -167,23 +167,23 @@ const btn_soundPlus = {
       btn_soundPlus.pos.y,
       btn_soundPlus.width,
       btn_soundPlus.height
-    )
+    );
   },
   click: () => {
     // si le joueur clique sur le bouton, on augmente le volume du son
-    playSound(sfx.button)
-    let value = Number(localStorage.getItem('soundVolume')) + 0.2
+    playSound(sfx.button);
+    let value = Number(localStorage.getItem('soundVolume')) + 0.2;
 
     // si la valeur dépasse la limite permise, on la remet à 1
-    if (value > 1) value = 1
+    if (value > 1) value = 1;
 
     //? le code génère des valeurs décimales étranges, on arrondit donc le résultat à une décimale
-    value = Math.round(value * 10) / 10
+    value = Math.round(value * 10) / 10;
 
     // on affecte la valeur au local storage et on applique les modifications aux valeurs du jeu
-    localStorage.setItem('soundVolume', value)
-    appendAudioSettings()
+    localStorage.setItem('soundVolume', value);
+    appendAudioSettings();
   },
-}
+};
 
-export { btn_musicMinus, btn_musicPlus, btn_soundMinus, btn_soundPlus }
+export { btn_musicMinus, btn_musicPlus, btn_soundMinus, btn_soundPlus };

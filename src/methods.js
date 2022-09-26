@@ -1,20 +1,20 @@
-import { screen } from './screen.js'
-import { menu_gameOver } from './menus/gameOver.js'
+import { screen } from './screen.js';
+import { menu_gameOver } from './menus/gameOver.js';
 
 function getMousePos(e) {
   // Fonction qui renvoie un objet comprenant la position x et y de la souris par-rapport au coin supérieur gauche de l'écran de jeu
-  let rect = screen.getBoundingClientRect()
+  let rect = screen.getBoundingClientRect();
   return {
     x: e.clientX - rect.left,
     y: e.clientY - rect.top,
-  }
+  };
 }
 
 function areObjectsColliding(obj1, obj2) {
   // Fonction qui vérifie chaque hitbox de deux objets et qui renvoie true si il y a collision
 
   // Si un des deux array de hitbox est vide, renvoie false
-  if (obj1.hitbox.length == 0 || obj2.hitbox.length == 0) return false
+  if (obj1.hitbox.length == 0 || obj2.hitbox.length == 0) return false;
 
   // Pour chaque élément du hitbox de l'objet 1...
   for (const hitbox1 of obj1.hitbox) {
@@ -27,7 +27,7 @@ function areObjectsColliding(obj1, obj2) {
         obj1.pos.y + hitbox1.pos.y < obj2.pos.y + hitbox2.pos.y + hitbox2.height &&
         obj1.pos.y + hitbox1.pos.y + hitbox1.height > obj2.pos.y + hitbox2.pos.y
       )
-        return true
+        return true;
     }
   }
 }
@@ -43,46 +43,46 @@ function canBeParsed(i) {
         .replace(/(?:^|:|,)(?:\s*\[)+/g, '')
     )
   )
-    return true
-  else return false
+    return true;
+  else return false;
 }
 
 function isLocalItemValid(i) {
   // Fonction de validation de paramètre local
-  let value = localStorage.getItem(i)
+  let value = localStorage.getItem(i);
 
-  if (value == null || value == undefined || value == '') return false
+  if (value == null || value == undefined || value == '') return false;
 
   // Si le paramètre correspond au volume de la musique ou du son, on vérifie et retourne sa validité
   if (i == 'musicVolume' || i == 'soundVolume') {
-    if (value == 0 || value == 0.2 || value == 0.4 || value == 0.6 || value == 0.8 || value == 1) return true
+    if (value == 0 || value == 0.2 || value == 0.4 || value == 0.6 || value == 0.8 || value == 1) return true;
     else {
       //! Message d'avertissement à la console
-      console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`)
+      console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`);
 
-      return false
+      return false;
     }
   }
 
   // Si le paramètre correspond à l'affichage du tutoriel, on vérifie et retourne sa validité
   if (i == 'showTutorial') {
-    if (value == 'true' || value == 'false') return true
+    if (value == 'true' || value == 'false') return true;
     else {
       //! Message d'avertissement à la console
-      console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`)
+      console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`);
 
-      return false
+      return false;
     }
   }
 
   // Si le paramètre correspond au debug mode, on vérifie et retourne sa validité
   if (i == 'debugMode') {
-    if (value == 'true' || value == 'false') return true
+    if (value == 'true' || value == 'false') return true;
     else {
       //! Message d'avertissement à la console
-      console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`)
+      console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`);
 
-      return false
+      return false;
     }
   }
 
@@ -91,79 +91,78 @@ function isLocalItemValid(i) {
     // On vérifie si la clé contient un string JSON valide, sinon elle est invalide
     if (canBeParsed(value)) {
       // On parse la valeur de la clé et on vérifie si c'est un Array
-      value = JSON.parse(value)
-      if (Array.isArray(value)) return true
+      value = JSON.parse(value);
+      if (Array.isArray(value)) return true;
       else {
         //! Message d'avertissement à la console
-        console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`)
+        console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`);
 
-        return false
+        return false;
       }
     } else {
       //! Message d'avertissement à la console
-      console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`)
+      console.log(`Warning: Unexpected Local Storage Key Value for Key ${i}.`);
 
-      return false
+      return false;
     }
   }
 }
 
 function isMouseOverButton(btn, e) {
   // Fonction qui renvoie si la souris est par-dessus un bouton
-  let pos = getMousePos(e)
+  let pos = getMousePos(e);
 
   // Si la souris a une coordonnée qui correspond à l'intérieur du bouton, retourner true, sinon retourner false
-  if (pos.x >= btn.pos.x && pos.x <= btn.pos.x + btn.width && pos.y >= btn.pos.y && pos.y <= btn.pos.y + btn.height)
-    return true
-  else return false
+  if (pos.x >= btn.pos.x && pos.x <= btn.pos.x + btn.width && pos.y >= btn.pos.y && pos.y <= btn.pos.y + btn.height) return true;
+  else return false;
 }
 
 function pushHiscore(score) {
   // Fonction d'enregistrement de score
 
   // On affecte le tableau des records du local storage dans la variable hiscore et si la donnée n'existe pas, on transforme la variable en array
-  let hiscores
-  if (localStorage.getItem('hiscores') != null) hiscores = JSON.parse(localStorage.getItem('hiscores'))
-  else hiscores = []
+  let hiscores;
+  if (localStorage.getItem('hiscores') != null) hiscores = JSON.parse(localStorage.getItem('hiscores'));
+  else hiscores = [];
   // on vérifie si le record n'est pas déjà présent et on store la réponse dans une variable
-  let doubloon = false
+  let doubloon = false;
   for (const hiscore of hiscores) {
-    if (score == hiscore) doubloon = true
+    if (score == hiscore) doubloon = true;
   }
 
   // Si le record n'est pas un doublon et est meilleur que le cinquième meilleur score c'est un nouveau record
   if (!doubloon && (score > hiscores[4] || hiscores.length < 5)) {
-    menu_gameOver.newRecord = true
+    menu_gameOver.newRecord = true;
     // Si le tableau est vide ou que le score est meilleur que le premier record, on assigne la médaille d'or
-    if (hiscores.length == 0 || score > hiscores[0]) menu_gameOver.medal.type = 'gold'
+    if (hiscores.length == 0 || score > hiscores[0]) menu_gameOver.medal.type = 'gold';
     // Sinon, si le tableau a une seule entrée ou que le score est meilleur que le deuxième record, on assigne la médaille d'argent
-    else if (hiscores.length == 1 || score > hiscores[1]) menu_gameOver.medal.type = 'silver'
+    else if (hiscores.length == 1 || score > hiscores[1]) menu_gameOver.medal.type = 'silver';
     // Sinon, si le tableau a deux entrées ou que le score est meilleur que le troisième record, on assigne la médaille de bronze
-    else if (hiscores.length == 2 || score > hiscores[2]) menu_gameOver.medal.type = 'bronze'
+    else if (hiscores.length == 2 || score > hiscores[2]) menu_gameOver.medal.type = 'bronze';
     // Sinon, on n'affiche pas de médaille dans l'écran Game Over
-    else menu_gameOver.medal.type = null
+    else menu_gameOver.medal.type = null;
   } else {
-    menu_gameOver.newRecord = false
-    menu_gameOver.medal.type = null
+    menu_gameOver.newRecord = false;
+    menu_gameOver.medal.type = null;
   }
 
   // Si le record n'est pas un doublon, on l'ajoute au tableau et on le trie par ordre décroissant
   if (!doubloon) {
-    hiscores.push(score)
-    sortArray(hiscores)
+    hiscores.push(score);
+    sortArray(hiscores);
   }
 
   // si le tableau contient plus de 5 records, on le réduit à 5 éléments
-  if (hiscores.length > 5) hiscores.splice(5, hiscores.length - 4)
+  if (hiscores.length > 5) hiscores.splice(5, hiscores.length - 4);
 
-  localStorage.setItem('hiscores', JSON.stringify(hiscores))
+  localStorage.setItem('hiscores', JSON.stringify(hiscores));
 }
 
 function sortArray(arr, desc = true) {
   arr.sort(function (a, b) {
-    if (desc) return b - a
-    else return a - b
-  })
+    if (desc) return b - a;
+    else return a - b;
+  });
 }
 
-export { getMousePos, areObjectsColliding, isLocalItemValid, isMouseOverButton, pushHiscore }
+export { getMousePos, areObjectsColliding, isLocalItemValid, isMouseOverButton, pushHiscore };

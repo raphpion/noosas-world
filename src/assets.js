@@ -2,24 +2,24 @@ const backgrounds = {
   clouds: new Image(),
   hills: new Image(),
   pixel_clouds: new Image(),
-}
+};
 
 const maps = {
   default_layer1: new Image(),
   default_layer2: new Image(),
-}
+};
 
 const music = {
   arcade: new Audio(),
   gameover: new Audio(),
   titlescreen: new Audio(),
-}
+};
 
 const sfx = {
   button: new Audio(),
   coin: new Audio(),
   jump: new Audio(),
-}
+};
 
 const sprites = {
   // static
@@ -59,6 +59,6 @@ const sprites = {
   bumblebee: new Image(),
   items: new Image(),
   noosa: new Image(),
-}
+};
 
-export { backgrounds, maps, music, sfx, sprites }
+export { backgrounds, maps, music, sfx, sprites };

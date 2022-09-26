@@ -1,7 +1,7 @@
-import { playSound } from '../audio.js'
-import { ctx, getScene } from '../screen.js'
-import { menu_settings } from '../menus/settings.js'
-import { sprites, sfx } from '../assets.js'
+import { playSound } from '../audio.js';
+import { ctx, getScene } from '../screen.js';
+import { menu_settings } from '../menus/settings.js';
+import { sprites, sfx } from '../assets.js';
 
 // bouton d'accès à l'écran des options
 const btn_settings = {
@@ -18,8 +18,8 @@ const btn_settings = {
     // fonction d'affichage du bouton à l'écran
 
     // selon si le bouton est 'hover' ou non, on change la source en X
-    if (btn_settings.hover) btn_settings.sourceX = 400
-    else btn_settings.sourceX = 0
+    if (btn_settings.hover) btn_settings.sourceX = 400;
+    else btn_settings.sourceX = 0;
 
     // affichage du bouton et de son texte
     ctx.drawImage(
@@ -32,19 +32,19 @@ const btn_settings = {
       btn_settings.pos.y,
       btn_settings.width,
       btn_settings.height
-    )
-    ctx.font = '40pt VT323'
-    ctx.textBaseline = 'top'
-    ctx.fillStyle = 'white'
-    ctx.textAlign = 'center'
-    ctx.fillText(btn_settings.content, btn_settings.pos.x + 200, btn_settings.pos.y)
+    );
+    ctx.font = '40pt VT323';
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = 'white';
+    ctx.textAlign = 'center';
+    ctx.fillText(btn_settings.content, btn_settings.pos.x + 200, btn_settings.pos.y);
   },
   click: () => {
-    playSound(sfx.button)
-    btn_settings.hover = false
-    document.body.style.cursor = 'default'
-    getScene(menu_settings)
+    playSound(sfx.button);
+    btn_settings.hover = false;
+    document.body.style.cursor = 'default';
+    getScene(menu_settings);
   },
-}
+};
 
-export { btn_settings }
+export { btn_settings };

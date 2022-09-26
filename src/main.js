@@ -6,14 +6,14 @@
 // Volet 2 - 16 novembre 2020
 // © Copyright Raphaël Pion 2020
 
-import { initialSettings } from './settings.js'
-import { getScene } from './screen.js'
-import { menu_loading } from './menus/loading.js'
+import { initialSettings } from './settings.js';
+import { getScene } from './screen.js';
+import { menu_loading } from './menus/loading.js';
 
-console.log(`Noosa's World running version 1.0`)
+console.log(`Noosa's World running version 1.0`);
 
 // Vérification de l'intégrité des options utilisateurs
-initialSettings()
+initialSettings();
 
 // Chargement des ressources du jeu
-getScene(menu_loading)
+getScene(menu_loading);
