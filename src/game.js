@@ -143,6 +143,8 @@ const game = {
     if (e.keyCode == 16) keys.shift = false;
   },
   over: () => {
+    if (game.isOver) return;
+
     // Fonction de gestion de défaite
     playMusic(music.gameover, false);
     game.isOver = true;
